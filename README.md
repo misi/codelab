@@ -17,3 +17,4 @@ Images:
 * Step3: GuM I/O Select
 * Step4: GuM Record
 * Step5: GuM + PC states
+* Step6: DataChannel
