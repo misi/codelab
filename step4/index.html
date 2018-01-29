@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>WebRTC CodeLab</title>
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" href="img/favicon-flask.ico" type="image/x-icon">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/6.1.0/adapter.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+
+  <h1>WebRTC CodeLab</h1>
+
+    <div>
+      <button id="grab">GetuserMedia</button>
+      <select id="format"></select>
+    </div>
+    <div>
+      <button id="record" disabled>Start Recording</button>
+      <button id="stop" disabled>Stop Recording</button>
+    </div>
+    <div id=download>
+      <button id="replay" disabled>RePlay</button>
+    </div>
+
+    <video id="gum" autoplay muted></video>
+    <video id="vod" autoplay loop></video>
+</body>
+
+</html>

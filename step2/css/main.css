@@ -1,0 +1,13 @@
+body {
+            background: url("../img/background.svg") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+	    background-color: transparent;
+	    text-align: center;
+    }
+#constraintList {
+	    display: inline-block;
+	    text-align: left;
+}
