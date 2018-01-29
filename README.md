@@ -18,3 +18,4 @@ Images:
 * Step4: GuM Record
 * Step5: GuM + PC states
 * Step6: DataChannel
+* Step7: Nodejs Signaling Server (socket.io)

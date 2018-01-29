@@ -1,0 +1,18 @@
+{
+  "name": "signaling",
+  "version": "0.0.1",
+  "description": "Simple Singling server with socket.io",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": {
+    "name": "Mészáros Mihály",
+    "email": "misi@odu.duckdns.org"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "https": "^1.0.0",
+    "socket.io": "^2.0.4"
+  }
+}

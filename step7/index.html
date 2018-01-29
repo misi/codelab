@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>WebRTC CodeLab</title>
+
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="icon" href="img/favicon-flask.ico" type="image/x-icon">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/6.1.0/adapter.js" defer></script>
+  <!-- socket.io -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+
+  <h1>WebRTC CodeLab</h1>
+
+  <h3>Socket.io</h3>
+    <div class="row">
+      <div class="column">
+        <h4>Alice (socket1)<h4>
+        <div>
+          <textarea id="textArea1" readonly placeholder="Alice Chat Log"></textarea>
+        </div>
+        <div>
+          <input type="text" id="input1" placeholder="Type a message and press an Enter to send!"></input>
+        </div>
+      </div>
+      <div class="column">
+        <h4>Bob (soket2)<h4>
+        <div>
+          <textarea id="textArea2" readonly placeholder="Bob Chat Log"></textarea>
+        </div>
+        <div>
+          <input type="text" id="input2" placeholder="Type a message and press an Enter to send!"></input>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+</html>
