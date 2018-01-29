@@ -1,0 +1,25 @@
+body {
+            background: url("../img/background.svg") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+	    background-color: transparent;
+	    text-align: center;
+}
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 1;
+  padding: 20px;
+}
+
+input[type=text] {
+  width: 80%;
+}
+textarea {
+  height: 200px;
+  width:80%;
+}
