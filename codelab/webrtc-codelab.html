@@ -1,0 +1,261 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>WebRTC codelab</title>
+  <link rel="icon" href="img/favicon-flask.ico" type="image/x-icon">
+  <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
+  <script src="../webcomponentsjs/webcomponents-lite.min.js" async></script>
+  <script>
+    window.Polymer = {
+      dom: 'shadow',
+      lazyRegister: 'max',
+      useNativeCSSProperties: true
+    };
+  </script>
+  <link rel="stylesheet"
+        href="//fonts.googleapis.com/css?family=Roboto:300,400,400italic,500,500italic,700,700italic|Roboto+Mono:400,700">
+  <link rel="import" href="../iron-icons/iron-icons.html">
+  <link rel="import" href="../paper-button/paper-button.html">
+  <link rel="import" href="../codelab-components/google-codelab-elements.html">
+
+  <style is="custom-style"> 
+    body {
+      font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial;
+      background: var(--google-codelab-background, --paper-grey-300);
+    }
+  </style>
+</head>
+<body>
+
+  <google-codelab title="WebRTC Codelab Tutorial!"
+                  feedback-link="https://github.com/misi/codelab"
+                  environment="web"
+                  last-updated="2018-01-31">
+
+<!-- ================================ Step ========================================= -->
+
+    <google-codelab-step label="Introduction" duration="5">
+
+	    <h2>WebRTC Project Logo:</h2>
+      <p>
+        <img style="max-width: 100.00px" src="img/webrtc-logo-vert-retro-dist.svg">
+        <!-- https://webrtc.org/assets/images/webrtc-logo-vert-retro-dist.svg -->
+      </p>
+      <p>
+      <a href="https://webrtc.org/press/">https://webrtc.org/press/</a>
+      </p>
+      <h2>Terminology:</h2>
+      <ul>
+        <li>Grab MediaStream from a Mediadevice: GetUserMedia (GuM)</li>
+        <li>Establish Connection: PeerConnection (PC)</li>
+      </ul>
+
+     <h2>Aside test</h2>
+      <aside class="warning">
+        <p>Warning</p>
+      </aside>
+      <aside class="tip">
+        <p>Tip</p>
+      </aside>
+      <aside class="note">
+        <p>Note</p>
+      </aside>
+      <aside class="callout">
+        <p>CallOut</p>
+      </aside>
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="WebRTC Architecture" duration="5">
+      <h1>WebRTC Trapezoid</h1>
+      <h2>Architecture</h2>
+      <p><img style="max-width: 749.00px" src="img/webrtc-public-diagram-for-website.png"></p>
+      <!-- https://webrtc.org/assets/images/webrtc-public-diagram-for-website.png -->
+      <a href="https://webrtc.org/architecture/">https://webrtc.org/architecture/</a>
+      <h2>Direct Peer to Peer Connection</h2>
+      <p><img style="max-width: 749.00px" src="img/webrtc_architecture.png"></p>
+      <aside class="note">
+	      <p>Direct Browser to Browser connection is prefered by default to keep the end to end delay low, but may connection time.</p> 
+      </aside>
+      <h2>Fallback to TURN relay</h2>
+      <p><img style="max-width: 749.00px" src="img/webrtc_architecture2.png"></p>
+      <p></p>
+     </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="Codecs" duration="5">
+      <h2>Audio Codecs</h2>
+      <h2>Video Codecs</h2>
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="Screensharing" duration="5">
+      <p>Chrome extension: </p>
+      <p>inline install:<p/>
+     <ul>
+       <li>
+         <a href="https://developer.chrome.com/webstore/inline_installation" target="_blank">https://developer.chrome.com/webstore/inline_installation</a>
+       </li>
+     </ul>
+     <p>Standard</p>
+     <ul>
+        <li>
+         <a href="https://www.w3.org/TR/screen-capture/" target="_blank">https://www.w3.org/TR/screen-capture/</a>
+       </li>
+     </ul>
+     <p>Mozilla</p>
+     <ul>
+       <li>
+         <a href="https://blog.mozilla.org/webrtc/share-browser-windows-entire-screen-sites-trust/" /target="_blank">https://blog.mozilla.org/webrtc/share-browser-windows-entire-screen-sites-trust/</a>
+       </li>
+       <li>
+         <a href="https://wiki.mozilla.org/Screensharing" /target="_blank">https://wiki.mozilla.org/Screensharing</a>
+       </li>
+      </ul>
+      <pre><code>        mediaConstraints = {
+          video: {
+              mediaSource: &quot;screen&quot;
+          },
+        };</code></pre>
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="WebRTC State Machine" duration="5">
+      <h2>PeerConnection States</h2>
+      <p><img style="max-width: 749.00px" src="https://www.w3.org/TR/webrtc/images/peerstates.svg"></p>
+      <h2>ICE Agent States</h2>
+      <p><img style="max-width: 749.00px" src="https://www.w3.org/TR/webrtc/images/icetransportstate.svg"></p>
+    
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="WebRTC Security Architecture" duration="5">
+      <p>The browser is the trust base. </p>
+      <pre>
+             +----------------+    Unspecified    +----------------+
+             |                |      protocol     |                |
+             |    Signaling   |<----------------->|    Signaling   |
+             |    Server      |  (SIP, XMPP, ...) |    Server      |
+             |                |                   |                |
+             +----------------+                   +----------------+
+                      ^                                   ^
+                      |                                   |
+                HTTPS |                                   | HTTPS
+                      |                                   |
+                      |                                   |
+                      v                                   v
+                   JS API                               JS API
+             +-----------+                             +-----------+
+             |           |             Media           |           |
+       Alice |  Browser  |<--------------------------->|  Browser  | Bob
+             |           |           DTLS+SRTP         |           |
+             +-----------+                             +-----------+
+                   ^      ^--+                      +--^     ^
+                   |         |                      |        |
+                   v         |                      |        v
+             +-----------+   |                      |  +-----------+
+             |           |<-------------------------+  |           |
+             |   IdP1    |   |                         |    IdP2   |
+             |           |   +------------------------>|           |
+             +-----------+                             +-----------+
+                   A federated call with IdP-based identity    
+      </pre>
+      <p>See EKR IETF presentation for details: <a href="http://www.ietf.org/proceedings/82/slides/rtcweb-13.pdf">http://www.ietf.org/proceedings/82/slides/rtcweb-13.pdf</a>
+      </p>
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="SDP" duration="5">
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="Lab 1: GetuserMedia (GuM)" duration="5">
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="Lab 2: GuM Constraints" duration="5">
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="Lab 3: GuM I/O Select" duration="5">
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="Lab 4: GuM Record" duration="5">
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="Lab 5: GuM + PC state" duration="5">
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="Lab 6: PC DataChannel Chat" duration="5">
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="Lab 7: Nodejs Signaling Server (socket.io) Chat" duration="5">
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+    <google-codelab-step label="Lab 8: Install KnockPlop" duration="5">
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+     <google-codelab-step label="Congratulations" duration="5">
+      <h2>What you learned</h2>
+      <p>You have learned how to:</p>
+      <ul class="checklist">
+        <li>Grab your local WebCam Audio/Video Stream.</li>
+        <li>Get and Configure the Mediadevice supported parameters/constraints</li>
+        <li>Discover MediaDevices, specify Input/Output Mediadevice</li>
+        <li>Record localy a MediaStream using MediaRecorder API</li>
+        <li>Setup PeerConnection and howto follow it's states</li>
+        <li>Use DataChannel</li>
+        <li>Use a simple (socket.io based) Signaling Channel</li>
+        <li>Install KnockPlop</li>
+      </ul>
+      <h2>Learn more about related API-s</h2>
+      <p>GetUserMedia API</p> 
+      <ul>
+        <li> 
+          W3C: <a href="https://www.w3.org/TR/mediacapture-streams/" target="_blank">https://www.w3.org/TR/mediacapture-streams/</a>
+        </li>
+        <li>
+          Mozilla Developers: <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia" target="_blank">developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia</a>
+        </li>
+      </ul>
+      <p>WebRTC API</p> 
+      <ul>
+        <li> 
+          W3C: <a href="https://www.w3.org/TR/webrtc/" target="_blank">www.w3.org/TR/webrtc/</a>
+        </li>
+        <li>
+          Mozilla Developers: <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection" target="_blank">developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection</a>
+        </li>
+      </ul>
+      <p>WebAudio API</p> 
+      <ul>
+        <li> 
+          W3C: <a href="https://www.w3.org/TR/webaudio/" target="_blank">www.w3.org/TR/webaudio/</a>
+        </li>
+        <li>
+          Mozilla Developers: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" target="_blank">developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API</a>
+        </li>
+      </ul>
+      <p>MediaStream Recorder API</p> 
+      <ul>
+        <li> 
+          W3C: <a href="https://www.w3.org/TR/mediastream-recording/" target="_blank">www.w3.org/TR/mediastream-recording/</a>
+        </li>
+        <li>
+          Mozilla Developers: <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/MediaRecorder" target="_blank">developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/MediaRecorder</a>
+        </li>
+      </ul>
+      <p>Media Capture from DOM Elements API</p> 
+      <ul>
+        <li> 
+          W3C: <a href="https://www.w3.org/TR/mediacapture-fromelement/" target="_blank">www.w3.org/TR/mediacapture-fromelement/</a>
+        </li>
+        <li>
+          Mozilla Developers: <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasCaptureMediaStream" target="_blank">developer.mozilla.org/en-US/docs/Web/API/CanvasCaptureMediaStream</a>
+        </li>
+      </ul>
+      <p>Audio Output Devices API</p> 
+      <ul>
+        <li> 
+          W3C: <a href="https://www.w3.org/TR/audio-output/" target="_blank">www.w3.org/TR/audio-output/</a>
+        </li>
+     </ul>
+    </google-codelab-step>
+<!-- ================================ Step ========================================= -->
+  </google-codelab>
+
+</body>
+</html>
