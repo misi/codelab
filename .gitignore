@@ -1,3 +1,6 @@
+knockplop
 node_modules
+bower_components
 package-lock.json
 *.pem
+yarn.lock
