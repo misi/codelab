@@ -19,3 +19,4 @@ Images:
 * Lab5: GuM + PC states
 * Lab6: DataChannel
 * Lab7: Nodejs Signaling Server (socket.io)
+* Lab8: Install KnockPlop
