@@ -21,3 +21,16 @@ Images:
 * Lab6: DataChannel
 * Lab7: Nodejs Signaling Server (socket.io)
 * Lab8: Install KnockPlop
+
+## Tutorial / codelab
+
+```
+cd codelab
+yarn install
+sudo yarn global add polyserve
+
+../utils/certcopy.sh
+polyserve -H :: -p 8080 --key privkey.pem --cert cert.pem -P https/1.1
+```
+
+https://FQDN:8080/components/webrtc-codelab/webrtc-codelab.html
