@@ -32,5 +32,5 @@ sudo yarn global add polyserve
 ../utils/certcopy.sh
 polyserve -H :: -p 8080 --key privkey.pem --cert cert.pem -P https/1.1
 ```
-
-https://FQDN:8080/components/webrtc-codelab/webrtc-codelab.html
+** Open Tutorial in Browser **
+[https://*REPLACE_WITH_YOUR_HOST_FQDN*:8080/components/webrtc-codelab/webrtc-codelab.html](https://REPLACE_WITH_YOUR_HOST_FQDN:8080/components/webrtc-codelab/webrtc-codelab.html)
