@@ -8,51 +8,10 @@
   "author": "Mészáros Mihály",
   "license": "MIT",
   "dependencies": {
-    "@bower_components/app-layout": "PolymerElements/app-layout#^0.10.0",
-    "@bower_components/codelab-components": "googlecodelabs/codelab-components#^2.0.2",
-    "@bower_components/font-roboto": "PolymerElements/font-roboto#^1.0.1",
-    "@bower_components/google-prettify": "google/code-prettify#*",
-    "@bower_components/iron-a11y-keys-behavior": "PolymerElements/iron-a11y-keys-behavior#^1.0.5",
-    "@bower_components/iron-behaviors": "PolymerElements/iron-behaviors#^1.0.0",
-    "@bower_components/iron-checked-element-behavior": "PolymerElements/iron-checked-element-behavior#^1.0.0",
-    "@bower_components/iron-collapse": "PolymerElements/iron-collapse#^1.0.0",
-    "@bower_components/iron-fit-behavior": "PolymerElements/iron-fit-behavior#^1.0.0",
-    "@bower_components/iron-flex-layout": "PolymerElements/iron-flex-layout#^1.0.3",
-    "@bower_components/iron-form-element-behavior": "PolymerElements/iron-form-element-behavior#^1.0.0",
-    "@bower_components/iron-icon": "polymerelements/iron-icon#^1.0.0",
-    "@bower_components/iron-icons": "PolymerElements/iron-icons#^1.0.3",
-    "@bower_components/iron-iconset-svg": "polymerelements/iron-iconset-svg#^1.0.0",
-    "@bower_components/iron-localstorage": "PolymerElements/iron-localstorage#^1.0.4",
-    "@bower_components/iron-media-query": "PolymerElements/iron-media-query#^1.0.0",
-    "@bower_components/iron-menu-behavior": "PolymerElements/iron-menu-behavior#^1.0.0",
-    "@bower_components/iron-meta": "PolymerElements/iron-meta#^1.0.0",
-    "@bower_components/iron-overlay-behavior": "PolymerElements/iron-overlay-behavior#^1.7.0",
-    "@bower_components/iron-resizable-behavior": "PolymerElements/iron-resizable-behavior#^1.0.0",
-    "@bower_components/iron-scroll-target-behavior": "PolymerElements/iron-scroll-target-behavior#^1.0.0",
-    "@bower_components/iron-selector": "PolymerElements/iron-selector#^1.0.0",
-    "@bower_components/iron-validatable-behavior": "PolymerElements/iron-validatable-behavior#^1.0.0",
-    "@bower_components/neon-animation": "PolymerElements/neon-animation#^1.2.2",
-    "@bower_components/paper-behaviors": "PolymerElements/paper-behaviors#^1.0.0",
-    "@bower_components/paper-button": "PolymerElements/paper-button#^1.0.3",
-    "@bower_components/paper-dialog": "PolymerElements/paper-dialog#^1.0.1",
-    "@bower_components/paper-dialog-behavior": "PolymerElements/paper-dialog-behavior#^1.0.0",
-    "@bower_components/paper-fab": "PolymerElements/paper-fab#^1.0.3",
-    "@bower_components/paper-icon-button": "PolymerElements/paper-icon-button#^1.0.3",
-    "@bower_components/paper-item": "PolymerElements/paper-item#^1.0.2",
-    "@bower_components/paper-material": "PolymerElements/paper-material#^1.0.0",
-    "@bower_components/paper-menu": "PolymerElements/paper-menu#^1.1.0",
-    "@bower_components/paper-radio-button": "PolymerElements/paper-radio-button#^1.0.6",
-    "@bower_components/paper-radio-group": "PolymerElements/paper-radio-group#^1.0.4",
-    "@bower_components/paper-ripple": "PolymerElements/paper-ripple#^1.0.0",
-    "@bower_components/paper-styles": "PolymerElements/paper-styles#^1.0.11",
-    "@bower_components/polymer": "Polymer/polymer#^1.6.0",
-    "@bower_components/web-animations-js": "web-animations/web-animations-js#^2.2.0",
-    "@bower_components/webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.24"
+    "codelab-components": "googlecodelabs/codelab-components#^2.0.2",
+    "@bower_components/google-prettify": "google/code-prettify#master"
   },
   "engines": {
     "yarn": ">= 1.0.0"
-  },
-  "scripts": {
-    "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'bower_components', 'junction') } catch (e) { }\""
   }
 }
