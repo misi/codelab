@@ -19,7 +19,15 @@ navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
    myStream=mediaStream;
    var video = document.querySelector('video');
    video.srcObject = mediaStream;
+   /* instead of autoplay	
+   video.onloadedmetadata = function(e) {
+     video.play();
+   };
+   */
+
 })
+
+
 .catch(function(err) {
    /* handle the error */
   console.error(err);
