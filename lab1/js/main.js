@@ -7,6 +7,13 @@ const mediaStreamConstraints = {
 };
 
 /*
+const mediaStreamConstraints = {
+  audio: true,
+  video: true,
+};
+*/
+
+/*
 const mediaStreamConstraints = { video: { facingMode: "user" } };
 const mediaStreamConstraints = { video: { facingMode: "environment" } };
 */
