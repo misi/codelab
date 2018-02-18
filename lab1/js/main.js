@@ -19,9 +19,6 @@ navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
    myStream=mediaStream;
    var video = document.querySelector('video');
    video.srcObject = mediaStream;
-   video.onloadedmetadata = function(e) {
-     video.play();
-   };
 })
 .catch(function(err) {
    /* handle the error */
