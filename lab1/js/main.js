@@ -11,9 +11,12 @@ const mediaStreamConstraints = { video: { facingMode: "user" } };
 const mediaStreamConstraints = { video: { facingMode: "environment" } };
 */
 
+var myStream;
+
 navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
 .then(function(mediaStream) {
    /* use the stream */
+   myStream=mediaStream;
    var video = document.querySelector('video');
    video.srcObject = mediaStream;
    video.onloadedmetadata = function(e) {
