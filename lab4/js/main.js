@@ -74,6 +74,12 @@ function dataAvailable(e){
   chunks.push(e.data);
 };
 
+function stop() {
+  stopButton.disabled = true;
+  mediaRecorder.stop();
+  replayButton.disabled = false;
+};
+
 function replay() {
   vod.controls = true;
   var buffer = new Blob(chunks, {type: 'video/webm'});
@@ -87,12 +93,6 @@ function replay() {
   a.title = "!!! Download Recording !!!"
   a.download = 'recorded.webm';
   document.querySelector('#download').appendChild(a);
-};
-
-function stop() {
-  stopButton.disabled = true;
-  mediaRecorder.stop();
-  replayButton.disabled = false;
 };
 
 // Add buttons eventhandles
