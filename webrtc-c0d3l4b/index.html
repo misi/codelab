@@ -62,9 +62,9 @@
 <li>How to use the basic WebRTC API-s</li>
 <li>How to grab a MediaDevice. e.g. How to grab your WebCam&#39;s VideoStream.</li>
 <li>How to set mediaStream Input and Output devices</li>
-<li>How to setup a PeerConnection</li>
+<li>How to setup a PeerConnection(PC)</li>
 <li>How to setup PC for proper NAT Traversal</li>
-<li>How to use a DataChannel</li>
+<li>How to use a DataChannel(DC)</li>
 <li>How to record a MediaStream locally</li>
 </ul>
 <h2><strong>What you&#39;ll need</strong></h2>
@@ -92,7 +92,7 @@
         <h2><strong>Setup a web server with TLS support on Your host</strong></h2>
 <p>Install on your host a web server with a certificate from <a href="https://letsencrypt.org/" target="_blank">let&#39;s encrypt</a>.</p>
 <p>If you use chrome you could also use web-server-for-chrome extension:</p>
-<p><a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en" target="_blank"><paper-button class="colored" raised>Install Web Server for Chrome</paper-button></a></p>
+<p><a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en" target="_blank">Install Web Server for Chrome</a></p>
 <aside class="special"><p><strong>Tip</strong>: We have created pre install VM with certificate and web server. <br>Please test it and login on your VM with your ssh client.</p>
 </aside>
 <h2><strong>You could Download the Sample Code</strong></h2>
@@ -102,8 +102,8 @@
 <pre>git clone https://github.com/misi/codelab.git</pre>
 <p>Unpack the zip file in your <code>web server root directory</code>. This will unpack a root folder (<code>codelab</code>), which contains one <code>labN</code> folder for each step of this codelab, along with all of the resources you will need.</p>
 <p>The <code>labN</code> folders contain the desired end state of each step of this codelab. They are there for reference. We&#39;ll be doing all our coding work in a directory called <code>work</code>.</p>
-<h2><strong>Ready? =&gt; Let&#39;s Start the theory!</strong></h2>
-<p>WebRTC is complex and could be hard to understand for a web developer without proper understanding of WebRTC Architecture and technologies working under the hood.</p>
+<h2><strong>Ready? =&gt; Let&#39;s start the theory lesson!</strong></h2>
+<p>WebRTC is complex and could be hard to understand for a web developer for a first sight without proper understanding of WebRTC Architecture and technologies working under the hood.</p>
 
 
       </google-codelab-step>
@@ -112,10 +112,10 @@
         <h2><strong>Goals</strong></h2>
 <ul>
 <li><strong>Easy to use for the end user (</strong>Without Plugins, Without Install, Always up2date client)</li>
-<li><strong>Multi platform (</strong>Exotic platforms no more excluded from RTC.<strong>)</strong></li>
+<li><strong>Multi platform </strong>(Even exotic platforms (Linux, BSD)<strong>)</strong></li>
 <li><strong>Push the envelope</strong>: Low Latency / Jitter,  Advanced congestion avoidance, Adaptive Audio Video encoding and Forward Error Correction (FEC)</li>
 <li><strong>Firewall and NAT Traversal</strong> ICE(STUN/TURN)</li>
-<li><strong>Focus on Security and Privacy and Identity validation by design</strong>, encrypted Secure End to End communication, ask consent before access a MediaDevice, avoid fingerprinting</li>
+<li><strong>Focus on Security and Privacy and Identity validation by design</strong>. Encrypted Secure End to End communication, Asks for user consent before access a MediaDevice(WebCam), if possible avoid fingerprinting</li>
 <li><strong>Open Source Native Implementation</strong> (for browser vendors and beyond browsers)</li>
 <li><strong>Open Standard</strong> (W3C, IETF)</li>
 <li><strong>Interwork with any Signaling</strong></li>
@@ -166,7 +166,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="History" duration="5">
-        <h2>The begining</h2>
+        <h2>The beginning</h2>
 <ul>
 <li>2009 - Google Chrome Team Idea</li>
 <li>2010 Summer - IETF 98 Informal lunch (Google, Microsoft, Apple, Mozilla, Skype, Ericsson,etc.)</li>
@@ -185,7 +185,7 @@
 <li>2013 October - Open H.264 Cisco (Mozilla)</li>
 <li>2013 October - Opera 18 Beta WebRTC debut.</li>
 </ul>
-<h2>Onbording on webRTC train</h2>
+<h2>Onboarding on webRTC train</h2>
 <ul>
 <li>2014 September - OpenWebRTC (Ericsson)</li>
 <li>2014 October - Microsoft Edge ORTC Announcement</li>
@@ -214,7 +214,7 @@
 <p>Standardization is a moving target. Mind the gap between:</p>
 <ul>
 <li>Standard and Browser Implementations</li>
-<li>Between bowser implementations</li>
+<li>Between bowser and browser implementations</li>
 <li>Application and Standard</li>
 </ul>
 <p>The adapter.js is a shim to insulate apps from spec changes and prefix differences.</p>
@@ -231,6 +231,9 @@
 <ul>
 <li>Async API =&gt; Move from callbacks, forward to Promises</li>
 </ul>
+<aside class="warning"><p><strong>Warning</strong>! </p>
+<p>Only read further if you already familiar with WebRTC. Beginners could safely skip over these changes.</p>
+</aside>
 <h4>Media Capture Changes: </h4>
 <p><strong>MediaDevice selection, detection on changes (discovery)</strong></p>
 <ul>
@@ -281,10 +284,10 @@
 
       </google-codelab-step>
     
-      <google-codelab-step label="WebRTC Architecture" duration="5">
+      <google-codelab-step label="WebRTC 1.0 Architecture" duration="5">
         <h3><strong>Protocol Stack</strong></h3>
 <p><img style="max-width: 520.00px" src="img/ea08a380495f9f3e.png"></p>
-<p>WebRTC native Architecture</p>
+<h2><strong>WebRTC native Architecture</strong></h2>
 <p><img style="max-width: 624.00px" src="img/fcdec68b59f9447d.png"></p>
 <p><a href="https://webrtc.org/architecture/" target="_blank">https://webrtc.org/architecture/</a></p>
 <h2><strong>WebRTC Trapezoid</strong></h2>
@@ -341,6 +344,11 @@
 <p><img style="max-width: 624.00px" src="img/c73944b647485a86.png"></p>
 <h3><strong>TURN - Allocate</strong></h3>
 <p><img style="max-width: 624.00px" src="img/59609b44fde7fdad.png"></p>
+<aside class="special"><p><strong>Note</strong>: </p>
+<ul>
+<li>Discover your candidate: <a href="https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/" target="_blank">https://webrtc.github.io/samples/src/content/peerconnection/trickle-ice/</a></li>
+</ul>
+</aside>
 <h2>ICE</h2>
 <h3><strong>Design Goals</strong></h3>
 <ul>
@@ -405,6 +413,10 @@
 <aside class="special"><p><strong>Tip</strong>: </p>
 <p>See coTURN turnutils_natdiscovery README for options <a href="https://github.com/coturn/coturn/blob/master/README.turnutils" target="_blank">https://github.com/coturn/coturn/blob/master/README.turnutils</a></p>
 </aside>
+<p>Symmetric NAT discovery in browser:</p>
+<ul>
+<li><a href="https://webrtchacks.com/symmetric-nat/" target="_blank">https://webrtchacks.com/symmetric-nat/</a></li>
+</ul>
 
 
       </google-codelab-step>
@@ -577,7 +589,7 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 <li>Secure User Interface opt-in (e.g. Camera, audio access)</li>
 <li>User can allow/deny audio video source usage</li>
 </ul>
-<aside class="special"><p><strong>Tip!</strong> See EKR IETF presentation for detaied information: <a href="http://www.ietf.org/proceedings/82/slides/rtcweb-13.pdf" target="_blank">http://www.ietf.org/proceedings/82/slides/rtcweb-13.pdf</a></p>
+<aside class="special"><p><strong>Tip</strong>! See EKR IETF presentation for detailed more information: <a href="http://www.ietf.org/proceedings/82/slides/rtcweb-13.pdf" target="_blank">http://www.ietf.org/proceedings/82/slides/rtcweb-13.pdf</a></p>
 </aside>
 <h2>Offer Answer <code>without</code><strong> Identity Check</strong></h2>
 <p><img style="max-width: 624.00px" src="img/31562214b7e28759.png"></p>
@@ -623,7 +635,7 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 </ul>
 <aside class="warning"><p><strong>Important</strong>:  SDES-SRTP is obsoleted, mainly because to avoid any surveillance possibility. This was a design decision, and it could add interop issues with legacy systems!</p>
 </aside>
-<aside class="special"><p><strong>Note: Identity is a must!</strong> We don&#39;t trust fully anymore in the signaling provider. Earlier, in SDES-SRTP case we have trusted in signaling service provider, that it authenticates the parties in the communication in some form. </p>
+<aside class="special"><p><strong>Note: Identity is a must!</strong> We don&#39;t trust fully anymore in the signaling provider. Earlier, in SDES-SRTP case we have trusted in signaling service provider, and assumed that it is authenticating the parties in the communication in some form. </p>
 <p><em>Be aware that WebRTC designed to use E2E encryption, and without Identity validation security is not complete and leaky(!), this way it is extremely important to validate the Peers Identity.</em></p>
 </aside>
 
@@ -673,10 +685,12 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 <ul>
 <li>Strong and wide community</li>
 <li>Fast New market</li>
-<li>3,5-4 Billion of potential Browser</li>
-<li>more then 1300+ Vendor and Project based on WebRTC</li>
+<li>3,5-4 Billion of potential Browsers</li>
+<li>More than 1300+ Vendor and Project based on WebRTC</li>
 <li>Wide support in browsers: Chrome,Firefox, Opera, Edge, Safari, etc.</li>
 </ul>
+<h2><strong>WebRTC - Next Version (NV)</strong></h2>
+<p>Actual Focus on finishing 1.0 and only after start WebRTC-NV.</p>
 
 
       </google-codelab-step>
@@ -967,33 +981,37 @@ for (var i in types) {
 <li><strong>bitsPerSecond</strong>: Aggregate target bits per second for encoding of all Video and Audio Track(s) present</li>
 </ul>
 <p>After local MediaStream is already captured, we create a MediaRecorderObject and stop with <code>Stop()</code> at the end.</p>
-<p>var localStream;</p>
-<p>var mediaRecorder;</p>
-<p>var chunks = [];</p>
-<p>//localStream set by getUserMedia</p>
-<p>function record() {</p>
-<p>  formatSelect.disabled=true;</p>
-<p>  recordButton.disabled=true;</p>
-<p>  var mediaRecorderOptions={};</p>
-<p>  mediaRecorderOptions.mimeType = formatSelect.value;</p>
-<p>  try {</p>
-<p>    mediaRecorder = new MediaRecorder(localStream, mediaRecorderOptions);</p>
-<p>  } catch (e) {</p>
-<p>    console.error(&#34;Error during mediarecorder creation using format(&#34; + format + &#34;): &#34; + e);</p>
-<p>    alert(&#34;Error during mediarecorder creation using format(&#34; + format + &#34;)&#34;);</p>
-<p>  }</p>
-<p>  mediaRecorder.ondataavailable = dataAvailable;</p>
-<p>  mediaRecorder.start(25); // collect 25ms of data</p>
-<p>  stopButton.disabled=false;</p>
-<p>};</p>
-<p>function dataAvailable(e){</p>
-<p>  chunks.push(e.data);</p>
-<p>};</p>
-<p>function stop() {</p>
-<p>  stopButton.disabled = true;</p>
-<p>  mediaRecorder.stop();</p>
-<p>  replayButton.disabled = false;</p>
-<p>};</p>
+<pre><code>var localStream;
+var mediaRecorder;
+var chunks = [];
+
+//localStream set by getUserMedia
+
+function record() {
+  formatSelect.disabled=true;
+  recordButton.disabled=true;
+  var mediaRecorderOptions={};
+  mediaRecorderOptions.mimeType = formatSelect.value;
+  try {
+    mediaRecorder = new MediaRecorder(localStream, mediaRecorderOptions);
+  } catch (e) {
+    console.error(&#34;Error during mediarecorder creation using format(&#34; + format + &#34;): &#34; + e);
+    alert(&#34;Error during mediarecorder creation using format(&#34; + format + &#34;)&#34;);
+  }
+  mediaRecorder.ondataavailable = dataAvailable;
+  mediaRecorder.start(25); // collect 25ms of data
+  stopButton.disabled=false;
+};
+
+function dataAvailable(e){
+  chunks.push(e.data);
+};
+
+function stop() {
+  stopButton.disabled = true;
+  mediaRecorder.stop();
+  replayButton.disabled = false;
+};</code></pre>
 <h3><strong>Replay and Download</strong></h3>
 <ol type="1" start="1">
 <li>We create from the recorded 25sec recorded chunks a Blob object.</li>
@@ -1434,6 +1452,16 @@ cp client-config.js.dist client-config.js</pre>
 <li>Use a simple (socket.io based) Signaling Channel</li>
 <li>Install KnockPlop</li>
 </ul>
+<h2><strong>Let&#39;s start to play and experience with WebRTC</strong></h2>
+<p>Let&#39;s start making mistakes on WebRTC field..</p>
+<aside class="special"><p>&#34;An expert is a person who has found out by his own painful experience all the mistakes that one can make in a very narrow field.&#34; <strong>Niels Bohr</strong></p>
+</aside>
+<h2><strong>WebRTC Demos and Samples</strong></h2>
+<ul>
+<li>Google: <a href="https://webrtc.github.io/samples/" target="_blank">https://webrtc.github.io/samples/</a></li>
+<li>Mozilla: <a href="https://mozilla.github.io/webrtc-landing/" target="_blank">https://mozilla.github.io/webrtc-landing/</a></li>
+<li>Muaz Kahn: <a href="https://www.webrtc-experiment.com/" target="_blank">https://www.webrtc-experiment.com/</a></li>
+</ul>
 <h2><strong>Learn more about related API-s</strong></h2>
 <p>GetUserMedia API</p>
 <ul>
@@ -1468,7 +1496,7 @@ cp client-config.js.dist client-config.js</pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="Bonus: Debuging Browsers" duration="0">
+      <google-codelab-step label="Bonus: Debugging Browsers" duration="0">
         <h2><strong>Firefox:</strong></h2>
 <h3><strong>about:webrtc</strong></h3>
 <p>Open the URL above to see the under the hood informations about the MediaStreams and PeerConnections</p>
