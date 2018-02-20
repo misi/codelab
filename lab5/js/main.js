@@ -123,7 +123,7 @@ function call(){
   };
 
   // add mediastream
- localStream.getTracks().forEach(track => {pc1.addTrack(track, localStream);});
+  localStream.getTracks().forEach(track => {pc1.addTrack(track, localStream);});
 
 
   var offerOptions = {
