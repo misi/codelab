@@ -1,0 +1,17 @@
+{
+  "name": "webertc-codelab-by-misi",
+  "version": "1.0.0",
+  "description": "Misi's WebRTC codelab",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mészáros Mihály",
+  "license": "MIT",
+  "dependencies": {
+    "codelab-components": "googlecodelabs/codelab-components#^2.0.2",
+    "@bower_components/google-prettify": "google/code-prettify#master"
+  },
+  "engines": {
+    "yarn": ">= 1.0.0"
+  }
+}
