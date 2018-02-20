@@ -24,13 +24,11 @@ Images:
 
 ## Tutorial / codelab
 
-```
-cd codelab
-yarn install
-sudo yarn global add polyserve
+See: https://misi.github.io/webrtc-c0d3l4b/
 
-../utils/certcopy.sh
-polyserve -H :: -p 8080 --key privkey.pem --cert cert.pem -P https/1.1
-```
-** Open Tutorial in Browser **
-[https://*REPLACE_WITH_YOUR_HOST_FQDN*:8080/components/webrtc-codelab/webrtc-codelab.html](https://REPLACE_WITH_YOUR_HOST_FQDN:8080/components/webrtc-codelab/webrtc-codelab.html)
+ * See source doc source dir and 
+ * use tool https://github.com/googlecodelabs/tools to generate codelab
+ * `claat export ...`
+ * Add the package.json
+ * `yarn`
+ * replace import "../elements/codelab.html" to "bower_components/codelab-components/google-codelab-elements.html
