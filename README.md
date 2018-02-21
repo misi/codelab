@@ -31,4 +31,4 @@ See: https://misi.github.io/webrtc-c0d3l4b/
  * `claat export ...`
  * Add the package.json
  * `yarn`
- * replace import "../elements/codelab.html" to "bower_components/codelab-components/google-codelab-elements.html
+ * replace import "../elements/codelab.html" to "bower_components/codelab-components/google-codelab-elements.html"
