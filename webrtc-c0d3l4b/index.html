@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
   <title>WebRTC c0d3l4b</title>
-  <script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="bower_components/codelab-components/google-codelab-elements.html">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <style is="custom-style">
@@ -39,23 +39,25 @@
 <p><strong>WebRTC&#39;s Mission is to </strong></p>
 <ul>
 <li>Enhance the web with  Real Time Communication (RTC) capabilities, and define a simple JS API for web developers. </li>
-<li>make the browser capable to act like VC terminals (Audio/Video/Data). </li>
+<li>make the browser capable to act like VC terminal (Audio/Video/Data). </li>
+<li>Beyond basic VC, it gives a toolkit and playground to create any brand-new unusual advanced Media Application.</li>
 </ul>
 </td><td colspan="1" rowspan="1"><h2><img style="max-width: 181.50px" src="img/6f5abad9e3b52099.png"></h2>
 </td></tr>
 </table>
 <h3><strong>WebRTC Official Definitions:</strong></h3>
 <ul>
-<li>WebRTC: &#34;A framework, protocols and application programming interface that provide real time interactive voice, video and data in web browsers and other applications&#34;</li>
-<li>WebRTC is a free, open project that provides browsers and mobile applications with Real-Time Communications (RTC) capabilities via simple APIs. The WebRTC components have been optimized to best serve this purpose.</li>
-<li>Mission: To enable rich, high-quality RTC applications to be developed for the browser, mobile platforms, and IoT devices, and allow them all to communicate via a common set of protocols.</li>
+<li><strong>WebRTC</strong>: &#34;A framework, protocols and application programming interface that provide real time interactive voice, video and data in web browsers and other applications&#34;</li>
+<li><strong>WebRTC is a free, open</strong> project that provides browsers and mobile applications with Real-Time Communications (RTC) capabilities via simple APIs. The WebRTC components have been optimized to best serve this purpose.</li>
+<li><strong>Mission</strong>: To enable rich, high-quality RTC applications to be developed for the browser, mobile platforms, and IoT devices, and allow them all to communicate via a common set of protocols.</li>
 </ul>
 <h3><strong>The WebRTC Project</strong></h3>
 <ul>
 <li><strong>Web</strong>: <a href="https://webrtc.org" target="_blank">https://webrtc.org</a></li>
 <li><strong>WebRTC Project Logo: </strong><a href="https://webrtc.org/press/" target="_blank">https://webrtc.org/press/</a></li>
 </ul>
-<p><br>This codelab will walk you through creating your first own WebRTC App, including all the theory needed to understand the JS API and under the hood protocols, and design considerations, as well as all implementation details, to ensure that your app work properly in every network conditions and environment.</p>
+<h3><br><strong>This c0d3l4b</strong></h3>
+<p>This codelab will walk you through creating your first own WebRTC App, including all the theory needed to understand the JS API and under the hood protocols, and design considerations, as well as all implementation details, to ensure that your app work properly in every network conditions and environment.</p>
 <h2 class="checklist"><strong>What you&#39;ll learn</strong></h2>
 <ul class="checklist">
 <li>How to design a WebRTC App</li>
@@ -124,14 +126,15 @@
 <h2><strong>Base components:</strong></h2>
 <ul>
 <li><strong>GetUserMedia</strong> (GuM): Grab MediaStream from a MediaDevice</li>
-<li><strong>PeerConnection</strong> (PC): Establish and Maintain Peer to Peer Connection</li>
+<li><strong>PeerConnection</strong> (PC): Establish and Maintain Peer to Peer Media Connection</li>
 </ul>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Standardization" duration="5">
-        <h2><strong>Codecs</strong></h2>
+        <p><img style="max-width: 624.00px" src="img/a0c21556f77b20aa.png"></p>
+<h2><strong>Codecs</strong></h2>
 <h3><strong>Mandator to Implement Audio codec</strong></h3>
 <ul>
 <li>G711</li>
@@ -150,13 +153,13 @@
 </ul>
 <h2><strong>WebRTC 1.0</strong></h2>
 <ul>
-<li><strong>W3C</strong> WebRTC  - PeerConnection , GuM ++</li>
-<li><strong>IETF</strong> rtcweb ++</li>
+<li><strong>W3C</strong> WebRTC  (PeerConnection , GuM)</li>
+<li><strong>IETF</strong> rtcweb</li>
 </ul>
-<h2>WebRTC NV</h2>
+<h2><strong>WebRTC NV (In progress)</strong></h2>
 <ul>
 <li>QUIC transport for DataChannel/(Media?)</li>
-<li>More ORTC like deep API</li>
+<li>More ORTC like deeper API</li>
 <li>No more SDP</li>
 <li>More control on ICE Agent</li>
 <li>SVC</li>
@@ -303,6 +306,219 @@
 
       </google-codelab-step>
     
+      <google-codelab-step label="Why NAT/Firewall traversal needed in WebRTC?" duration="0">
+        <p>Mainly because usage of Network Address Translation(NAT) and Packet Filters made it difficult (or impossible) the direct Peer to Peer communications. As we will see in the next step Interactive Connection Establishment protocol (ICE) is designed to try to solve this issues. </p>
+<h2><strong>Firewall Packet Filter</strong></h2>
+<p>For Media RTP use a random port number. We need to find a port pair that is not filtered between the peer, so ICE need to check the 5 tuple connection before real communication could start on it.</p>
+<h2>Network Address Translation(NAT)</h2>
+<p>In this section we focus on NAT. Let&#39;s look it little bit closer.</p>
+<p>NAT behavior standardization started later than NAT first implementation. NAT traversal is complex because of many types NAT. ICE have to deal with any topology, and so any types and levels of NATs.</p>
+<h2><strong>NAT Behaviors / Types</strong></h2>
+<h3><strong>RFC 3489</strong></h3>
+<p>The <strong>RFC 3489,</strong> called as &#34;<strong>classic STUN</strong>&#34; defined four NAT classes</p>
+<ul>
+<li>Full Cone</li>
+<li>Restricted Cone</li>
+<li>Port Restricted Conde</li>
+</ul>
+<h2><strong>RFC 4787 NAT behavioral Requirements for UDP</strong></h2>
+<p>RFC 4787 defined much more fine grained classification of NATs.</p>
+<h3><strong>RFC 4787 main class definitions:</strong></h3>
+<p><strong>Mapping</strong></p>
+<ul>
+<li>Endpoint Independent Mapping</li>
+<li>Address-Dependent Mapping</li>
+<li>Address and Port-Dependent Mapping</li>
+</ul>
+<p><strong>Filtering</strong></p>
+<ul>
+<li>Endpoint Independent Filtering</li>
+<li>Address-Dependent Filtering</li>
+<li>Address and Port-Dependent Filtering</li>
+</ul>
+<p><img style="max-width: 624.00px" src="img/8308d0c42ae77d7c.png"></p>
+<p>Image Source: <a href="https://www.netmanias.com/en/?m=view&id=techdocs&no=6065" target="_blank">https://www.netmanias.com/en/?m=view&amp;id=techdocs&amp;no=6065</a></p>
+<h2><img style="max-width: 624.00px" src="img/62ad5490047f0f38.png"></h2>
+<p>Image Source: <a href="https://www.netmanias.com/ko/?m=view&id=blog&no=6263" target="_blank">https://www.netmanias.com/ko/?m=view&amp;id=blog&amp;no=6263</a></p>
+<h2><strong>NAT Behavior Discovery (RFC5780)</strong></h2>
+<p>RFC5780 is a STUN protocol extension.</p>
+<h3><strong>Mapping Discovery</strong></h3>
+<ul>
+<li>TEST I (Primary IP, Primary Port)</li>
+<li>TEST II (Alternate IP, Primary Port)</li>
+<li>TEST III (Alternate IP, Alternate Port)</li>
+</ul>
+<p><img style="max-width: 469.00px" src="img/c383b757098fe421.png"></p>
+<p>Image Source: <a href="http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780" target="_blank">http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780</a></p>
+<h3><strong>Filtering</strong></h3>
+<ul>
+<li>TEST I (Primary IP, Primary Port)</li>
+<li>TEST II (Change Request IP and Port)</li>
+<li>TEST III (Change Request Port)</li>
+</ul>
+<p><img style="max-width: 465.00px" src="img/3cfca2b53970b434.png"></p>
+<p>Image Source: <a href="http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780" target="_blank">http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780</a></p>
+<aside class="special"><p><strong>Thanks to www.netmanias.com for the pictures!</strong></p>
+<p>Read for a more detailed step by step explanation with similar nice graphs:</p>
+<ul>
+<li><a href="http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780" target="_blank">http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780</a></li>
+<li><a href="https://www.netmanias.com/en/?m=view&id=techdocs&no=6065" target="_blank">https://www.netmanias.com/en/?m=view&amp;id=techdocs&amp;no=6065</a></li>
+<li><a href="https://www.netmanias.com/ko/?m=view&id=blog&no=6263" target="_blank">https://www.netmanias.com/ko/?m=view&amp;id=blog&amp;no=6263</a></li>
+</ul>
+</aside>
+<h3><strong>coTURN natdiscover utility</strong></h3>
+<p><img style="max-width: 624.00px" src="img/5159f9e65f6a5e50.png"></p>
+<pre>$ turnutils_natdiscovery -f -m rfc5780.turn.geant.org
+...
+========================================
+NAT with Address and Port Dependent Mapping!
+========================================
+...
+========================================
+NAT with Address and Port Dependent Filtering!
+========================================
+$</pre>
+<aside class="special"><p><strong>Tip</strong>:</p>
+<p>See coTURN turnutils_natdiscovery README for options <a href="https://github.com/coturn/coturn/blob/master/README.turnutils" target="_blank">https://github.com/coturn/coturn/blob/master/README.turnutils</a></p>
+</aside>
+<p>NAT discovery in browser:</p>
+<p>We reuse the same idea here that we used earlier in RFC 5780 NAT behavior discovery.</p>
+<p>If the NAT translates traffic from the same internal port to different external source port, that&#39;s destination are different STUN server, then</p>
+<p>It could be: </p>
+<ul>
+<li>Address Dependent Mapping</li>
+<li>Address and Port Dependent Mapping</li>
+</ul>
+<p>See WebRTC article about howto discover symmetric NAT. </p>
+<ul>
+<li><a href="https://webrtchacks.com/symmetric-nat/" target="_blank">https://webrtchacks.com/symmetric-nat/</a></li>
+</ul>
+<p><img style="max-width: 624.00px" src="img/344644acb209b784.png"></p>
+<aside class="special"><p><strong>Notice</strong>: coTURN utility gives much detailed and more precise reliable information about NAT behaviour than this browser test.</p>
+</aside>
+<h2><strong>NAT behaviors in real world</strong></h2>
+<p>I have collected the NAT behaviors in the following table. In this table you could find the <strong>default</strong> behavior and the options that modifies the behavior. <br></p>
+<table>
+<tr><td colspan="1" rowspan="1"><p>Vendor/Behavior</p>
+</td><td colspan="1" rowspan="1"><p>EIM/EIF</p>
+</td><td colspan="1" rowspan="1"><p>EIM/ADF</p>
+</td><td colspan="1" rowspan="1"><p>EIM/APDF</p>
+</td><td colspan="1" rowspan="1"><p>APDM/APDF</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Linux /</p>
+<p>Netfilter</p>
+<p>(Campus)</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td><td colspan="1" rowspan="1"><p>--random</p>
+<p>--random-fully</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>BSD /PF</p>
+<p>(Campus)</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>static-port</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Juniper<br>vSRX</p>
+<p>(Campus)</p>
+</td><td colspan="1" rowspan="1"><p>persistent-nat<br>any-remote-host</p>
+</td><td colspan="1" rowspan="1"><p>persistent-nat</p>
+<p>target-host</p>
+</td><td colspan="1" rowspan="1"><p>persistent-nat</p>
+<p>target-host-port</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Cisco ios</p>
+<p>(Campus)</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Checkpoint 21400</p>
+<p>(Campus)</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>TP-Link</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Mikrotik</p>
+<p>RouterBOARD</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Lede 17.0.2 (Linux)</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td><td colspan="1" rowspan="1"><p>--random</p>
+<p>--random-fully</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>SOHO</p>
+<p>PF-Sense (BSD)</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>static-port</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Win 10 Pro</p>
+<p>Internet Sharing</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>macOS</p>
+<p>Internet Sharing</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>iOS</p>
+<p>Internet Sharing</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><p>Android</p>
+<p>Internet Sharing</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
+</td><td colspan="1" rowspan="1"><p>X</p>
+</td></tr>
+</table>
+<p>E.g. In Linux Netfilter (iptables) the <strong>default</strong> behavior is Endpoint Independent Mapping with Address and Port Dependent Filtering (EIM/APDF) </p>
+<pre>iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE </pre>
+<p>Use --random option to change behavior to Address and Port dependent Mapping with Address and Port dependent Filtering (APDM/APDF)</p>
+<pre>iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE --random</pre>
+<h2><strong>Port Randomization</strong></h2>
+<p>Why port randomization? It is proposed solutions to  e.g. DNS cache poisoning / <a href="http://unixwiz.net/techtips/iguide-kaminsky-dns-vuln.html" target="_blank">Kaminsky</a> dns vulnerability. </p>
+<p>Transport-Protocol Port Randomization is recommended according <a href="https://tools.ietf.org/html/rfc6056" target="_blank">RFC 6056</a>.</p>
+<p>And <a href="https://tools.ietf.org/html/rfc7857" target="_blank">RFC 7857</a> updates to Network Address Translation (NAT) Behavioral Requirements.</p>
+<p>(But even for port randomization could be derandomized with fine grained attacks: <a href="https://arxiv.org/pdf/1205.5190.pdf" target="_blank">https://arxiv.org/pdf/1205.5190.pdf</a> so for DNS use DNSSEC..)</p>
+<h2><strong>Summary of NAT</strong></h2>
+<p>According my  experiences </p>
+<ul>
+<li><strong>Campus/Enterprise NAT</strong>s most commonly use <strong>Port Randomization with Address and Port dependent Mapping with Address and Port dependent Filtering </strong></li>
+<li><strong>SOHO NAT</strong>s most commonly use <strong>Endpoint Independent Mapping with Address and Port Dependent Filtering</strong></li>
+</ul>
+
+
+      </google-codelab-step>
+    
       <google-codelab-step label="NAT/Firewall traversal &amp; ICE (STUN/TURN)" duration="15">
         <h2><img style="max-width: 624.00px" src="img/a4ab88365707a723.png"></h2>
 <h2><strong>TL;DR</strong></h2>
@@ -313,32 +529,12 @@
 <li>TURN is about Allocate a global IP:port and tunnel and Relay traffic</li>
 <li>ICE finds the shortest working path between two ICE agents</li>
 </ul>
-<h2><strong>Multiplexing</strong></h2>
-<ul>
-<li>RTP/RTCP multiplexing</li>
-<li>RTP multiplexing (audio video)</li>
-</ul>
 <aside class="special"><p><strong>Nice ICE Tutorials</strong>:</p>
 <ul>
 <li><a href="https://sdstrowes.co.uk/talks/20081031-ice-turn-stun-tutorial.pdf" target="_blank">https://sdstrowes.co.uk/talks/20081031-ice-turn-stun-tutorial.pdf</a></li>
 <li><a href="http://www.jdrosen.net/uploads/1/5/0/0/15008848/ice-ietf-tutorial2.pptx" target="_blank">http://www.jdrosen.net/uploads/1/5/0/0/15008848/ice-ietf-tutorial2.pptx</a></li>
 </ul>
 </aside>
-<h2><strong>Congestion Avoidance</strong></h2>
-<p><strong>Standardization is in IETF RMCAT</strong></p>
-<ul>
-<li>Receiver Estimated Maximum Bandwidth (REMB)</li>
-<li>Sender Side Bandwidth Estimation</li>
-<li>Forward Error Correction (FEC)</li>
-</ul>
-<p><strong>More Details</strong>:</p>
-<ul>
-<li><a href="http://www.rtcbits.com/2017/01/bandwidth-estimation-in-webrtc-and-new.html" target="_blank">http://www.rtcbits.com/2017/01/bandwidth-estimation-in-webrtc-and-new.html</a></li>
-<li><a href="https://blog.mozilla.org/webrtc/what-is-rmcat-congestion-control" target="_blank">https://blog.mozilla.org/webrtc/what-is-rmcat-congestion-control</a>/</li>
-<li><a href="https://public.boxcloud.com/d/1/MgC0Sn2Nrq-7JGAy46x2KYfGBwqTTQUu7hNq-V153kgoiOY1F_w48tsn_bsqvocMmaHon1tjDDe8aGFj0MMMbWjEbRlqvG3-mjE5wUqbxx_XyyDIH8VlGzFOL3FX9wuCaQDfTtfnFDtKBBH49bPPyjh_Vjt_QNpzWFTk2TOmWRtRQsqZ9OGvGP7wHqYhZcqWucrlgZw5eSJD8X9dsOHcDHuVWWL5AXu_pdqjEjjNqk3eiYKgMMvmvvHqxTvKumdpLN244__ibPxgLqZZyvv7zd479-SEJYGugxgTzvqqj8F02rh6N_jhA1ZyWSw5KkoQbdP62zuHlS8Vj74xBP0ZkauTA52Yt5apBjmShjsE6lgKoe3W-eMqgC_iS0oLjasqPfVT6C7fUaXl___jznddbaWWWcPilkyXWjSl5-8PBboFpL-eDnI5WCy4092yCtBzaOBlIco3g1g2gSjv6MWWmwNRbl8JGNmsvTLkaG_KY7uW9KLE617ny_3LEIsLi6srUPgT_UbLHAxn6cY5Voo3AeSsjaFXgHvycA8TB7zNPQ9jx8GlpH4DDu_uDLxKV_BE9PKrqRftURMWXp-cckMqT3-1pgpGLnol7BK_cAQH6pkm7lpGJ-OOD_TrlpxvINE_Z7OEjAPdEHA0ngNmKRCcmRan57wJ96TlLJh5kUjJMdOT7A2tIlAnTCly05khfay_RtWUnqPugv1xq7oTBW_2STeoeOjgOYT8wQpCqVSu4DnlE2pU25yj043oOVLbRhBeetxwD4Co1A10tVsUHEdkmeNBoKkBUaxdHVj_12soIviUEwjFVpsi6cn9L4rvUTADd2yizWc2fVmuibdycVTVejgsemdWh3nH4QPHcoZ-umsxFocgTN0bKxpZwypWY0aodtouH4FCVdt4lxgogbabex9cZSyoYRnluaGRXyJlODYZVk6oP2YAKmQv2ZuE61GqMKB7HA9HcT0wnwFOWLJqXaKzJX8hQsyEi1Do9r7Fbs05Y_6XPyUAiwcyf95nlFEGWuNZYjVdSnq7M_xVzRhZp4iyob_E9W0NXJGijroJNulxLgLw0NZmXPhPEegqYOIEt7C2p5teFblYdHbTmz-A2LoW2tN0SDagO-cB8GN_G4l6iBdiF-rubNkp8OMEduyHj2Z6opFkLOCdxeMPOh2JAD8hbcmWW9dv1688YOswPAHON92H173m47Xd0JIlr9zmT58Cy1RS_pjNVVXVeA../download" target="_blank">TF-WebRTC_5_Congestion_Luca.pdf</a></li>
-<li><a href="https://www.callstats.io/2016/11/14/fec-congestion-control/" target="_blank">https://www.callstats.io/2016/11/14/fec-congestion-control/</a></li>
-<li><a href="https://www.callstats.io/2017/10/16/acm-multimedia/" target="_blank">https://www.callstats.io/2017/10/16/acm-multimedia/</a></li>
-</ul>
 <h2><strong>STUN/TURN</strong></h2>
 <h3><strong>STUN - Binding:</strong></h3>
 <p><img style="max-width: 624.00px" src="img/c73944b647485a86.png"></p>
@@ -386,36 +582,25 @@
 <h2><strong>Trickle ICE</strong></h2>
 <p>Connection establishment time could be long if we need to wait to finish the candidate discovery. </p>
 <p>Even worse, in case of any error is occuring during the discovery. Waiting for the timeouts could take long, and could cause an unacceptable very long connection establishment. </p>
-<p>The primary idea is to start ICE check as fast as we discover a candidate. The only drawback is that we need to send more signaling messages. WebRTC Application nowadays use mostly Trickle ICE to establish connection.</p>
-<p><img style="max-width: 624.00px" src="img/bc12d7ccb7c091cf.png"></p>
-<h2><strong>NAT Behavior Discovery (RFC5780)</strong></h2>
-<h3><strong>RFC 3489 definitions:</strong></h3>
+<h2>The primary idea is to start ICE check as fast as we discover a candidate. The only drawback is that we need to send more signaling messages. WebRTC Application nowadays use mostly Trickle ICE to establish connection.<img style="max-width: 624.00px" src="img/bc12d7ccb7c091cf.png"><strong>Multiplexing/Boundling</strong></h2>
 <ul>
-<li>Full Cone</li>
-<li>Restricted Cone</li>
-<li>Port Restricted Cone</li>
-<li>Symmetric</li>
+<li>RTP/RTCP multiplexing</li>
+<li>Boundling RTP multiplexing (audio video)</li>
 </ul>
-<h3><strong>RFC 4787 and RFC 5780 base class definitions:</strong></h3>
-<p><strong>Mapping</strong></p>
+<h2><strong>Congestion Avoidance</strong></h2>
+<p><strong>Standardization is in IETF RMCAT</strong></p>
 <ul>
-<li>Endpoint Independent Mapping</li>
-<li>Address-Dependent Mapping</li>
-<li>Address and Port-Dependent Mapping</li>
+<li>Receiver Estimated Maximum Bandwidth (REMB)</li>
+<li>Sender Side Bandwidth Estimation</li>
+<li>Forward Error Correction (FEC)</li>
 </ul>
-<p><strong>Filtering</strong></p>
+<p><strong>More Details</strong>:</p>
 <ul>
-<li>Endpoint Independent Filtering</li>
-<li>Address-Dependent Filtering</li>
-<li>Address and Port-Dependent Filtering</li>
-</ul>
-<p><img style="max-width: 624.00px" src="img/5159f9e65f6a5e50.png"></p>
-<aside class="special"><p><strong>Tip</strong>: </p>
-<p>See coTURN turnutils_natdiscovery README for options <a href="https://github.com/coturn/coturn/blob/master/README.turnutils" target="_blank">https://github.com/coturn/coturn/blob/master/README.turnutils</a></p>
-</aside>
-<p>Symmetric NAT discovery in browser:</p>
-<ul>
-<li><a href="https://webrtchacks.com/symmetric-nat/" target="_blank">https://webrtchacks.com/symmetric-nat/</a></li>
+<li><a href="http://www.rtcbits.com/2017/01/bandwidth-estimation-in-webrtc-and-new.html" target="_blank">http://www.rtcbits.com/2017/01/bandwidth-estimation-in-webrtc-and-new.html</a></li>
+<li><a href="https://blog.mozilla.org/webrtc/what-is-rmcat-congestion-control" target="_blank">https://blog.mozilla.org/webrtc/what-is-rmcat-congestion-control</a>/</li>
+<li><a href="https://public.boxcloud.com/d/1/MgC0Sn2Nrq-7JGAy46x2KYfGBwqTTQUu7hNq-V153kgoiOY1F_w48tsn_bsqvocMmaHon1tjDDe8aGFj0MMMbWjEbRlqvG3-mjE5wUqbxx_XyyDIH8VlGzFOL3FX9wuCaQDfTtfnFDtKBBH49bPPyjh_Vjt_QNpzWFTk2TOmWRtRQsqZ9OGvGP7wHqYhZcqWucrlgZw5eSJD8X9dsOHcDHuVWWL5AXu_pdqjEjjNqk3eiYKgMMvmvvHqxTvKumdpLN244__ibPxgLqZZyvv7zd479-SEJYGugxgTzvqqj8F02rh6N_jhA1ZyWSw5KkoQbdP62zuHlS8Vj74xBP0ZkauTA52Yt5apBjmShjsE6lgKoe3W-eMqgC_iS0oLjasqPfVT6C7fUaXl___jznddbaWWWcPilkyXWjSl5-8PBboFpL-eDnI5WCy4092yCtBzaOBlIco3g1g2gSjv6MWWmwNRbl8JGNmsvTLkaG_KY7uW9KLE617ny_3LEIsLi6srUPgT_UbLHAxn6cY5Voo3AeSsjaFXgHvycA8TB7zNPQ9jx8GlpH4DDu_uDLxKV_BE9PKrqRftURMWXp-cckMqT3-1pgpGLnol7BK_cAQH6pkm7lpGJ-OOD_TrlpxvINE_Z7OEjAPdEHA0ngNmKRCcmRan57wJ96TlLJh5kUjJMdOT7A2tIlAnTCly05khfay_RtWUnqPugv1xq7oTBW_2STeoeOjgOYT8wQpCqVSu4DnlE2pU25yj043oOVLbRhBeetxwD4Co1A10tVsUHEdkmeNBoKkBUaxdHVj_12soIviUEwjFVpsi6cn9L4rvUTADd2yizWc2fVmuibdycVTVejgsemdWh3nH4QPHcoZ-umsxFocgTN0bKxpZwypWY0aodtouH4FCVdt4lxgogbabex9cZSyoYRnluaGRXyJlODYZVk6oP2YAKmQv2ZuE61GqMKB7HA9HcT0wnwFOWLJqXaKzJX8hQsyEi1Do9r7Fbs05Y_6XPyUAiwcyf95nlFEGWuNZYjVdSnq7M_xVzRhZp4iyob_E9W0NXJGijroJNulxLgLw0NZmXPhPEegqYOIEt7C2p5teFblYdHbTmz-A2LoW2tN0SDagO-cB8GN_G4l6iBdiF-rubNkp8OMEduyHj2Z6opFkLOCdxeMPOh2JAD8hbcmWW9dv1688YOswPAHON92H173m47Xd0JIlr9zmT58Cy1RS_pjNVVXVeA../download" target="_blank">TF-WebRTC_5_Congestion_Luca.pdf</a></li>
+<li><a href="https://www.callstats.io/2016/11/14/fec-congestion-control/" target="_blank">https://www.callstats.io/2016/11/14/fec-congestion-control/</a></li>
+<li><a href="https://www.callstats.io/2017/10/16/acm-multimedia/" target="_blank">https://www.callstats.io/2017/10/16/acm-multimedia/</a></li>
 </ul>
 
 
