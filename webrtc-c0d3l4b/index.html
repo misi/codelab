@@ -7,8 +7,8 @@
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
   <title>WebRTC c0d3l4b</title>
-  <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <link rel="import" href="bower_components/codelab-components/google-codelab-elements.html">
+  <script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="./bower_components/codelab-components/google-codelab-elements.html">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
   <style is="custom-style">
     body {
@@ -91,21 +91,22 @@
       </google-codelab-step>
     
       <google-codelab-step label="Getting set up" duration="10">
-        <h2><strong>Setup a web server with TLS support on Your host</strong></h2>
-<p>Install on your host a web server with a certificate from <a href="https://letsencrypt.org/" target="_blank">let&#39;s encrypt</a>.</p>
-<p>If you use chrome you could also use web-server-for-chrome extension:</p>
-<p><a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en" target="_blank">Install Web Server for Chrome</a></p>
-<aside class="special"><p><strong>Tip</strong>: We have created pre install VM with certificate and web server. <br>Please test it and login on your VM with your ssh client.</p>
+        <h2><strong>Setup a web server with TLS to support https</strong></h2>
+<ul>
+<li>even on Your host: Install on your host your favorite web server with a certificate from <a href="https://letsencrypt.org/" target="_blank">let&#39;s encrypt</a>.</li>
+<li>Or as an easy alternative: If you use chrome you could also use web-server-for-chrome extension: <a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en" target="_blank">Install Web Server for Chrome</a></li>
+</ul>
+<aside class="special"><p><strong>Tip</strong>: Those who are participating in <a href="http://nws.comp-rend.hu/" target="_blank">NWS18</a> we have already created pre install VM with certificate and web server. <br>Please test it and login on your VM with your ssh client.</p>
 </aside>
 <h2><strong>You could Download the Sample Code</strong></h2>
 <p>Click the following link to download all the code for this codelab:</p>
 <p><a href="https://github.com/misi/codelab/archive/master.zip" target="_blank"><paper-button class="colored" raised><iron-icon icon="file-download"></iron-icon>Download source code</paper-button></a></p>
 <p><strong>Or</strong></p>
 <pre>git clone https://github.com/misi/codelab.git</pre>
-<p>Unpack the zip file in your <code>web server root directory</code>. This will unpack a root folder (<code>codelab</code>), which contains one <code>labN</code> folder for each step of this codelab, along with all of the resources you will need.</p>
+<p>Unpack the zip file in your <code>web server root directory</code>. This will unpack a root folder (<code>codelab</code>), which contains one <code>labN</code> folder for each step of this codelab, along with all of the resources you will need. It also contains this codelab web part.</p>
 <p>The <code>labN</code> folders contain the desired end state of each step of this codelab. They are there for reference. We&#39;ll be doing all our coding work in a directory called <code>work</code>.</p>
 <h2><strong>Ready? =&gt; Let&#39;s start the theory lesson!</strong></h2>
-<p>WebRTC is complex and could be hard to understand for a web developer for a first sight without proper understanding of WebRTC Architecture and technologies working under the hood.</p>
+<p>WebRTC is complex and could be hard to understand for a web developer for a first sight without proper understanding of WebRTC Architecture and technologies working under the hood, so we try to give you an overview about the under the hood Concepts and Architectures.</p>
 
 
       </google-codelab-step>
@@ -113,11 +114,11 @@
       <google-codelab-step label="WebRTC Design Goals" duration="0">
         <h2><strong>Goals</strong></h2>
 <ul>
-<li><strong>Easy to use for the end user (</strong>Without Plugins, Without Install, Always up2date client)</li>
+<li><strong>Easy to use out of the box experience for the end user (</strong>Without Plugins, Without Install, Always up2date client)</li>
 <li><strong>Multi platform </strong>(Even exotic platforms (Linux, BSD)<strong>)</strong></li>
-<li><strong>Push the envelope</strong>: Low Latency / Jitter,  Advanced congestion avoidance, Adaptive Audio Video encoding and Forward Error Correction (FEC)</li>
+<li><strong>Push the envelope</strong>: Improved Standards like Advanced congestion avoidance, Adaptive Audio Video encoding and Forward Error Correction (FEC) to reach Low Latency / Jitter,  Noise suppression, echo cancellation etc.</li>
 <li><strong>Firewall and NAT Traversal</strong> ICE(STUN/TURN)</li>
-<li><strong>Focus on Security and Privacy and Identity validation by design</strong>. Encrypted Secure End to End communication, Asks for user consent before access a MediaDevice(WebCam), if possible avoid fingerprinting</li>
+<li><strong>Focus on Security and Privacy and Identity validation by design</strong>. Encrypted Secure End to End communication, User consent before access any MediaDevice(WebCam) to avoid any fingerprinting (as possible)</li>
 <li><strong>Open Source Native Implementation</strong> (for browser vendors and beyond browsers)</li>
 <li><strong>Open Standard</strong> (W3C, IETF)</li>
 <li><strong>Interwork with any Signaling</strong></li>
@@ -127,30 +128,26 @@
 <ul>
 <li><strong>GetUserMedia</strong> (GuM): Grab MediaStream from a MediaDevice</li>
 <li><strong>PeerConnection</strong> (PC): Establish and Maintain Peer to Peer Media Connection</li>
+<li><strong>DataChannel</strong>(DC): P2P Data connection on top of PeerConnection</li>
 </ul>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Standardization" duration="5">
-        <p><img style="max-width: 624.00px" src="img/a0c21556f77b20aa.png"></p>
-<h2><strong>Codecs</strong></h2>
-<h3><strong>Mandator to Implement Audio codec</strong></h3>
-<ul>
-<li>G711</li>
-<li>Opus</li>
+        <h2><strong>Standardization bodies</strong></h2>
+<table>
+<tr><td colspan="1" rowspan="1"><ul>
+<li>World Wide Web Consortium</li>
 </ul>
-<h3><strong>Mandatory to Implement Video codecs</strong></h3>
-<p>It took a long to build consensus in the IETF RTCWEB workgroup (&#34;Codec war..&#34;)</p>
-<ul>
-<li>VP8 vs H.264</li>
-<li>(VP9 vs H.265)</li>
+</td><td colspan="1" rowspan="1"><p><img style="max-width: 58.00px" src="img/d009528c9eccaed2.png"></p>
+</td></tr>
+<tr><td colspan="1" rowspan="1"><ul>
+<li>Internet Engineering Task Force</li>
 </ul>
-<h4>Alliance for Open Media</h4>
-<ul>
-<li>AOMedia Video 1 (AV1) development</li>
-<li>Amazon, Cisco, Google, Intel, Microsoft, Mozilla, Netflix, etc.</li>
-</ul>
+</td><td colspan="1" rowspan="1"><p><img style="max-width: 83.31px" src="img/a25889a846cf8ec9.png"></p>
+</td></tr>
+</table>
 <h2><strong>WebRTC 1.0</strong></h2>
 <ul>
 <li><strong>W3C</strong> WebRTC  (PeerConnection , GuM)</li>
@@ -164,19 +161,37 @@
 <li>More control on ICE Agent</li>
 <li>SVC</li>
 </ul>
+<h2><strong>Codecs</strong></h2>
+<h3><strong>Mandatory to Implement Audio codec</strong></h3>
+<ul>
+<li>G711 (backward compatibility)</li>
+<li>Opus (48 kHz full band codec, both for music and speech)</li>
+</ul>
+<h3><strong>Mandatory to Implement Video codecs</strong></h3>
+<p>It took a long to build consensus in the IETF RTCWEB workgroup (&#34;Codec war..&#34;)</p>
+<ul>
+<li>VP8 vs H.264</li>
+<li>(VP9 vs H.265)</li>
+</ul>
+<h4>Alliance for Open Media</h4>
+<ul>
+<li>AOMedia Video 1 (AV1) development</li>
+<li>Amazon, Cisco, Google, Intel, Microsoft, Mozilla, Netflix, etc.</li>
+</ul>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="History" duration="5">
-        <h2>The beginning</h2>
+        <p><img style="max-width: 624.00px" src="img/a0c21556f77b20aa.png"></p>
+<h2>The beginning</h2>
 <ul>
 <li>2009 - Google Chrome Team Idea</li>
 <li>2010 Summer - IETF 98 Informal lunch (Google, Microsoft, Apple, Mozilla, Skype, Ericsson,etc.)</li>
 <li>2010 October - RTC Web Workshop <a href="http://rtc-web.alvestrand.com/" target="_blank">http://rtc-web.alvestrand.com/</a></li>
 <li>2011 January - Google Global IP Solution (GIPS) acquired.</li>
-<li>2011 May - W3C WebRTC WG statarted officialy</li>
-<li>2011 June - Googe Anounce WebRTC project(based on GIPS) and chrome integration</li>
+<li>2011 May - W3C WebRTC WG started officially</li>
+<li>2011 June - Googe Announce WebRTC project(based on GIPS) and chrome integration</li>
 <li>2011 Nov - Chrome 23 WebRTC support</li>
 </ul>
 <h2>Early birds</h2>
@@ -192,7 +207,7 @@
 <ul>
 <li>2014 September - OpenWebRTC (Ericsson)</li>
 <li>2014 October - Microsoft Edge ORTC Announcement</li>
-<li>2014 November - Consensus on Mandatory to Implement Video Condecs :-)</li>
+<li>2014 November - Consensus on Mandatory to Implement Video Codecs :-)</li>
 <li>2015 September - Microsoft Edge ORTC/WebRTC support</li>
 <li>2015 November - Mozilla Canvas CaptureStream</li>
 <li>2016 January - VP9 Chrome</li>
@@ -214,7 +229,8 @@
 <p><img style="max-width: 624.00px" src="img/bccbe1f1d373bd49.png"></p>
 <p>Source: <a href="http://art.fritsahlefeldt.com/photo/2414/Mind-the-gap-with-text-Color-illustration.html" target="_blank">http://art.fritsahlefeldt.com/photo/2414/Mind-the-gap-with-text-Color-illustration.html</a></p>
 <h2><strong>Adapter.js</strong></h2>
-<p>Standardization is a moving target. Mind the gap between:</p>
+<p>Standardization is a moving target. </p>
+<p><strong>Mind the gap between</strong>:</p>
 <ul>
 <li>Standard and Browser Implementations</li>
 <li>Between bowser and browser implementations</li>
@@ -307,7 +323,7 @@
       </google-codelab-step>
     
       <google-codelab-step label="Why NAT/Firewall traversal needed in WebRTC?" duration="0">
-        <p>Mainly because usage of Network Address Translation(NAT) and Packet Filters made it difficult (or impossible) the direct Peer to Peer communications. As we will see in the next step Interactive Connection Establishment protocol (ICE) is designed to try to solve this issues. </p>
+        <p>Mainly because usage of Network Address Translation(NAT) and Packet Filters made it difficult (or impossible) the direct Peer to Peer communications. As we will see in the next step, Interactive Connection Establishment protocol (ICE) is designed to try to solve these problems. </p>
 <h2><strong>Firewall Packet Filter</strong></h2>
 <p>For Media RTP use a random port number. We need to find a port pair that is not filtered between the peer, so ICE need to check the 5 tuple connection before real communication could start on it.</p>
 <h2>Network Address Translation(NAT)</h2>
@@ -358,7 +374,7 @@
 </ul>
 <p><img style="max-width: 465.00px" src="img/3cfca2b53970b434.png"></p>
 <p>Image Source: <a href="http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780" target="_blank">http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780</a></p>
-<aside class="special"><p><strong>Thanks to www.netmanias.com for the pictures!</strong></p>
+<aside class="special"><p><strong>Thanks to www.netmanias.com for the nice illustrations!</strong></p>
 <p>Read for a more detailed step by step explanation with similar nice graphs:</p>
 <ul>
 <li><a href="http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780" target="_blank">http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780</a></li>
@@ -445,6 +461,7 @@ $</pre>
 </td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>TP-Link</p>
+<p>(SOHO)</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
@@ -452,48 +469,51 @@ $</pre>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Mikrotik</p>
 <p>RouterBOARD</p>
+<p>(SOHO)</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p>Lede 17.0.2 (Linux)</p>
+<tr><td colspan="1" rowspan="1"><p>Lede 17.0.2 Linux</p>
+<p>(SOHO)</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
 </td><td colspan="1" rowspan="1"><p>--random</p>
 <p>--random-fully</p>
 </td></tr>
-<tr><td colspan="1" rowspan="1"><p>SOHO</p>
-<p>PF-Sense (BSD)</p>
+<tr><td colspan="1" rowspan="1"><p>PF-Sense </p>
+<p>BSD</p>
+<p>(SOHO)</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p>static-port</p>
 </td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Win 10 Pro</p>
-<p>Internet Sharing</p>
+<p>(Internet Sharing)</p>
 </td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>macOS</p>
-<p>Internet Sharing</p>
+<p>(Internet Sharing)</p>
 </td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>iOS</p>
-<p>Internet Sharing</p>
+<p>(Internet Sharing)</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td></tr>
 <tr><td colspan="1" rowspan="1"><p>Android</p>
-<p>Internet Sharing</p>
+<p>(Internet Sharing)</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td><td colspan="1" rowspan="1"><p><strong>Default</strong></p>
@@ -828,7 +848,9 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
       </google-codelab-step>
     
       <google-codelab-step label="Multipoint (SFU/MCU, Media Server)" duration="5">
-        <h2><strong>Some examples from open source space:</strong></h2>
+        <h2><img style="max-width: 497.00px" src="img/aeeab6fb604bba76.png"></h2>
+<p>Image Source: Emil Ivov (Jitsi /Atlassian)</p>
+<h2><strong>Some examples from open source space:</strong></h2>
 <ul>
 <li><a href="https://mediasoup.org/" target="_blank">https://mediasoup.org</a></li>
 <li><a href="https://www.kurento.org/" target="_blank">https://www.kurento.org</a></li>
