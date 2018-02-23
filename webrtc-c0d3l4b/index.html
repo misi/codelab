@@ -7,13 +7,12 @@
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
   <title>WebRTC c0d3l4b</title>
-  <script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="./bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
   <link rel="import" href="./bower_components/codelab-components/google-codelab-elements.html">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
-  <style is="custom-style">
+  <style>
     body {
       font-family: "Roboto",sans-serif;
-      background: var(--google-codelab-background, --paper-grey-300);
     }
   </style>
   
@@ -106,7 +105,7 @@
 <p>Unpack the zip file in your <code>web server root directory</code>. This will unpack a root folder (<code>codelab</code>), which contains one <code>labN</code> folder for each step of this codelab, along with all of the resources you will need. It also contains this codelab web part.</p>
 <p>The <code>labN</code> folders contain the desired end state of each step of this codelab. They are there for reference. We&#39;ll be doing all our coding work in a directory called <code>work</code>.</p>
 <h2><strong>Ready? =&gt; Let&#39;s start the theory lesson!</strong></h2>
-<p>WebRTC is complex and could be hard to understand for a web developer for a first sight without proper understanding of WebRTC Architecture and technologies working under the hood, so we try to give you an overview about the under the hood Concepts and Architectures.</p>
+<p>WebRTC is complex and could be hard to understand for a web developer for the first sight without proper understanding of WebRTC Architecture (technologies working under the hood), therefore we try to give you an overview about the under the hood Concepts and Architectures.</p>
 
 
       </google-codelab-step>
@@ -114,15 +113,15 @@
       <google-codelab-step label="WebRTC Design Goals" duration="0">
         <h2><strong>Goals</strong></h2>
 <ul>
-<li><strong>Easy to use out of the box experience for the end user (</strong>Without Plugins, Without Install, Always up2date client)</li>
+<li><strong>Easy to use, Out of the box experience for the end user (</strong>Without Plugins, Without Install, Always up2date client)</li>
 <li><strong>Multi platform </strong>(Even exotic platforms (Linux, BSD)<strong>)</strong></li>
-<li><strong>Push the envelope</strong>: Improved Standards like Advanced congestion avoidance, Adaptive Audio Video encoding and Forward Error Correction (FEC) to reach Low Latency / Jitter,  Noise suppression, echo cancellation etc.</li>
+<li><strong>Push the envelope</strong>: Improved Standards like Advanced congestion avoidance, Adaptive Audio Video encoding and Forward Error Correction (FEC) to reach Reliability, Fair Share Low Delay/Latency, Low  Jitter.  Advanced Noise suppression and echo cancellation etc.</li>
 <li><strong>Firewall and NAT Traversal</strong> ICE(STUN/TURN)</li>
 <li><strong>Focus on Security and Privacy and Identity validation by design</strong>. Encrypted Secure End to End communication, User consent before access any MediaDevice(WebCam) to avoid any fingerprinting (as possible)</li>
 <li><strong>Open Source Native Implementation</strong> (for browser vendors and beyond browsers)</li>
 <li><strong>Open Standard</strong> (W3C, IETF)</li>
 <li><strong>Interwork with any Signaling</strong></li>
-<li><strong>Backward compatibility</strong> in WebRTC 1.0  (e.g. SDP and G.711audio codec)</li>
+<li><strong>Backward compatibility</strong> in WebRTC 1.0  (e.g. Offer/Answer, SDP, G.711 audio codec)</li>
 </ul>
 <h2><strong>Base components:</strong></h2>
 <ul>
@@ -150,22 +149,22 @@
 </table>
 <h2><strong>WebRTC 1.0</strong></h2>
 <ul>
-<li><strong>W3C</strong> WebRTC  (PeerConnection , GuM)</li>
-<li><strong>IETF</strong> rtcweb</li>
+<li><strong>W3C</strong> WebRTC Working Group</li>
+<li><strong>IETF</strong> rtcweb, rmcat, mmusic, avtcore, ice, tram, perc Working Groups</li>
 </ul>
 <h2><strong>WebRTC NV (In progress)</strong></h2>
 <ul>
 <li>QUIC transport for DataChannel/(Media?)</li>
 <li>More ORTC like deeper API</li>
-<li>No more SDP</li>
+<li>No more Session Description Protocol (SDP)</li>
 <li>More control on ICE Agent</li>
-<li>SVC</li>
+<li>Scalable Video Codec (SVC)</li>
 </ul>
 <h2><strong>Codecs</strong></h2>
 <h3><strong>Mandatory to Implement Audio codec</strong></h3>
 <ul>
 <li>G711 (backward compatibility)</li>
-<li>Opus (48 kHz full band codec, both for music and speech)</li>
+<li>Opus (48 kHz: fullband codec, both for music and speech)</li>
 </ul>
 <h3><strong>Mandatory to Implement Video codecs</strong></h3>
 <p>It took a long to build consensus in the IETF RTCWEB workgroup (&#34;Codec war..&#34;)</p>
@@ -229,8 +228,8 @@
 <p><img style="max-width: 624.00px" src="img/bccbe1f1d373bd49.png"></p>
 <p>Source: <a href="http://art.fritsahlefeldt.com/photo/2414/Mind-the-gap-with-text-Color-illustration.html" target="_blank">http://art.fritsahlefeldt.com/photo/2414/Mind-the-gap-with-text-Color-illustration.html</a></p>
 <h2><strong>Adapter.js</strong></h2>
-<p>Standardization is a moving target. </p>
-<p><strong>Mind the gap between</strong>:</p>
+<p><strong>Standardization is a moving target! <br></strong>To build world consensus takes time. :-)  Webrtc 1.0 standardization has started in 2011, and it still does not reached the Draft Recommendation status. Hopefully it will reach in Q4 2018 (according the current roadmap). Standard is moving target, and implementation fall behind the standardization and Web Application based on it may also fall behind the implementation. All in all some glue/shim needed here.</p>
+<h3><strong>Mind the gap between</strong></h3>
 <ul>
 <li>Standard and Browser Implementations</li>
 <li>Between bowser and browser implementations</li>
@@ -243,15 +242,15 @@
 </ul>
 <h2><strong>Breaking Changes</strong></h2>
 <ul>
-<li>Firefox adds deprecation warning</li>
-<li>Carefully age out, pull down not too soon.</li>
+<li>Chrome and Firefox adds deprecation warnings</li>
+<li>Carefully age out, pull down not too soon</li>
 </ul>
 <h3><strong>Changes</strong></h3>
 <ul>
 <li>Async API =&gt; Move from callbacks, forward to Promises</li>
 </ul>
 <aside class="warning"><p><strong>Warning</strong>! </p>
-<p>Only read further if you already familiar with WebRTC. Beginners could safely skip over these changes.</p>
+<p>Only read further if you already familiar with WebRTC. Beginners could safely skip this part of the codelab.</p>
 </aside>
 <h4>Media Capture Changes: </h4>
 <p><strong>MediaDevice selection, detection on changes (discovery)</strong></p>
@@ -305,6 +304,7 @@
     
       <google-codelab-step label="WebRTC 1.0 Architecture" duration="5">
         <h3><strong>Protocol Stack</strong></h3>
+<p>As you can see encryption is mandatory is applied everywhere (SRTP/DTLS).</p>
 <p><img style="max-width: 520.00px" src="img/ea08a380495f9f3e.png"></p>
 <h2><strong>WebRTC native Architecture</strong></h2>
 <p><img style="max-width: 624.00px" src="img/fcdec68b59f9447d.png"></p>
@@ -314,7 +314,7 @@
 <p><img style="max-width: 624.00px" src="img/149faeda7a820cf4.png"></p>
 <aside class="special"><p><strong>Note</strong>:</p>
 <p>Direct Browser to Browser connection is prefered by default to keep the end to end delay low. ICE preferes by default TURN in last resort.</p>
-<p>Of course there are other reasonable preferences, like safe connection or short connection establishment time, that may override ICE default behavior and prefer TURN first.</p>
+<p>Of course there are other reasonable preferences, like more reliable connection first or short connection establishment time, that may override ICE default behavior and prefer TURN first.</p>
 </aside>
 <h3><strong>Address and Port-Dependent Mapping &amp; Address and Port-Dependent Filtering (Symmetric) NAT</strong></h3>
 <p><img style="max-width: 624.00px" src="img/a090a6dbe2aec127.png"></p>
@@ -323,22 +323,22 @@
       </google-codelab-step>
     
       <google-codelab-step label="Why NAT/Firewall traversal needed in WebRTC?" duration="0">
-        <p>Mainly because usage of Network Address Translation(NAT) and Packet Filters made it difficult (or impossible) the direct Peer to Peer communications. As we will see in the next step, Interactive Connection Establishment protocol (ICE) is designed to try to solve these problems. </p>
-<h2><strong>Firewall Packet Filter</strong></h2>
-<p>For Media RTP use a random port number. We need to find a port pair that is not filtered between the peer, so ICE need to check the 5 tuple connection before real communication could start on it.</p>
+        <p>Mainly because usage of Network Address Translation(NAT) and Packet Filters made difficult (or impossible) the direct Peer to Peer communication. As we will see in the next step, Interactive Connection Establishment protocol (ICE) has been designed to solve these problems.</p>
+<h2><strong>Firewall / Packet Filter</strong></h2>
+<p>For Media communication the Real-time Transport Protocol(RTP) use random port numbers. We need to find a ip:port pair that is not filtered between the two peers. ICE have to run 2 way checks on the candidate pairs, on the &#34;5 Tuple&#34; transport connections, to make sure that the communication channel has established and working properly. The transport connection needs to work properly before any Real-time communication could be started on top of it.</p>
 <h2>Network Address Translation(NAT)</h2>
 <p>In this section we focus on NAT. Let&#39;s look it little bit closer.</p>
-<p>NAT behavior standardization started later than NAT first implementation. NAT traversal is complex because of many types NAT. ICE have to deal with any topology, and so any types and levels of NATs.</p>
+<p>The NAT behavior standardization started much later than the first NAT implementation existed. NAT traversal is complex. It is confusing mainly because of the so big variety of different NAT behaviors and types. ICE have to deal with any topology, and so any types and levels of NATs!</p>
 <h2><strong>NAT Behaviors / Types</strong></h2>
 <h3><strong>RFC 3489</strong></h3>
-<p>The <strong>RFC 3489,</strong> called as &#34;<strong>classic STUN</strong>&#34; defined four NAT classes</p>
+<p>The <strong>RFC 3489,</strong> also known as &#34;<strong>classic STUN</strong>&#34; defined four NAT types</p>
 <ul>
 <li>Full Cone</li>
 <li>Restricted Cone</li>
 <li>Port Restricted Conde</li>
 </ul>
 <h2><strong>RFC 4787 NAT behavioral Requirements for UDP</strong></h2>
-<p>RFC 4787 defined much more fine grained classification of NATs.</p>
+<p>RFC 4787 defined much much more fine grained classification of NATs.</p>
 <h3><strong>RFC 4787 main class definitions:</strong></h3>
 <p><strong>Mapping</strong></p>
 <ul>
@@ -352,6 +352,7 @@
 <li>Address-Dependent Filtering</li>
 <li>Address and Port-Dependent Filtering</li>
 </ul>
+<p>And it defines much more NAT behaviors too.</p>
 <p><img style="max-width: 624.00px" src="img/8308d0c42ae77d7c.png"></p>
 <p>Image Source: <a href="https://www.netmanias.com/en/?m=view&id=techdocs&no=6065" target="_blank">https://www.netmanias.com/en/?m=view&amp;id=techdocs&amp;no=6065</a></p>
 <h2><img style="max-width: 624.00px" src="img/62ad5490047f0f38.png"></h2>
@@ -382,7 +383,7 @@
 <li><a href="https://www.netmanias.com/ko/?m=view&id=blog&no=6263" target="_blank">https://www.netmanias.com/ko/?m=view&amp;id=blog&amp;no=6263</a></li>
 </ul>
 </aside>
-<h3><strong>coTURN natdiscover utility</strong></h3>
+<h3><strong>coTURN natdiscovery utility</strong></h3>
 <p><img style="max-width: 624.00px" src="img/5159f9e65f6a5e50.png"></p>
 <pre>$ turnutils_natdiscovery -f -m rfc5780.turn.geant.org
 ...
@@ -399,21 +400,25 @@ $</pre>
 </aside>
 <p>NAT discovery in browser:</p>
 <p>We reuse the same idea here that we used earlier in RFC 5780 NAT behavior discovery.</p>
-<p>If the NAT translates traffic from the same internal port to different external source port, that&#39;s destination are different STUN server, then</p>
+<p>If a NAT translates traffic originating from the same internal port to different external source ports, because of the different destination ip:port (in our case different destination STUN servers), then</p>
 <p>It could be: </p>
 <ul>
 <li>Address Dependent Mapping</li>
 <li>Address and Port Dependent Mapping</li>
 </ul>
-<p>See WebRTC article about howto discover symmetric NAT. </p>
+<p>See WebRTC article about howto discover a symmetric NAT. </p>
 <ul>
 <li><a href="https://webrtchacks.com/symmetric-nat/" target="_blank">https://webrtchacks.com/symmetric-nat/</a></li>
 </ul>
 <p><img style="max-width: 624.00px" src="img/344644acb209b784.png"></p>
-<aside class="special"><p><strong>Notice</strong>: coTURN utility gives much detailed and more precise reliable information about NAT behaviour than this browser test.</p>
+<aside class="special"><p><strong>Notice</strong>: coTURN utility gives much detailed and more precise and reliable information about the NAT behaviour than the browser test could do.</p>
 </aside>
-<h2><strong>NAT behaviors in real world</strong></h2>
-<p>I have collected the NAT behaviors in the following table. In this table you could find the <strong>default</strong> behavior and the options that modifies the behavior. <br></p>
+<h2><strong>NAT behaviors in the real-world</strong></h2>
+<aside class="warning"><p><strong>Warning: </strong></p>
+<p><strong>Mind the gap</strong> between RFC 4787 behaviour model and  the real-world NAT implementations! Not every implementation behavior fits perfectly in the defined categories.</p>
+</aside>
+<p>I have collected the NAT behaviors in the following table. In this table you could find OS/vendors/appliances, and the <strong>default</strong> NAT behavior that belongs to it. Furthermore you could find the options that could be used to modify the default behavior. </p>
+<p>(These are only my experiences and test results according my actual knowledge. <a href="https://github.com/misi/codelab/issues/new" target="_blank"><em>Please correct me if you think I am wrong!</em></a>)<br></p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>Vendor/Behavior</p>
 </td><td colspan="1" rowspan="1"><p>EIM/EIF</p>
@@ -520,17 +525,18 @@ $</pre>
 </td><td colspan="1" rowspan="1"><p>X</p>
 </td></tr>
 </table>
-<p>E.g. In Linux Netfilter (iptables) the <strong>default</strong> behavior is Endpoint Independent Mapping with Address and Port Dependent Filtering (EIM/APDF) </p>
+<p><strong>To clarify further the options in the table above with an example: </strong></p>
+<p>In Linux case, the Netfilter‘s (iptables) <strong>default</strong> behavior is Endpoint Independent Mapping with Address and Port Dependent Filtering (EIM/APDF)</p>
 <pre>iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE </pre>
-<p>Use --random option to change behavior to Address and Port dependent Mapping with Address and Port dependent Filtering (APDM/APDF)</p>
+<p>If you use --random  or --random-fully option, then you could change NAT behavior to Address and Port dependent Mapping with Address and Port dependent Filtering (APDM/APDF)</p>
 <pre>iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE --random</pre>
 <h2><strong>Port Randomization</strong></h2>
-<p>Why port randomization? It is proposed solutions to  e.g. DNS cache poisoning / <a href="http://unixwiz.net/techtips/iguide-kaminsky-dns-vuln.html" target="_blank">Kaminsky</a> dns vulnerability. </p>
-<p>Transport-Protocol Port Randomization is recommended according <a href="https://tools.ietf.org/html/rfc6056" target="_blank">RFC 6056</a>.</p>
-<p>And <a href="https://tools.ietf.org/html/rfc7857" target="_blank">RFC 7857</a> updates to Network Address Translation (NAT) Behavioral Requirements.</p>
-<p>(But even for port randomization could be derandomized with fine grained attacks: <a href="https://arxiv.org/pdf/1205.5190.pdf" target="_blank">https://arxiv.org/pdf/1205.5190.pdf</a> so for DNS use DNSSEC..)</p>
-<h2><strong>Summary of NAT</strong></h2>
-<p>According my  experiences </p>
+<p>Why port randomization? It is proposed solutions to  e.g. DNS cache poisoning / <a href="http://unixwiz.net/techtips/iguide-kaminsky-dns-vuln.html" target="_blank">Kaminsky dns vulnerability</a>. </p>
+<p>The 5 tuple (source and destination ip port and transport protocol) Transport-Protocol Port Randomization is recommended according <a href="https://tools.ietf.org/html/rfc6056" target="_blank">RFC 6056</a>.</p>
+<p>And <a href="https://tools.ietf.org/html/rfc7857" target="_blank">RFC 7857</a> updates to Network Address Translation (NAT) Behavioral Requirements according it.</p>
+<p>(But even port randomization could be derandomized with fine grained attacks: <a href="https://arxiv.org/pdf/1205.5190.pdf" target="_blank">https://arxiv.org/pdf/1205.5190.pdf</a>. To avoid Kaminsky DNS vulnerability the safe way to use DNSSEC.)</p>
+<h2><strong>Summary of NAT behaviors</strong></h2>
+<p>According my  experiences</p>
 <ul>
 <li><strong>Campus/Enterprise NAT</strong>s most commonly use <strong>Port Randomization with Address and Port dependent Mapping with Address and Port dependent Filtering </strong></li>
 <li><strong>SOHO NAT</strong>s most commonly use <strong>Endpoint Independent Mapping with Address and Port Dependent Filtering</strong></li>
@@ -568,7 +574,7 @@ $</pre>
 <h2>ICE</h2>
 <h3><strong>Design Goals</strong></h3>
 <ul>
-<li>High reliability is essential</li>
+<li>High reliability is essential during connection establishments</li>
 <li>Minimize the &#34;length&#34; of the path between clients</li>
 <li>Negotiate IP protocol version (IPv4/IPV6) and preference</li>
 <li>No assumption on: (Network topologies, NAT or Firewall presence, NAT behaviours)</li>
@@ -577,38 +583,65 @@ $</pre>
 <ul>
 <li>Discovery and Candidate gathering (Allocation)</li>
 <li>Prioritisation</li>
+<li>Eliminating redundant candidates</li>
 <li>Exchange (SDP)</li>
 <li>Connectivity Check (Binding Request + Short Term Credential)</li>
 <li>Coordination (Controlling/Controlled, Nomination)</li>
 <li>Communication</li>
 </ul>
-<h3><strong>ICE prioritization</strong></h3>
+<h3><strong>Discovery Candidates</strong></h3>
+<ul>
+<li>Multiple interfaces</li>
+<li>Multiple type of interface (WIFI, Mobile, LAN, VPN)</li>
+<li>Multiple protocols (IPv4, IPv6)</li>
+</ul>
+<h3>ICE prioritization</h3>
 <pre><code>priority = (2^24)*(type preference)
           +(2^8)*(local preference)
           +(2^0)*(256 - component ID) </code></pre>
 <p><strong>priority (32bit)</strong></p>
 <ul>
-<li><strong>Type preference (8 bit): 0-126 </strong>The RECOMMENDED values are 126 for host candidates, 100 for server reflexive candidates, 110 for peer reflexive candidates, and 0 for relayed candidates.</li>
+<li><strong>Type preference (8 bit): 0-126 </strong>The RECOMMENDED values are 126 for <code>host</code> candidates, 100 for <code>server reflexive</code> candidates, 110 for <code>peer reflexive</code> candidates, and 0 for <code>relayed</code> candidates.</li>
 <li><strong>Local preference(16 bit):</strong> Version(IPv4/IPv6), network interfaces(VPN/LAN)</li>
-<li><strong>Component ID (8bit) 256 - component ID</strong></li>
+<li><strong>Component ID (8 bit) 256 - component ID</strong></li>
 </ul>
+<h3><strong>ICE User Agent (UA) Role</strong></h3>
+<ul>
+<li>Controlling</li>
+<li>Controlled</li>
+</ul>
+<p>The Controlling is the one that&#39;s sent the initial Offer. (In case of both agents are a full</p>
+<p>   implementation).</p>
+<h3>Pair priority formula</h3>
+<p>Let </p>
+<ul>
+<li>G the controlling priority (Offer) </li>
+<li>D the controlled priority (Answer)</li>
+</ul>
+<pre><code>pair priority = 2^32*MIN(G,D) + 2*MAX(G,D) + (G&gt;D?1:0)</code></pre>
 <h3><strong>Foundation</strong></h3>
 <p>Candidates has the same foundation and are similar when they are of the same type and obtained from the same interface and STUN or TURN server.</p>
 <h3><strong>Frozen Algorithm</strong></h3>
 <p>The idea is to use the results of a previous check to predict the likelihood of a future one working. </p>
 <h2><strong>ICE Agent States</strong></h2>
 <p><img style="max-width: 624.00px" src="img/8ad2e7ad2cd572cf.png"></p>
-<p>For more details see the ICE tutorials mentioned above.</p>
+<p>For more details please see the ICE tutorials mentioned above.</p>
 <h2><strong>Trickle ICE</strong></h2>
 <p>Connection establishment time could be long if we need to wait to finish the candidate discovery. </p>
 <p>Even worse, in case of any error is occuring during the discovery. Waiting for the timeouts could take long, and could cause an unacceptable very long connection establishment. </p>
-<h2>The primary idea is to start ICE check as fast as we discover a candidate. The only drawback is that we need to send more signaling messages. WebRTC Application nowadays use mostly Trickle ICE to establish connection.<img style="max-width: 624.00px" src="img/bc12d7ccb7c091cf.png"><strong>Multiplexing/Boundling</strong></h2>
+<h3><strong>Establish connection faster</strong></h3>
+<p>The primary idea is to start ICE check as fast as we discover a candidate. The only drawback is that we need to send more signaling messages. WebRTC Application nowadays use mostly Trickle ICE to establish connection.<img style="max-width: 624.00px" src="img/bc12d7ccb7c091cf.png">Multiplex/Bundle</p>
 <ul>
-<li>RTP/RTCP multiplexing</li>
-<li>Boundling RTP multiplexing (audio video)</li>
+<li>RTP/RTCP multiplex</li>
+<li>Bundle RTP (multiplex rtp streams e.g. audio+video)</li>
 </ul>
-<h2><strong>Congestion Avoidance</strong></h2>
-<p><strong>Standardization is in IETF RMCAT</strong></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Congestion Avoidance" duration="5">
+        <p>It is very important part of  WebRTC to use an intelligent congestion control algorithm, that estimates the maximum bandwidth and share the available bandwidth fairly.</p>
+<p><strong>Standardization happens in IETF RMCAT working group</strong></p>
 <ul>
 <li>Receiver Estimated Maximum Bandwidth (REMB)</li>
 <li>Sender Side Bandwidth Estimation</li>
@@ -626,7 +659,7 @@ $</pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="SDP" duration="0">
+      <google-codelab-step label="Session Description Protocol (SDP)" duration="0">
         <p>Duration: 10 min</p>
 <aside class="special"><p><strong>Tip</strong>: SDP Anatomy on webrtcH4cKS <a href="https://webrtchacks.com/sdp-anatomy" target="_blank">https://webrtchacks.com/sdp-anatomy</a></p>
 </aside>
@@ -642,7 +675,8 @@ $</pre>
 <li><a href="https://tools.ietf.org/html/draft-uberti-rtcweb-plan-00" target="_blank">https://tools.ietf.org/html/draft-uberti-rtcweb-plan-00</a></li>
 <li>Chrome / Chromium is still working the transition to Unified Plan  <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=465349" target="_blank">https://bugs.chromium.org/p/chromium/issues/detail?id=465349</a></li>
 </ul>
-<aside class="special"><p><strong>Plan Adapter</strong>: It is very hard to polyfill plan differences, but here  is an example. <a href="https://www.npmjs.com/package/sdp-interop" target="_blank">https://www.npmjs.com/package/sdp-interop</a></p>
+<aside class="special"><p><strong>Plan Adapter</strong>:</p>
+<p>It is very hard to polyfill plan differences, but here  is an example: <a href="https://www.npmjs.com/package/sdp-interop" target="_blank">https://www.npmjs.com/package/sdp-interop</a></p>
 </aside>
 <h2><strong>Example SDP</strong></h2>
 <h3><strong>Offer</strong></h3>
@@ -798,7 +832,7 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 </aside>
 <h2>Offer Answer <code>without</code><strong> Identity Check</strong></h2>
 <p><img style="max-width: 624.00px" src="img/31562214b7e28759.png"></p>
-<p>Source: <a href="https://hikingartist.com/2012/01/03/cat-and-dog-online-2-0/" target="_blank">https://hikingartist.com/2012/01/03/cat-and-dog-online-2-0/</a></p>
+<p>Image Source: <a href="https://hikingartist.com/2012/01/03/cat-and-dog-online-2-0/" target="_blank">https://hikingartist.com/2012/01/03/cat-and-dog-online-2-0/</a></p>
 <h2>Offer Answer <code>with</code><strong> Identity Check</strong></h2>
 <p>The trust base is the Browser.</p>
 <pre>             +----------------+    Unspecified    +----------------+
@@ -835,7 +869,7 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 <p><img style="max-width: 624.00px" src="img/7d1f3adde43daac0.png"></p>
 <h2><strong>Media/Data Encryption is mandatory: SRTP / DTLS</strong></h2>
 <ul>
-<li>DTLS-SRTP: DTLS and Certificate based key .</li>
+<li>DTLS-SRTP: DTLS and Certificate based key.</li>
 <li>SDES-SRTP &#34;MUST NOT implement&#34; according IETF 87</li>
 </ul>
 <aside class="warning"><p><strong>Important</strong>:  SDES-SRTP is obsoleted, mainly because to avoid any surveillance possibility. This was a design decision, and it could add interop issues with legacy systems!</p>
@@ -849,7 +883,7 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
     
       <google-codelab-step label="Multipoint (SFU/MCU, Media Server)" duration="5">
         <h2><img style="max-width: 497.00px" src="img/aeeab6fb604bba76.png"></h2>
-<p>Image Source: Emil Ivov (Jitsi /Atlassian)</p>
+<p>Image Source: Emil Ivov (<a href="https://jitsi.org/" target="_blank">Jitsi</a> /<a href="https://www.atlassian.com" target="_blank">Atlassian</a>)</p>
 <h2><strong>Some examples from open source space:</strong></h2>
 <ul>
 <li><a href="https://mediasoup.org/" target="_blank">https://mediasoup.org</a></li>
@@ -887,7 +921,7 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
     
       <google-codelab-step label="Summary of the Theory" duration="5">
         <p><img style="max-width: 624.00px" src="img/de4ee6652313dd7f.png"></p>
-<p>Source: <a href="http://art.fritsahlefeldt.com/photo/2045/Goal-is-closer-than-you-think-Color-illustration.html" target="_blank">http://art.fritsahlefeldt.com/photo/2045/Goal-is-closer-than-you-think-Color-illustration.html</a></p>
+<p>Image Source: <a href="http://art.fritsahlefeldt.com/photo/2045/Goal-is-closer-than-you-think-Color-illustration.html" target="_blank">http://art.fritsahlefeldt.com/photo/2045/Goal-is-closer-than-you-think-Color-illustration.html</a></p>
 <h2><strong>WebRTC 1.0 is stable to build reliable service on it.</strong></h2>
 <ul>
 <li>Strong and wide community</li>
@@ -897,7 +931,7 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 <li>Wide support in browsers: Chrome,Firefox, Opera, Edge, Safari, etc.</li>
 </ul>
 <h2><strong>WebRTC - Next Version (NV)</strong></h2>
-<p>Actual Focus on finishing 1.0 and only after start WebRTC-NV.</p>
+<p>Actual Focus is on finishing 1.0 and only after start WebRTC-NV.</p>
 
 
       </google-codelab-step>
@@ -907,7 +941,7 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 <ul class="checklist">
 <li>Get a MediaStream from your WebCam (promise)</li>
 <li>MediaStream and MediaStreamTrack differences</li>
-<li>How browser asks for consent to access (Web)Camera</li>
+<li>How a browser asks for consent to access your (Web)Camera</li>
 <li>Manipulate the video with CSS</li>
 </ul>
 <h2><strong>Lab1</strong></h2>
@@ -962,7 +996,7 @@ navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
 </aside>
 <h2><strong>Bonus exercises:</strong></h2>
 <ul>
-<li>Try to use instead of <code>&lt;video autoplay&gt;</code>  in index.html a Java Script in main.js <code>video.onloadedmetadata= (e) =&gt; {e.target.play();}</code></li>
+<li>Try to use instead of <code>&lt;video autoplay&gt;</code> in index.html a Java Script in main.js <code>video.onloadedmetadata= (e) =&gt; {e.target.play();}</code></li>
 <li>Try out on browser JS dev console:  <code>myStream.getVideoTracks()</code> <code>myStream.getAudioTracks() myStream.getTracks()[0]</code></li>
 <li>Try to stop track <code>myStream.getTracks()[0].stop</code></li>
 <li>Try out to add audio to constraint <code>const mediaStreamConstraints = {audio:true,  video: true};</code></li>
@@ -1014,7 +1048,7 @@ navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
 <p><strong>In this example above, the browser </strong></p>
 <ul>
 <li>prefers if possible prefers 1920x1280 </li>
-<li>if it is not possible then if possible then it preferes the ascpectRatio  4/3</li>
+<li>if it is not possible then if possible then it prefers the ascpectRatio  4/3</li>
 <li>But the Basic/Required constraints MUST be satisfied in all cases (width minimum 640,  and height 480, with &#34;gravity&#34; to ideal  width 1280 and ideal height 720).</li>
 </ul>
 <h3><strong>Constraints Values</strong></h3>
@@ -1080,7 +1114,7 @@ track.getSettings();</code></pre>
 <aside class="special"><p><strong>Tip</strong>: Try Lab3 on your <strong>mobile</strong> where multiple webcam (front/back) is available.</p>
 </aside>
 <h3><strong>EnumarateDevices </strong></h3>
-<p>Enumarate all Media Devices and add as options to three  dropdown select input </p>
+<p>Enumarate all Media Devices,and it is added as an option to one of the three dropdown select inputs</p>
 <ul>
 <li>Input Audio </li>
 <li>Input Video</li>
@@ -1109,11 +1143,11 @@ track.getSettings();</code></pre>
     });
   })
   .catch(errorCallback);</code></pre>
-<aside class="special"><p><strong>Note</strong>: To avoid any fingerprinting, the browser will not reveal all detailed information of the detected mediadevices until user not give consent to access a MediaDevice. Instead of WebCam name only Id&#39;s will be presented. (To avoid any mislead, if you test this feature don&#39;t use it parallel with persistent consent.)</p>
+<aside class="special"><p><strong>Note</strong>: To avoid any fingerprinting, the browser will not reveal all detailed information of the detected mediadevices until user not give consent to access a MediaDevice. This way instead of the name of the WebCam only Id&#39;s will be presented. (To avoid any mislead, if you test this feature don&#39;t use it parallel with persistent consent.)</p>
 </aside>
 <h3><strong>Select Audio Output</strong></h3>
 <aside class="special"><p><strong>Note</strong>: </p>
-<p>Audio Output is not part of the main media capture and stream api. It is defined in a separated specification: <a href="https://www.w3.org/TR/audio-output/" target="_blank">https://www.w3.org/TR/audio-output/</a></p>
+<p>Audio Output is not part of the main media capture and stream API. It is defined in a separated specification: <a href="https://www.w3.org/TR/audio-output/" target="_blank">https://www.w3.org/TR/audio-output/</a></p>
 </aside>
 <p>Set output with function <code>setSinkID(mediaDeviceID)</code></p>
 <pre><code>function outputSelected(){
@@ -1143,23 +1177,23 @@ track.getSettings();</code></pre>
       <google-codelab-step label="Lab 4: GuM Record" duration="5">
         <h2 class="checklist"><strong>What you&#39;ll learn</strong></h2>
 <ul class="checklist">
-<li>Discovery available MediaDevices</li>
-<li>Select Input Audio/Video Device</li>
-<li>Select Output Audio Device</li>
+<li>Detect supported recording formats</li>
+<li>Record a stream locally</li>
+<li>Playback recording and make available for download</li>
 </ul>
 <h2><strong>Lab4</strong></h2>
 <p>You could find the completed Lab in <code>Lab4</code> directory.</p>
 <p>It this lab there are 4 buttons and one dropdown select element.</p>
 <ol type="1" start="1">
-<li>Use &#34;GetuserMedia&#34; button to start capturing your webCam MediaStream localStream (give your consent to access webcam in the pop-up)</li>
-<li>Select from the dropdown the format you prefer for the recording. (Only the supported formats will be listed in this select.)</li>
+<li>Use &#34;GetuserMedia&#34; button to start capturing your webCam MediaStream (give your consent to access webcam in the pop-up)</li>
+<li>Select from the dropdown the format you prefer for the recording. (Only the supported formats will be listed in this select input.)</li>
 <li>Use the &#34;Start Recording&#34; button and record your video message :-).</li>
 <li>&#34;Stop Recording&#34;</li>
 <li>Start &#34;Replay&#34; in another video element, and also add a Link where the recorded file could be downloaded.</li>
 </ol>
 <h2>MediaStream <strong>Recording API</strong></h2>
 <aside class="special"><p><strong>Note</strong>: </p>
-<p>MediaRecording is not part of the main media capture and sream api. It is defined in a separated specification: <a href="https://www.w3.org/TR/mediastream-recording/" target="_blank">https://www.w3.org/TR/mediastream-recording/</a></p>
+<p>MediaRecording is not part of the main media capture and stream api. It is defined in a separated specification: <a href="https://www.w3.org/TR/mediastream-recording/" target="_blank">https://www.w3.org/TR/mediastream-recording/</a></p>
 </aside>
 <h3><strong>Supported media recording formats</strong></h3>
 <p>Create a dropdown list with the supported encoding format.</p>
@@ -1179,7 +1213,7 @@ for (var i in types) {
   };
 };</code></pre>
 <h3><strong>Start/Stop Recording</strong></h3>
-<p>Construnct the <code>MediaRecoderOption</code>. We use in our example only the mimeType based on the selected encoding format.</p>
+<p>We construct the <code>MediaRecoderOption</code>. In our example we use only the <code>mimeType</code> option, that&#39;s value is coming from the selected encoding format.</p>
 <h4><strong>MediaRecorderOptions</strong></h4>
 <ul>
 <li><strong>mimeType</strong>: The mime type you want to use as the recording container for the new MediaRecorder. The container and codec format(s) <a href="https://www.w3.org/TR/mediastream-recording/#biblio-rfc2046" target="_blank">[RFC2046]</a> for the recording, which may include any parameters that are defined for the format.</li>
@@ -1187,7 +1221,7 @@ for (var i in types) {
 <li><strong>videoBitsPerSecond</strong>: Aggregate target bits per second for encoding of the Video track(s), if any.</li>
 <li><strong>bitsPerSecond</strong>: Aggregate target bits per second for encoding of all Video and Audio Track(s) present</li>
 </ul>
-<p>After local MediaStream is already captured, we create a MediaRecorderObject and stop with <code>Stop()</code> at the end.</p>
+<p>After local MediaStream is already captured, we start recording with create and <code>start()</code> MediaRecorderObject and <code>stop()</code> this object at the recording end.</p>
 <pre><code>var localStream;
 var mediaRecorder;
 var chunks = [];
@@ -1221,10 +1255,10 @@ function stop() {
 };</code></pre>
 <h3><strong>Replay and Download</strong></h3>
 <ol type="1" start="1">
-<li>We create from the recorded 25sec recorded chunks a Blob object.</li>
-<li>Get with the URL createObjectURL</li>
+<li>We create from the recorded 25 Seconds long recorded chunks a Blob object.</li>
+<li>Get the URL from createObjectURL</li>
 <li>Set this URL as the source of <code>video</code> replay element.</li>
-<li>Create a link with the same URL an element and add to the document.</li>
+<li>Create a link with the same URL and add this new anchor element to the document.</li>
 </ol>
 <pre><code>function replay() {
   vod.controls = true;
@@ -1255,14 +1289,14 @@ function stop() {
 <ul class="checklist">
 <li>Grab media (consent to access WebCam)</li>
 <li>Setup a PeerConnection</li>
-<li>Add MediaStreamTrack to the established connection</li>
+<li>Add a MediaStreamTrack to the established connection</li>
 <li>Add STUN/TURN server and iceTransportPolicy</li>
 <li>Setup RTP/RTCP and bundle policy</li>
 </ul>
 <h2><strong>Lab5</strong></h2>
 <p>You could find the completed Lab in <code>Lab5</code> directory.</p>
-<p>In this lab we will emulate a Peer to Peer call between two parties in one browser, and this way 2 <code>PeerConnection</code> object will be created pc1 and pc2.</p>
-<p>You see 3 buttons &#34;GrabMedia&#34;, &#34;Call&#34;, &#34;Hangup&#34;</p>
+<p>In this lab we will emulate a Peer to Peer call between two parties in one browser, and this way two <code>PeerConnection</code> object will be created pc1 and pc2.</p>
+<p>You see three buttons &#34;GrabMedia&#34;, &#34;Call&#34;, and &#34;Hangup&#34;</p>
 <ol type="1" start="1">
 <li>Grab your local WebCam mediastream with &#34;GrabMedia&#34;</li>
 <li>Establish a peerconnection with the &#34;Call&#34; button</li>
@@ -1282,7 +1316,7 @@ function stop() {
 <li><strong>RTCConfiguration.iceServers</strong>: set your STUN and TURN servers</li>
 <li><strong>We use Trickle ICE</strong>: We don&#39;t wait for detection of local candidates but send candidates as soon as they have been discovered.</li>
 <li>We <strong>add tracks</strong> from localStream to PeerConnection pc1<br><code>localStream.getTracks().forEach(track =&gt; {pc1.addTrack(track, localStream);});</code></li>
-<li>We receive media on PeerConnection pc2 when an <strong>ontrack</strong> (pc2.ontrack<strong>)</strong> event fired. Remote stream is: <code>event.streams[0];</code></li>
+<li>We receive media on PeerConnection pc2 when an <strong>ontrack</strong> (pc2.ontrack<strong>)</strong> event fired. Remote stream is the: <code>event.streams[0];</code></li>
 </ul>
 <pre><code>function call(){
   console.log(&#39;Call Start&#39;);
@@ -1424,7 +1458,7 @@ media.peerconnection.default_iceservers= [{urls: &#34;stun:ltc.turn.geant.org&#3
 <h2><strong>Lab6</strong></h2>
 <p>You could find the completed Lab in <code>Lab6</code> directory. <br></p>
 <p>In this lab create a simple Peer to Peer chat application using DataChannel (DC). The same way as in previous Lab we establish a PeerConnection between the two parties in one browser. We have 2 <code>PeerConnection</code> object, pc1 and pc2. We name in this sample the two parties Alice (A) and Bob (B). The chat app is very simple, You will find for each participant one read-only text area for chat log, and an input text box where you could type your message.</p>
-<aside class="special"><p><strong>Tip!</strong>: Check during a call the browser&#39;s under the hood webrtc pages.</p>
+<aside class="special"><p><strong>Tip!</strong> During a call try to check the browser&#39;s under the hood webrtc page:</p>
 <ul>
 <li><strong>Chrome</strong> - chrome://webrtc-internals</li>
 <li><strong>Firefox</strong> - about:webrtc</li>
@@ -1432,7 +1466,7 @@ media.peerconnection.default_iceservers= [{urls: &#34;stun:ltc.turn.geant.org&#3
 </aside>
 <h3><strong>DataChannel (DC)</strong></h3>
 <ul>
-<li>We Init the DC with <code>pc1.createDataChanel()</code></li>
+<li>We setup the DC with <code>pc1.createDataChanel()</code></li>
 <li>After establishment of DC on pc2 side <code>pc.ondatachannel</code> event is triggered. (We add pc2.onmessage event handler)</li>
 <li>We add pc1.onmessage event handler</li>
 <li>If we press &#34;enter&#34; (keyCode===13) then we send input value with <code>dc.send(msg);</code></li>
@@ -1491,7 +1525,7 @@ input2.onkeypress = function (e){
 <h2><strong>Bonus Exercises</strong></h2>
 <ul>
 <li>Examine dc1.readystate to make input1 readonly until dc is established</li>
-<li>See dcInitOptions for (un)reliable and  (un)ordered transmission etc.</li>
+<li>See dcInitOptions for (un)reliable and (un)ordered transmission etc.</li>
 </ul>
 
 
@@ -1500,11 +1534,11 @@ input2.onkeypress = function (e){
       <google-codelab-step label="Lab 7: Nodejs Signaling Server (socket.io) Chat" duration="5">
         <h2 class="checklist"><strong>What you&#39;ll learn</strong></h2>
 <ul class="checklist">
-<li>Setup a node websocket server (What maybe later you could use as Signaling server)</li>
+<li>Setup a node.js based websocket server (What later could be used as Signaling server)</li>
 <li>Send and Receive Data on WebSocket</li>
 </ul>
 <h2><strong>Lab7</strong></h2>
-<p>You could find the completed Lab in <code>Lab7</code> directory.  In this lab we reuse the previous lab  simple chat application interface, but replacing the engine under the hood to socket.io. </p>
+<p>You could find the completed Lab in <code>Lab7</code> directory.  In this lab we reuse the previous lab  simple chat application interface, but replacing the engine under the hood from datachannel to <code>socket.io</code>. </p>
 <pre>cd lab7</pre>
 <h3><strong>Copy your key/cert</strong></h3>
 <p>Copy <code>cert.pem</code> and <code>prikey.pem</code></p>
@@ -1543,7 +1577,7 @@ input2.onkeypress = function (e){
 <p>node server.js</p>
 <pre>yarn start</pre>
 <h3><strong>client.js</strong></h3>
-<p>Connect to server and send the room message and after all further chat meesgages</p>
+<p>Connect to server and first send the &#34;room&#34; message to select and join to a room, and after it all further chat messages is broadcasted in this room.</p>
 <p>// Strict mode changes previously accepted &#34;bad syntax&#34; into real errors.</p>
 <p>&#39;use strict&#39;;</p>
 <p>const room=&#34;testroom&#34;;</p>
@@ -1599,10 +1633,10 @@ input2.onkeypress = function (e){
         <h2 class="checklist"><strong>What you&#39;ll learn</strong></h2>
 <ul class="checklist">
 <li>Install a simple room based VC service</li>
-<li>Combined mainly from the previous components.</li>
+<li>This service is composited and combined mainly from the components thats have been presented earlier in this codelab.</li>
 </ul>
 <h2>Lab8</h2>
-<p>KnockPlop is an Open Source basic multi participant peer-to-peer web multipart service based on WebRTC technology. Audio and Video conferencing with Screen Sharing Chat and Web Torrent based File Sharing. The service is based on videorooms, and simply connects everybody visiting the same URL. Private meetings based on random and long room id-s. It has a simple moodle integration. </p>
+<p>KnockPlop is an Open Source basic multi participant peer-to-peer Web-Application that is based on WebRTC technology. It provides Audio and Video conferencing with Screen Sharing, Chat, and Web Torrent based File Sharing. The service is based on videorooms, and simply connects every participants the same room if they visiting the same URL. Private meetings based on random and long room id-s, and it has a very simple moodle integration too. </p>
 <h3><strong>Main Features</strong></h3>
 <ul>
 <li>Simple room based VideoConferencing</li>
@@ -1631,7 +1665,7 @@ cp client-config.js.dist client-config.js</pre>
 <p>Go to <a href="https://turn.geant.org" target="_blank">https://turn.geant.org</a> to acquire credential to TURN service:</p>
 <ol type="1" start="1">
 <li>Setup REST key in <code>server-config.js</code> for Time Limited Long Term Credential. </li>
-<li>Or Setup the old Long Term Credential = User/Password and configure the <code>client-config.js</code> according the credentials.</li>
+<li>Or Setup the old fashioned Long Term Credential == User/Password Authentication and configure the <code>client-config.js</code> according to your credential.</li>
 </ol>
 <h3><strong>Start Server</strong></h3>
 <pre>yarn start</pre>
@@ -1748,10 +1782,10 @@ export R_LOG_DESTINATION=stderr</pre>
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
     m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-49880327-14', 'auto');
+    ga('create', 'UA-114682180-1', 'auto');
 
     (function() {
-      var gaCodelab = '';
+      var gaCodelab = 'UA-114682180-1';
       if (gaCodelab) {
         ga('create', gaCodelab, 'auto', {name: 'codelab'});
       }

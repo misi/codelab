@@ -3,10 +3,10 @@
   "source": "1o6q4_pPdqwHuvJhOTWVcdNTkDIC6xKz7nU5KkSdoBqc",
   "format": "html",
   "prefix": "./",
-  "mainga": "UA-49880327-14",
-  "updated": "2018-02-22T14:15:18Z",
+  "mainga": "UA-114682180-1",
+  "updated": "2018-02-23T23:46:20Z",
   "id": "webrtc-c0d3l4b",
-  "duration": 115,
+  "duration": 120,
   "title": "WebRTC c0d3l4b",
   "author": "Mészáros Mihály",
   "summary": "In this codelab, you'll be acquainted with the WebRTC base components, and all the protocols that work under the hood, which will give you a deep overview and understanding this field.",
@@ -21,5 +21,6 @@
     "web"
   ],
   "feedback": "https://github.com/misi/codelab/issues",
+  "ga": "UA-114682180-1",
   "url": "webrtc-c0d3l4b"
 }
