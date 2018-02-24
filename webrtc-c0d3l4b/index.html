@@ -630,11 +630,13 @@ $</pre>
 <p>Connection establishment time could be long if we need to wait to finish the candidate discovery. </p>
 <p>Even worse, in case of any error is occuring during the discovery. Waiting for the timeouts could take long, and could cause an unacceptable very long connection establishment. </p>
 <h3><strong>Establish connection faster</strong></h3>
-<p>The primary idea is to start ICE check as fast as we discover a candidate. The only drawback is that we need to send more signaling messages. WebRTC Application nowadays use mostly Trickle ICE to establish connection.<img style="max-width: 624.00px" src="img/bc12d7ccb7c091cf.png">Multiplex/Bundle</p>
+<p>The primary idea is to start ICE check as fast as we discover a candidate. The only drawback is that we need to send more signaling messages. WebRTC Application nowadays use mostly Trickle ICE to establish connection.<img style="max-width: 624.00px" src="img/bc12d7ccb7c091cf.png"></p>
+<h2><strong>Multiplex/Bundle</strong></h2>
 <ul>
 <li>RTP/RTCP multiplex</li>
 <li>Bundle RTP (multiplex rtp streams e.g. audio+video)</li>
 </ul>
+<p><img style="max-width: 624.00px" src="img/ffade9a83b96170b.png"></p>
 
 
       </google-codelab-step>
