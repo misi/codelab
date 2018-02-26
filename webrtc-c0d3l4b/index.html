@@ -7,12 +7,13 @@
   <meta name="theme-color" content="#4F7DC9">
   <meta charset="UTF-8">
   <title>WebRTC c0d3l4b</title>
-  <script src="./bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   <link rel="import" href="./bower_components/codelab-components/google-codelab-elements.html">
   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
-  <style>
+  <style is="custom-style">
     body {
       font-family: "Roboto",sans-serif;
+      background: var(--google-codelab-background, --paper-grey-300);
     }
   </style>
   
@@ -1555,74 +1556,88 @@ input2.onkeypress = function (e){
 <p>yarn</p>
 <h3>s<strong>erver.js</strong></h3>
 <p>After socket.io client initiates a connection to the server, and sends a room message with room name, the server will join this client to the chosen room. Any further messages are broadcasted to all client in the room (except the sender).</p>
-<p>&#39;use strict&#39;;</p>
-<p>const https = require(&#39;https&#39;);</p>
-<p>const fs = require(&#39;fs&#39;);</p>
-<p>const options = {</p>
-<p>          key: fs.readFileSync(&#39;privkey.pem&#39;),</p>
-<p>          cert: fs.readFileSync(&#39;cert.pem&#39;)</p>
-<p>};</p>
-<p>const httpsServer = https.createServer(options);</p>
-<p>httpsServer.listen(8080);</p>
-<p>const io = require(&#39;socket.io&#39;)(httpsServer);</p>
-<p>io.on(&#39;connection&#39;, function(socket) {</p>
-<p>  socket.on(&#39;room&#39;, (room) =&gt; {</p>
-<p>    console.log(&#34;Room: &#34;+room);</p>
-<p>    socket.join(room);</p>
-<p>  });</p>
-<p>  socket.on(&#39;message&#39;, (msg) =&gt; {</p>
-<p>    console.log(&#34;Message: &#34;+msg);</p>
-<p>    socket.broadcast.emit(&#39;message&#39;, msg);</p>
-<p>  });</p>
-<p>});</p>
+<pre><code>&#39;use strict&#39;;
+const https = require(&#39;https&#39;);
+const fs = require(&#39;fs&#39;);
+
+const options = {
+          key: fs.readFileSync(&#39;privkey.pem&#39;),
+          cert: fs.readFileSync(&#39;cert.pem&#39;)
+};
+const httpsServer = https.createServer(options);
+httpsServer.listen(8080);
+
+const io = require(&#39;socket.io&#39;)(httpsServer);
+io.on(&#39;connection&#39;, function(socket) {
+  socket.on(&#39;room&#39;, (room) =&gt; {
+    console.log(&#34;Room: &#34;+room);
+    socket.join(room);
+  });
+  socket.on(&#39;message&#39;, (msg) =&gt; {
+    console.log(&#34;Message: &#34;+msg);
+    socket.broadcast.emit(&#39;message&#39;, msg);
+  });
+});</code></pre>
 <h3><strong>Start Socket.io server</strong></h3>
 <p>node server.js</p>
 <pre>yarn start</pre>
 <h3><strong>client.js</strong></h3>
 <p>Connect to server and first send the &#34;room&#34; message to select and join to a room, and after it all further chat messages is broadcasted in this room.</p>
-<p>// Strict mode changes previously accepted &#34;bad syntax&#34; into real errors.</p>
-<p>&#39;use strict&#39;;</p>
-<p>const room=&#34;testroom&#34;;</p>
-<p>var log1 = document.querySelector(&#34;#textArea1&#34;);</p>
-<p>var log2 = document.querySelector(&#34;#textArea2&#34;);</p>
-<p>var input1 = document.querySelector(&#34;#input1&#34;);</p>
-<p>var input2 = document.querySelector(&#34;#input2&#34;);</p>
-<p>var signaling=new URL(window.location.href);</p>
-<p>signaling.port = 8080;</p>
-<p>signaling.pathname = &#39;/&#39;;</p>
-<p>console.log(&#39;Signaling Server: &#39;+signaling);</p>
-<p>var socket1 = io(signaling.href);</p>
-<p>var socket2 = io(signaling.href);</p>
-<p>socket1.on(&#39;connect&#39;, () =&gt;{</p>
-<p>  console.log(&#34;Alice / socket1 ready&#34;);</p>
-<p>  socket1.emit(&#39;room&#39;,room);</p>
-<p>});</p>
-<p>socket2.on(&#39;connect&#39;, () =&gt;{</p>
-<p>  console.log(&#34;Bob / socket2 ready&#34;);</p>
-<p>  socket2.emit(&#39;room&#39;,room);</p>
-<p>});</p>
-<p>socket1.on(&#39;message&#39;, msg =&gt;{</p>
-<p>  log1.value += msg;</p>
-<p>});</p>
-<p>socket2.on(&#39;message&#39;, msg =&gt;{</p>
-<p>  log2.value += msg;</p>
-<p>});</p>
-<p>input1.onkeypress = function (e){</p>
-<p>  if (e.keyCode === 13 || e.which === 13) {</p>
-<p>    var msg = &#34;Alice: &#34;+input1.value+&#34;\n&#34;;</p>
-<p>    log1.value += msg;</p>
-<p>    socket1.emit(&#39;message&#39;,msg);</p>
-<p>    input1.value=&#34;&#34;;</p>
-<p>  }</p>
-<p>}</p>
-<p>input2.onkeypress = function (e){</p>
-<p>  if (e.keyCode === 13 || e.which === 13) {</p>
-<p>    var msg = &#34;Bob: &#34;+input2.value+&#34;\n&#34;;</p>
-<p>    log2.value += msg;</p>
-<p>    socket2.emit(&#39;message&#39;,msg);</p>
-<p>    input2.value=&#34;&#34;;</p>
-<p>  }</p>
-<p>}</p>
+<pre><code>// Strict mode changes previously accepted &#34;bad syntax&#34; into real errors.
+&#39;use strict&#39;;
+const room=&#34;testroom&#34;;
+
+var log1 = document.querySelector(&#34;#textArea1&#34;);
+var log2 = document.querySelector(&#34;#textArea2&#34;);
+
+var input1 = document.querySelector(&#34;#input1&#34;);
+var input2 = document.querySelector(&#34;#input2&#34;);
+
+var signaling=new URL(window.location.href);
+signaling.port = 8080;
+signaling.pathname = &#39;/&#39;;
+console.log(&#39;Signaling Server: &#39;+signaling);
+
+var socket1 = io(signaling.href);
+var socket2 = io(signaling.href);
+
+socket1.on(&#39;connect&#39;, () =&gt;{
+  console.log(&#34;Alice / socket1 ready&#34;);
+  socket1.emit(&#39;room&#39;,room);
+});
+
+socket2.on(&#39;connect&#39;, () =&gt;{
+  console.log(&#34;Bob / socket2 ready&#34;);
+  socket2.emit(&#39;room&#39;,room);
+});
+
+
+socket1.on(&#39;message&#39;, msg =&gt;{
+  log1.value += msg;
+});
+
+socket2.on(&#39;message&#39;, msg =&gt;{
+  log2.value += msg;
+});
+
+
+input1.onkeypress = function (e){
+  if (e.keyCode === 13 || e.which === 13) {
+    var msg = &#34;Alice: &#34;+input1.value+&#34;\n&#34;;
+    log1.value += msg;
+    socket1.emit(&#39;message&#39;,msg);
+    input1.value=&#34;&#34;;
+  }
+}
+
+input2.onkeypress = function (e){
+  if (e.keyCode === 13 || e.which === 13) {
+    var msg = &#34;Bob: &#34;+input2.value+&#34;\n&#34;;
+    log2.value += msg;
+    socket2.emit(&#39;message&#39;,msg);
+    input2.value=&#34;&#34;;
+  }
+}</code></pre>
 <h2><strong>Bonus Exercises</strong></h2>
 <ul>
 <li>Set chat input to readonly by default, and remove readonly attribute only after room message already sent.</li>
