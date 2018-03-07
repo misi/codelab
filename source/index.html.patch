@@ -1,0 +1,33 @@
+diff --git b/webrtc-c0d3l4b/index.html a/webrtc-c0d3l4b/index.html
+index 9702673..c28227a 100644
+--- b/webrtc-c0d3l4b/index.html
++++ a/webrtc-c0d3l4b/index.html
+@@ -7,9 +7,11 @@
+   <meta name="theme-color" content="#4F7DC9">
+   <meta charset="UTF-8">
+   <title>WebRTC c0d3l4b</title>
++  <link rel="icon" href="favicon/favicon-flask.ico" type="image/x-icon">
+   <script src="./bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+-  <link rel="import" href="./elements/codelab.html">
++  <link rel="import" href="./bower_components/codelab-components/google-codelab-elements.html">
+   <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
++  <script type="text/javascript" src="node_modules/default-passive-events/dist/index.js"></script>
+   <style is="custom-style">
+     body {
+       font-family: "Roboto",sans-serif;
+@@ -1842,6 +1821,15 @@ export R_LOG_DESTINATION=stderr</pre>
+       }
+     })();
+   </script>
++<script async src="https://www.googletagmanager.com/gtag/js?id=UA-114682180-1"></script>
++<script>
++  window.dataLayer = window.dataLayer || [];
++  function gtag(){dataLayer.push(arguments);}
++  gtag('js', new Date());
++
++  gtag('config', 'UA-114682180-1');
++</script>
++
+ 
+ </body>
+ </html>
