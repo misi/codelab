@@ -33,7 +33,7 @@
 <tr><td colspan="1" rowspan="1"><p><strong>WebRTC is</strong></p>
 <ul>
 <li>An open source project</li>
-<li>A new protocol framework</li>
+<li>A new set of protocols, protocol framework</li>
 <li>Working groups in standardization bodies (IETF, W3C)</li>
 <li>A new market </li>
 <li>Etc.</li>
@@ -41,7 +41,7 @@
 <p><strong>WebRTC&#39;s Mission is to </strong></p>
 <ul>
 <li>Enhance the web with  Real Time Communication (RTC) capabilities, and define a simple JS API for web developers. </li>
-<li>make the browser capable to act like VC terminal (Audio/Video/Data). </li>
+<li>make the browser capable to act like a VC terminal (Audio/Video/Data). </li>
 <li>Beyond basic VC, it gives a toolkit and playground to create any brand-new unusual advanced Media Application.</li>
 </ul>
 </td><td colspan="1" rowspan="1"><h2><img style="max-width: 181.50px" src="img/6f5abad9e3b52099.png"></h2>
@@ -59,16 +59,16 @@
 <li><strong>WebRTC Project Logo: </strong><a href="https://webrtc.org/press/" target="_blank">https://webrtc.org/press/</a></li>
 </ul>
 <h3><br><strong>This c0d3l4b</strong></h3>
-<p>This codelab will walk you through creating your first own WebRTC App, including all the theory needed to understand the JS API and under the hood protocols, and design considerations, as well as all implementation details, to ensure that your app work properly in every network conditions and environment.</p>
+<p>This codelab will walk you through creating your first WebRTC App, providing the theory needed to understand the JS API and protocols runinng under the hood , design considerations, as well as all implementation details, to ensure that your app works properly in every network conditions and environment.</p>
 <h2 class="checklist"><strong>What you&#39;ll learn</strong></h2>
 <ul class="checklist">
 <li>How to design a WebRTC App</li>
 <li>How to use the basic WebRTC API-s</li>
-<li>How to grab a MediaDevice. e.g. How to grab your WebCam&#39;s VideoStream.</li>
+<li>How to access a MediaDevice. e.g. How to access your WebCam&#39;s VideoStream.</li>
 <li>How to set mediaStream Input and Output devices</li>
-<li>How to setup a PeerConnection(PC)</li>
+<li>How to setup a PeerConnection (PC)</li>
 <li>How to setup PC for proper NAT Traversal</li>
-<li>How to use a DataChannel(DC)</li>
+<li>How to use a DataChannel (DC)</li>
 <li>How to record a MediaStream locally</li>
 </ul>
 <h2><strong>What you&#39;ll need</strong></h2>
@@ -95,7 +95,7 @@
       <google-codelab-step label="Getting set up" duration="10">
         <h2><strong>Setup a web server with TLS to support https</strong></h2>
 <ul>
-<li>even on Your host: Install on your host your favorite web server with a certificate from <a href="https://letsencrypt.org/" target="_blank">let&#39;s encrypt</a>.</li>
+<li>even on your host: Install on your host your favorite web server with a certificate from <a href="https://letsencrypt.org/" target="_blank">let&#39;s encrypt</a>.</li>
 <li>Or as an easy alternative: If you use chrome you could also use web-server-for-chrome extension: <a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en" target="_blank">Install Web Server for Chrome</a></li>
 </ul>
 <aside class="special"><p><strong>Tip</strong>: Those who are participating in <a href="http://nws.comp-rend.hu/" target="_blank">NWS18</a> we have already created pre install VM with certificate and web server. <br>Please test it and login on your VM with your ssh client.</p>
@@ -105,10 +105,10 @@
 <p><a href="https://github.com/misi/codelab/archive/master.zip" target="_blank"><paper-button class="colored" raised><iron-icon icon="file-download"></iron-icon>Download source code</paper-button></a></p>
 <p><strong>Or</strong></p>
 <pre>git clone https://github.com/misi/codelab.git</pre>
-<p>Unpack the zip file in your <code>web server root directory</code>. This will unpack a root folder (<code>codelab</code>), which contains one <code>labN</code> folder for each step of this codelab, along with all of the resources you will need. It also contains this codelab web part.</p>
-<p>The <code>labN</code> folders contain the desired end state of each step of this codelab. They are there for reference. We&#39;ll be doing all our coding work in a directory called <code>work</code>.</p>
+<p>Unpack the zip file in your <code>web server root directory</code>. This will unpack a root folder (<code>codelab</code>), which contains one <code>lab&lt;N&gt;</code> folder for each step of this codelab, along with all of the resources you will need. It also contains this codelab web part.</p>
+<p>The <code>lab&lt;N&gt;</code> folders contain the desired end state of each step of this codelab. They are there for reference. We&#39;ll be doing all our coding work in a directory called <code>work</code>.</p>
 <h2><strong>Ready? =&gt; Let&#39;s start the theory lesson!</strong></h2>
-<p>WebRTC is complex and could be hard to understand for a web developer for the first sight without proper understanding of WebRTC Architecture (technologies working under the hood), therefore we try to give you an overview about the under the hood Concepts and Architectures.</p>
+<p>WebRTC is complex and could be hard to understand for a web developer at the first sight without proper understanding of the WebRTC Architecture (technologies working under the hood), therefore we try to give you an overview about such Concepts and Architectures.</p>
 
 
       </google-codelab-step>
@@ -163,6 +163,17 @@
 <li>More control on ICE Agent</li>
 <li>Scalable Video Codec (SVC)</li>
 </ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="MediaStream MediaTrack" duration="5">
+        <p><img style="max-width: 624.00px" src="img/bb08b77db08bffa1.png">From <a href="https://w3c.github.io/mediacapture-main/#stream-api" target="_blank">mediacapture spec</a>:  </p>
+<ul>
+<li>The MediaStreamTrack object         represents media of a single type that originates from one media source in the User Agent, e.g. video produced by a web camera. A MediaStream is used to group several MediaStreamTrack objects into one unit that can be recorded or rendered in a media element.&#34; </li>
+<li>All tracks in a MediaStream are intended to be synchronized when rendered. Different MediaStream objects do not need to be synchronized.</li>
+<li>A single MediaStreamTrack can represent multi-channel content, such as stereo or 5.1 audio or stereoscopic video, where the channels have a well defined relationship to each other. Information about channels might be exposed through other APIs, such as [WEBAUDIO].</li>
+</ul>
 <h2><strong>Codecs</strong></h2>
 <h3><strong>Mandatory to Implement Audio codec</strong></h3>
 <ul>
@@ -170,7 +181,7 @@
 <li>Opus (48 kHz: fullband codec, both for music and speech)</li>
 </ul>
 <h3><strong>Mandatory to Implement Video codecs</strong></h3>
-<p>It took a long to build consensus in the IETF RTCWEB workgroup (&#34;Codec war..&#34;)</p>
+<p>It took a long time to reach consensus in the IETF RTCWEB workgroup (&#34;Codec war..&#34;)</p>
 <ul>
 <li>VP8 vs H.264</li>
 <li>(VP9 vs H.265)</li>
@@ -231,7 +242,7 @@
 <p><img style="max-width: 624.00px" src="img/bccbe1f1d373bd49.png"></p>
 <p>Source: <a href="http://art.fritsahlefeldt.com/photo/2414/Mind-the-gap-with-text-Color-illustration.html" target="_blank">http://art.fritsahlefeldt.com/photo/2414/Mind-the-gap-with-text-Color-illustration.html</a></p>
 <h2><strong>Adapter.js</strong></h2>
-<p><strong>Standardization is a moving target! <br></strong>To build world consensus takes time. :-)  Webrtc 1.0 standardization has started in 2011, and it still does not reached the Draft Recommendation status. Hopefully it will reach in Q4 2018 (according the current roadmap). Standard is moving target, and implementation fall behind the standardization and Web Application based on it may also fall behind the implementation. All in all some glue/shim needed here.</p>
+<p><strong>Standardization is a moving target! <br></strong>To build world consensus takes time. :-)  Webrtc 1.0 standardization has started in 2011, and it still has not reached the Draft Recommendation status. Hopefully, it will reach in Q4 2018 (according the current roadmap). Standard is moving target, and implementation fall behind the standardization and Web Application based on it may also fall behind the implementation. All in all, some glue/shim layer is needed.</p>
 <h3><strong>Mind the gap between</strong></h3>
 <ul>
 <li>Standard and Browser Implementations</li>
@@ -329,7 +340,7 @@
         <p>Mainly because usage of Network Address Translation(NAT) and Packet Filters made difficult (or impossible) the direct Peer to Peer communication. As we will see in the next step, Interactive Connection Establishment protocol (ICE) has been designed to solve these problems.</p>
 <h2><strong>Firewall / Packet Filter</strong></h2>
 <p>For Media communication the Real-time Transport Protocol(RTP) use random port numbers. We need to find a ip:port pair that is not filtered between the two peers. ICE have to run 2 way checks on the candidate pairs, on the &#34;5 Tuple&#34; transport connections, to make sure that the communication channel has established and working properly. The transport connection needs to work properly before any Real-time communication could be started on top of it.</p>
-<h2>Network Address Translation(NAT)</h2>
+<h2><strong>Network Address Translation(NAT)</strong></h2>
 <p>In this section we focus on NAT. Let&#39;s look it little bit closer.</p>
 <p>The NAT behavior standardization started much later than the first NAT implementation existed. NAT traversal is complex. It is confusing mainly because of the so big variety of different NAT behaviors and types. ICE have to deal with any topology, and so any types and levels of NATs!</p>
 <h2><strong>NAT Behaviors / Types</strong></h2>
@@ -919,6 +930,16 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
     video: {
         mediaSource: &#34;screen&#34;
     },
+};</code></pre>
+<pre><code>mediaConstraints = {
+  video: {
+    mediaSource: &#34;window&#34;
+  }
+};</code></pre>
+<pre><code>mediaConstraints = {
+  video: {
+    mediaSource: &#34;application&#34;
+  }
 };</code></pre>
 
 
