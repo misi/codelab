@@ -26,8 +26,12 @@ Images:
 
 See: https://misi.github.io/webrtc-c0d3l4b/
 
- * See source doc source dir and 
- * use tool https://github.com/googlecodelabs/tools to generate codelab
+If you want to contribute please let me know with opening an issue, and I will share the source (google) doc.
+To update the codelab use the `generate_codelab.sh`
+
+If you fork it:
+ * See source doc source dir and upload it to a google doc
+ * use tool https://github.com/googlecodelabs/tools to generate codelab from the doc
  * `claat export ...`
  * Add the package.json
  * `yarn`
