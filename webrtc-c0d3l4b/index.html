@@ -40,9 +40,9 @@
 </ul>
 <p><strong>WebRTC&#39;s Mission is to </strong></p>
 <ul>
-<li>Enhance the web with  Real Time Communication (RTC) capabilities, and define a simple JS API for web developers. </li>
-<li>make the browser capable to act like a VC terminal (Audio/Video/Data). </li>
-<li>Beyond basic VC, it gives a toolkit and playground to create any brand-new unusual advanced Media Application.</li>
+<li>Enhance the web with  Real Time Communication (RTC) capabilities, and define a simple JS API for web developers</li>
+<li>Make the browser capable to act like a Video Conference (VC) terminal (Audio/Video/Data)</li>
+<li>Beyond basic VC, it gives a toolkit and playground to create any brand-new unusual advanced Media Application</li>
 </ul>
 </td><td colspan="1" rowspan="1"><h2><img style="max-width: 181.50px" src="img/6f5abad9e3b52099.png"></h2>
 </td></tr>
@@ -50,8 +50,8 @@
 <h3><strong>WebRTC Official Definitions:</strong></h3>
 <ul>
 <li><strong>WebRTC</strong>: &#34;A framework, protocols and application programming interface that provide real time interactive voice, video and data in web browsers and other applications&#34;</li>
-<li><strong>WebRTC is a free, open</strong> project that provides browsers and mobile applications with Real-Time Communications (RTC) capabilities via simple APIs. The WebRTC components have been optimized to best serve this purpose.</li>
-<li><strong>Mission</strong>: To enable rich, high-quality RTC applications to be developed for the browser, mobile platforms, and IoT devices, and allow them all to communicate via a common set of protocols.</li>
+<li><strong>WebRTC is a free, open</strong> project that provides browsers and mobile applications with Real-Time Communications (RTC) capabilities via simple APIs. The WebRTC components have been optimized to best serve this purpose</li>
+<li><strong>Mission</strong>: To enable rich, high-quality RTC applications to be developed for the browser, mobile platforms, and IoT devices, and allow them all to communicate via a common set of protocols</li>
 </ul>
 <h3><strong>The WebRTC Project</strong></h3>
 <ul>
@@ -59,7 +59,7 @@
 <li><strong>WebRTC Project Logo: </strong><a href="https://webrtc.org/press/" target="_blank">https://webrtc.org/press/</a></li>
 </ul>
 <h3><br><strong>This c0d3l4b</strong></h3>
-<p>This codelab will walk you through creating your first WebRTC App, providing the theory needed to understand the JS API and protocols runinng under the hood , design considerations, as well as all implementation details, to ensure that your app works properly in every network conditions and environment.</p>
+<p>This codelab will walk you through creating your first WebRTC App, providing the theory needed to understand the JS API and protocols running under the hood , design considerations, as well as all implementation details, to ensure that your app works properly in every network conditions and environment.</p>
 <h2 class="checklist"><strong>What you&#39;ll learn</strong></h2>
 <ul class="checklist">
 <li>How to design a WebRTC App</li>
@@ -117,14 +117,14 @@
         <h2><strong>Goals</strong></h2>
 <ul>
 <li><strong>Easy to use, Out of the box experience for the end user (</strong>Without Plugins, Without Install, Always up2date client)</li>
-<li><strong>Multi platform </strong>(Even exotic platforms (Linux, BSD)<strong>)</strong></li>
+<li><strong>Multi platform </strong>(Even exotic platforms (Linux, BSD))</li>
 <li><strong>Push the envelope</strong>: Improved Standards like Advanced congestion avoidance, Adaptive Audio Video encoding and Forward Error Correction (FEC) to reach Reliability, Fair Share Low Delay/Latency, Low  Jitter.  Advanced Noise suppression and echo cancellation etc.</li>
 <li><strong>Firewall and NAT Traversal</strong> ICE(STUN/TURN)</li>
 <li><strong>Focus on Security and Privacy and Identity validation by design</strong>. Encrypted Secure End to End communication, User consent before access any MediaDevice(WebCam) to avoid any fingerprinting (as possible)</li>
 <li><strong>Open Source Native Implementation</strong> (for browser vendors and beyond browsers)</li>
 <li><strong>Open Standard</strong> (W3C, IETF)</li>
 <li><strong>Interwork with any Signaling</strong></li>
-<li><strong>Backward compatibility</strong> in WebRTC 1.0  (e.g. Offer/Answer, SDP, G.711 audio codec)</li>
+<li><strong>Backward compatibility</strong> in WebRTC 1.0  (e.g. Offer/Answer, SDP, G.711 audio codec, DTMF)</li>
 </ul>
 <h2><strong>Base components:</strong></h2>
 <ul>
@@ -168,11 +168,12 @@
       </google-codelab-step>
     
       <google-codelab-step label="MediaStream MediaTrack" duration="5">
-        <p><img style="max-width: 624.00px" src="img/bb08b77db08bffa1.png">From <a href="https://w3c.github.io/mediacapture-main/#stream-api" target="_blank">mediacapture spec</a>:  </p>
+        <p><img style="max-width: 624.00px" src="img/bb08b77db08bffa1.png"></p>
+<p>From <a href="https://w3c.github.io/mediacapture-main/#stream-api" target="_blank">mediacapture spec</a>:  </p>
 <ul>
-<li>The MediaStreamTrack object         represents media of a single type that originates from one media source in the User Agent, e.g. video produced by a web camera. A MediaStream is used to group several MediaStreamTrack objects into one unit that can be recorded or rendered in a media element.&#34; </li>
+<li>The MediaStreamTrack object represents media of a single type that originates from one media source in the User Agent, e.g. video produced by a web camera. A MediaStream is used to group several MediaStreamTrack objects into one unit that can be recorded or rendered in a media element.&#34;</li>
 <li>All tracks in a MediaStream are intended to be synchronized when rendered. Different MediaStream objects do not need to be synchronized.</li>
-<li>A single MediaStreamTrack can represent multi-channel content, such as stereo or 5.1 audio or stereoscopic video, where the channels have a well defined relationship to each other. Information about channels might be exposed through other APIs, such as [WEBAUDIO].</li>
+<li>A single MediaStreamTrack can represent multi-channel content, such as stereo or 5.1 audio or stereoscopic video, where the channels have a well defined relationship to each other. Information about channels might be exposed through other APIs, such as [<a href="https://www.w3.org/TR/webaudio/" target="_blank">WEBAUDIO</a>].</li>
 </ul>
 <h2><strong>Codecs</strong></h2>
 <h3><strong>Mandatory to Implement Audio codec</strong></h3>
@@ -202,7 +203,7 @@
 <li>2009 - Google Chrome Team Idea</li>
 <li>2010 Summer - IETF 98 Informal lunch (Google, Microsoft, Apple, Mozilla, Skype, Ericsson,etc.)</li>
 <li>2010 October - RTC Web Workshop <a href="http://rtc-web.alvestrand.com/" target="_blank">http://rtc-web.alvestrand.com/</a></li>
-<li>2011 January - Google Global IP Solution (GIPS) acquired.</li>
+<li>2011 January - Google Global IP Solution (GIPS) acquired</li>
 <li>2011 May - W3C WebRTC WG started officially</li>
 <li>2011 June - Googe Announce WebRTC project(based on GIPS) and chrome integration</li>
 <li>2011 Nov - Chrome 23 WebRTC support</li>
@@ -214,7 +215,7 @@
 <li>2013 July - Chrome for Android support</li>
 <li>2013 September - Firefox for Android support</li>
 <li>2013 October - Open H.264 Cisco (Mozilla)</li>
-<li>2013 October - Opera 18 Beta WebRTC debut.</li>
+<li>2013 October - Opera 18 Beta WebRTC debut</li>
 </ul>
 <h2>Onboarding on webRTC train</h2>
 <ul>
@@ -240,7 +241,7 @@
       <google-codelab-step label="Mind the Gap!" duration="0">
         <p>Duration: 5:00</p>
 <p><img style="max-width: 624.00px" src="img/bccbe1f1d373bd49.png"></p>
-<p>Source: <a href="http://art.fritsahlefeldt.com/photo/2414/Mind-the-gap-with-text-Color-illustration.html" target="_blank">http://art.fritsahlefeldt.com/photo/2414/Mind-the-gap-with-text-Color-illustration.html</a></p>
+<p><strong>Image Source</strong>: <a href="http://art.fritsahlefeldt.com/photo/2414/Mind-the-gap-with-text-Color-illustration.html" target="_blank">http://art.fritsahlefeldt.com/photo/2414/Mind-the-gap-with-text-Color-illustration.html</a></p>
 <h2><strong>Adapter.js</strong></h2>
 <p><strong>Standardization is a moving target! <br></strong>To build world consensus takes time. :-)  Webrtc 1.0 standardization has started in 2011, and it still has not reached the Draft Recommendation status. Hopefully, it will reach in Q4 2018 (according the current roadmap). Standard is moving target, and implementation fall behind the standardization and Web Application based on it may also fall behind the implementation. All in all, some glue/shim layer is needed.</p>
 <h3><strong>Mind the gap between</strong></h3>
@@ -249,7 +250,7 @@
 <li>Between bowser and browser implementations</li>
 <li>Application and Standard</li>
 </ul>
-<p>The adapter.js is a shim to insulate apps from spec changes and prefix differences.</p>
+<p>The adapter.js is a shim to insulate apps from spec changes and prefix differences.<br>(Prefixes: moz, webkit)</p>
 <ul>
 <li><a href="https://github.com/webrtc/adapter" target="_blank">https://github.com/webrtc/adapter</a></li>
 <li><a href="https://webrtc.org/web-apis/interop" target="_blank">https://webrtc.org/web-apis/interop/</a></li>
@@ -264,7 +265,7 @@
 <li>Async API =&gt; Move from callbacks, forward to Promises</li>
 </ul>
 <aside class="warning"><p><strong>Warning</strong>! </p>
-<p>Only read further if you already familiar with WebRTC. Beginners could safely skip this part of the codelab.</p>
+<p>Only read further if you already familiar with WebRTC. Beginners could safely skip this part of the codelab, and jump to the next step.</p>
 </aside>
 <h4>Media Capture Changes: </h4>
 <p><strong>MediaDevice selection, detection on changes (discovery)</strong></p>
@@ -280,11 +281,13 @@
 <h3><strong>Constraint changed</strong></h3>
 <p><strong>Legacy deprecated Constraint</strong></p>
 <pre><code>{
-  mandatory: {width: {min: 640, max:1920}}, 
-  optional [{width: 1280}]
+  mandatory: {
+    width: { min: 640, max:1920 }
+  }, 
+  optional: [{ width: 1280 }]
 }</code></pre>
 <p><strong>New modern Constraint</strong></p>
-<pre><code>{width: {min:1024, ideal: 1280, max: 1920}}</code></pre>
+<pre><code>{width: { min:1024, ideal: 1280, max: 1920 }}</code></pre>
 <ul>
 <li>Chrome constraints are deprecated</li>
 <li>&#34;optional&#34; renamed to &#34;advanced&#34;</li>
@@ -318,20 +321,25 @@
     
       <google-codelab-step label="WebRTC 1.0 Architecture" duration="5">
         <h3><strong>Protocol Stack</strong></h3>
-<p>As you can see encryption is mandatory is applied everywhere (SRTP/DTLS).</p>
+<p>WebRTC supports both IPv4 and IPv6 protocol. ICE helps in the smooth transition. </p>
+<p>For the Real Time Communication the UDP transport is more ideal than TCP, but it could fallback to TCP. </p>
+<p>On top of this transport layer, the STUN helps in NAT/Firewall traversal. The other protocols, like  SRTP and DTLS provides the end-to-end encrypted communication channel. SRTP for media, and DTLS for SRTP keying and Data. SCTP on top of it provides multiple flows, and configurable reliability and delivery parameters.<br>Please notice that WebRTC intention is to happen all communication in encrypted form, and so encryption is mandatory on media and data channel(SRTP/DTLS).</p>
 <p><img style="max-width: 520.00px" src="img/ea08a380495f9f3e.png"></p>
+<p><strong>Image Source</strong>: <a href="https://commons.wikimedia.org/wiki/File:Media-exchange-for-WebRTC.svg" target="_blank">https://commons.wikimedia.org/wiki/File:Media-exchange-for-WebRTC.svg</a></p>
 <h2><strong>WebRTC native Architecture</strong></h2>
 <p><img style="max-width: 624.00px" src="img/fcdec68b59f9447d.png"></p>
-<p><a href="https://webrtc.org/architecture/" target="_blank">https://webrtc.org/architecture/</a></p>
+<p><strong>Image Source</strong>: <a href="https://webrtc.org/architecture/" target="_blank">https://webrtc.org/architecture/</a></p>
 <h2><strong>WebRTC Trapezoid</strong></h2>
 <h3><strong>Direct Peer to Peer Connection</strong></h3>
 <p><img style="max-width: 624.00px" src="img/149faeda7a820cf4.png"></p>
+<p>(For simplification on the picture above the WebServer contains the signaling server too!)</p>
 <aside class="special"><p><strong>Note</strong>:</p>
 <p>Direct Browser to Browser connection is prefered by default to keep the end to end delay low. ICE preferes by default TURN in last resort.</p>
 <p>Of course there are other reasonable preferences, like more reliable connection first or short connection establishment time, that may override ICE default behavior and prefer TURN first.</p>
 </aside>
 <h3><strong>Address and Port-Dependent Mapping &amp; Address and Port-Dependent Filtering (Symmetric) NAT</strong></h3>
 <p><img style="max-width: 624.00px" src="img/a090a6dbe2aec127.png"></p>
+<p>(For simplification on the picture above the WebServer contains the signaling server too!)</p>
 
 
       </google-codelab-step>
@@ -343,6 +351,9 @@
 <h2><strong>Network Address Translation(NAT)</strong></h2>
 <p>In this section we focus on NAT. Let&#39;s look it little bit closer.</p>
 <p>The NAT behavior standardization started much later than the first NAT implementation existed. NAT traversal is complex. It is confusing mainly because of the so big variety of different NAT behaviors and types. ICE have to deal with any topology, and so any types and levels of NATs!</p>
+<aside class="warning"><p><strong>Warning</strong>! </p>
+<p>Only read further if you already familiar with NAT and Firewall traversal.  Beginners could safely skip this part of the codelab, and jump to the next step.</p>
+</aside>
 <h2><strong>NAT Behaviors / Types</strong></h2>
 <h3><strong>RFC 3489</strong></h3>
 <p>The <strong>RFC 3489,</strong> also known as &#34;<strong>classic STUN</strong>&#34; defined four NAT types</p>
@@ -368,9 +379,9 @@
 </ul>
 <p>And it defines much more NAT behaviors too.</p>
 <p><img style="max-width: 624.00px" src="img/8308d0c42ae77d7c.png"></p>
-<p>Image Source: <a href="https://www.netmanias.com/en/?m=view&id=techdocs&no=6065" target="_blank">https://www.netmanias.com/en/?m=view&amp;id=techdocs&amp;no=6065</a></p>
+<p><strong>Image Source</strong>: <a href="https://www.netmanias.com/en/?m=view&id=techdocs&no=6065" target="_blank">https://www.netmanias.com/en/?m=view&amp;id=techdocs&amp;no=6065</a></p>
 <h2><img style="max-width: 624.00px" src="img/62ad5490047f0f38.png"></h2>
-<p>Image Source: <a href="https://www.netmanias.com/ko/?m=view&id=blog&no=6263" target="_blank">https://www.netmanias.com/ko/?m=view&amp;id=blog&amp;no=6263</a></p>
+<p><strong>Image Source</strong>: <a href="https://www.netmanias.com/ko/?m=view&id=blog&no=6263" target="_blank">https://www.netmanias.com/ko/?m=view&amp;id=blog&amp;no=6263</a></p>
 <h2><strong>NAT Behavior Discovery (RFC5780)</strong></h2>
 <p>RFC5780 is a STUN protocol extension.</p>
 <h3><strong>Mapping Discovery</strong></h3>
@@ -380,7 +391,7 @@
 <li>TEST III (Alternate IP, Alternate Port)</li>
 </ul>
 <p><img style="max-width: 469.00px" src="img/c383b757098fe421.png"></p>
-<p>Image Source: <a href="http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780" target="_blank">http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780</a></p>
+<p><strong>Image Source</strong>: <a href="http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780" target="_blank">http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780</a></p>
 <h3><strong>Filtering</strong></h3>
 <ul>
 <li>TEST I (Primary IP, Primary Port)</li>
@@ -388,7 +399,7 @@
 <li>TEST III (Change Request Port)</li>
 </ul>
 <p><img style="max-width: 465.00px" src="img/3cfca2b53970b434.png"></p>
-<p>Image Source: <a href="http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780" target="_blank">http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780</a></p>
+<p><strong>Image Source</strong>: <a href="http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780" target="_blank">http://www.netmanias.com/en/post/techdocs/6067/nat-stun/nat-behavior-discovery-using-stun-rfc-5780</a></p>
 <aside class="special"><p><strong>Thanks to www.netmanias.com for the nice illustrations!</strong></p>
 <p>Read for a more detailed step by step explanation with similar nice graphs:</p>
 <ul>
@@ -420,7 +431,7 @@ $</pre>
 <li>Address Dependent Mapping</li>
 <li>Address and Port Dependent Mapping</li>
 </ul>
-<p>See WebRTC article about howto discover a symmetric NAT. </p>
+<p><br>See WebRTC h4cks article about howto discover a symmetric NAT: </p>
 <ul>
 <li><a href="https://webrtchacks.com/symmetric-nat/" target="_blank">https://webrtchacks.com/symmetric-nat/</a></li>
 </ul>
@@ -561,7 +572,7 @@ $</pre>
     
       <google-codelab-step label="NAT/Firewall traversal &amp; ICE (STUN/TURN)" duration="15">
         <h2><img style="max-width: 624.00px" src="img/a4ab88365707a723.png"></h2>
-<h2><strong>TL;DR</strong></h2>
+<h2>TL;DR        </h2>
 <ul>
 <li>STUN is a binary protocol</li>
 <li>STUN Discover Client global IP:port</li>
@@ -609,6 +620,9 @@ $</pre>
 <li>Multiple type of interface (WIFI, Mobile, LAN, VPN)</li>
 <li>Multiple protocols (IPv4, IPv6)</li>
 </ul>
+<aside class="warning"><p><strong>Warning</strong>! </p>
+<p>Only read further if you already familiar with ICE. Beginners could safely skip this part of the codelab so feel free to jump the next step.</p>
+</aside>
 <h3>ICE prioritization</h3>
 <pre><code>priority = (2^24)*(type preference)
           +(2^8)*(local preference)
@@ -644,13 +658,40 @@ $</pre>
 <p>Connection establishment time could be long if we need to wait to finish the candidate discovery. </p>
 <p>Even worse, in case of any error is occuring during the discovery. Waiting for the timeouts could take long, and could cause an unacceptable very long connection establishment. </p>
 <h3><strong>Establish connection faster</strong></h3>
-<p>The primary idea is to start ICE check as fast as we discover a candidate. The only drawback is that we need to send more signaling messages. WebRTC Application nowadays use mostly Trickle ICE to establish connection.<img style="max-width: 624.00px" src="img/bc12d7ccb7c091cf.png"></p>
-<h2><strong>Multiplex/Bundle</strong></h2>
+<p>The primary idea behind it is to start ICE check as fast as we can, as soon as we discover a candidate. The only drawback is that we need to send more signaling messages. WebRTC Application nowadays use mostly Trickle ICE to establish connection.<img style="max-width: 624.00px" src="img/bc12d7ccb7c091cf.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Multiplex/Bundle" duration="5">
+        <p><img style="max-width: 624.00px" src="img/28b69f81215d06fe.png"></p>
+<p>To reduce the number of connections, and so the call establishment time, the WebRTC could use two optimization:</p>
 <ul>
-<li>RTP/RTCP multiplex</li>
-<li>Bundle RTP (multiplex rtp streams e.g. audio+video)</li>
+<li>RTP/RTCP multiplex  <br><code>a=group:BUNDLE foo bar</code><br><a href="https://tools.ietf.org/html/rfc5761" target="_blank">RFC5761</a>/ <a href="https://tools.ietf.org/html/rfc8035" target="_blank">RFC8035</a><code><br></code></li>
+<li>Bundle RTP (multiplex rtp streams e.g. audio+video) <br><code>a=group:BUNDLE foo bar</code><br><a href="https://tools.ietf.org/html/draft-ietf-mmusic-sdp-bundle-negotiation-47" target="_blank">https://tools.ietf.org/html/draft-ietf-mmusic-sdp-bundle-negotiation-47</a></li>
 </ul>
-<p><img style="max-width: 624.00px" src="img/28b69f81215d06fe.png"></p>
+<h2><strong>SDP example</strong></h2>
+<pre><code>v=0
+o=alice 2890844526 2890844526 IN IP4 atlanta.example.com
+s=
+c=IN IP4 atlanta.example.com
+t=0 0
+a=group:BUNDLE foo bar
+m=audio 10000 RTP/AVP 0 8 97 
+b=AS:200
+a=mid:foo
+a=rtcp-mux
+a=rtpmap:0 PCMU/8000
+a=rtpmap:8 PCMA/8000
+a=rtpmap:97 iLBC/8000
+a=extmap 1 urn:ietf:params:rtp-hdrext:sdes:mid
+m=video 10002 RTP/AVP 31 32
+b=AS:1000
+a=mid:bar
+a=rtcp-mux
+a=rtpmap:31 H261/90000
+a=rtpmap:32 MPV/90000
+a=extmap 1 urn:ietf:params:rtp-hdrext:sdes:mid</code></pre>
 
 
       </google-codelab-step>
@@ -848,7 +889,7 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 </aside>
 <h2>Offer Answer <code>without</code><strong> Identity Check</strong></h2>
 <p><img style="max-width: 624.00px" src="img/31562214b7e28759.png"></p>
-<p>Image Source: <a href="https://hikingartist.com/2012/01/03/cat-and-dog-online-2-0/" target="_blank">https://hikingartist.com/2012/01/03/cat-and-dog-online-2-0/</a></p>
+<p><strong>Image Source</strong>: <a href="https://hikingartist.com/2012/01/03/cat-and-dog-online-2-0/" target="_blank">https://hikingartist.com/2012/01/03/cat-and-dog-online-2-0/</a></p>
 <h2>Offer Answer <code>with</code><strong> Identity Check</strong></h2>
 <p>The trust base is the Browser.</p>
 <pre>             +----------------+    Unspecified    +----------------+
@@ -899,8 +940,59 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
     
       <google-codelab-step label="Multipoint (SFU/MCU, Media Server)" duration="5">
         <h2><img style="max-width: 497.00px" src="img/aeeab6fb604bba76.png"></h2>
-<p>Image Source: Emil Ivov (<a href="https://jitsi.org/" target="_blank">Jitsi</a> /<a href="https://www.atlassian.com" target="_blank">Atlassian</a>)</p>
-<h2><strong>Some examples from open source space:</strong></h2>
+<p><strong>Image Source</strong>: Emil Ivov (<a href="https://jitsi.org/" target="_blank">Jitsi</a> /<a href="https://www.atlassian.com" target="_blank">Atlassian</a>)</p>
+<h2><strong>Topologies</strong></h2>
+<p>Topologies could vary and follow the Star or Mesh  or a mixed (e.g. interconnected stars, etc.) topology patterns.</p>
+<h2><strong>Multipoint</strong></h2>
+<p>Communication between multiple (more than two) parties could be done in many different ways, each of them has different pros and contras and neither fits to all possible scenarios, so there is no ultimate best choice. You should choose that one, that fits the best to your Application usage, or maybe you should use a mix of them.</p>
+<h3><strong>P2P / Full Mesh</strong></h3>
+<p><strong>Strength</strong></p>
+<ul>
+<li>Security: Identities could be validated and so media source could validated in a cryptographic way. And of course media is encrypted between the peers</li>
+<li>The most direct communication (probably with the best latency)</li>
+<li>Simple P2P topology: No central media server needed</li>
+<li>Flexible Video layouts on client side</li>
+<li>Following the internet principle, to keep the most intelligence and load on edge of the network</li>
+</ul>
+<p><strong>Weakness</strong></p>
+<ul>
+<li>Does not scale for a large conference N * (N-1) connection</li>
+<li>Multiple stream (May drain your Mobile&#39;s battery fast.)</li>
+</ul>
+<h3><strong>Mixer / MCU</strong></h3>
+<p>Multipoint Control Unit (MCU)</p>
+<p><strong>Strength</strong></p>
+<ul>
+<li>Interoperability: Interworking, Transcoding between different codecs, DTMF inband/signaling etc.</li>
+<li>Best interoperability with legacy systems</li>
+<li>1 stream received (Draining slower your Mobile battery. Especially if mobile supports only 1 HW video en/de-coding.)</li>
+<li>Composed Video Stream Recording on Server Side</li>
+</ul>
+<p><strong>Weakness </strong></p>
+<ul>
+<li>CPU intensive: decrypt + decode + compose + encode + encrypt</li>
+<li>Transcoding/Size/Compose takes time and adds latency</li>
+<li>Central huge CPU/GPU capacity is needed (Scaling?)</li>
+<li>Video Image composed in central point , may limited layouts or interaction</li>
+<li>Media is decrypted on Server side. We have to trust in a central component. (Possible leak.)</li>
+<li>More complex than the P2P communication, because a Central component is needed</li>
+</ul>
+<h3><strong>SFU</strong></h3>
+<p>Selective Forwarding Unit (SFU)</p>
+<p>Used usually with Simulcast or Scalable Video Codec.</p>
+<p><strong>Strength</strong></p>
+<ul>
+<li>Could scale for large conference participants</li>
+<li>Could be used for low latency video streaming</li>
+<li>Server Side Recording possible but needs post processing</li>
+</ul>
+<p><strong>Weakness</strong></p>
+<ul>
+<li>Less CPU load (only decrypt + encrypt)</li>
+<li>Media is decrypted on Server side. We have to trust in a central component. (Possible leak.)</li>
+<li>More complex than the P2P communication, because a Central component is needed</li>
+</ul>
+<h2><strong>Some example open source projects:</strong></h2>
 <ul>
 <li><a href="https://mediasoup.org/" target="_blank">https://mediasoup.org</a></li>
 <li><a href="https://www.kurento.org/" target="_blank">https://www.kurento.org</a></li>
@@ -911,43 +1003,117 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="Screensharing" duration="5">
-        <h2><strong>Chrome Screen Share extension:</strong></h2>
-<h3><strong>inline install</strong></h3>
+      <google-codelab-step label="Screen-Sharing" duration="5">
+        <h2><strong>ScreenShare</strong></h2>
+<p>Screen Sharing is about to capture and grab your entire screen, or just one window, or application video stream. You could grab this MediaStream using special mediaConstraints, but using the same GuM function that we used for capturing webcam (or other video source), so  <code>navigator.mediaDevices.getUserMedia(mediaConstraints)</code>.</p>
+<p>You could find the videTrack in this Stream that represents the Video that the user want to share. And we could add this video track to the PeerConnection.  We could share it parallel to the other streams.</p>
+<h2><strong>Security</strong></h2>
+<p>Be aware that ScreenSharing  is violating the &#34;<a href="https://en.wikipedia.org/wiki/Same-origin_policy" target="_blank">Same-Origin</a>&#34; Web principle, and this way use it with care. According the mentioned risk, Chrome web browser made the design decision to allow only screensharing from a Chrome extension. Take it seriously, to share only if you fully trust the site. For more details read:</p>
+<ul>
+<li><a href="https://blog.mozilla.org/webrtc/share-browser-windows-entire-screen-sites-trust/" target="_blank">https://blog.mozilla.org/webrtc/share-browser-windows-entire-screen-sites-trust/</a></li>
+</ul>
+<h2><strong>Chrome Screen Share extension:</strong></h2>
+<p>Chrome extension gives the best user experience with inline install. Installation of the extension is offered by the browser easily, with only one click.</p>
+<p>Example extension: </p>
+<ul>
+<li><a href="https://github.com/otalk/getScreenMedia" target="_blank">https://github.com/otalk/getScreenMedia</a></li>
+<li><a href="https://github.com/misi/knockplop-chrome-plugin" target="_blank">https://github.com/misi/knockplop-chrome-plugin</a></li>
+</ul>
+<p><strong>Read more about inline install</strong></p>
 <ul>
 <li><a href="https://developer.chrome.com/webstore/inline_installation" target="_blank">https://developer.chrome.com/webstore/inline_installation</a></li>
 </ul>
-<h2><strong>Standard</strong></h2>
+<p><strong>Mozilla / Firefox</strong></p>
+<p>It supports screensharing without plugins or extension. <br>(Earlier it was needed for a web site that want to use screensharing  to be listed on a central whitelist, but it is no longer needed.)</p>
 <ul>
-<li><a href="https://www.w3.org/TR/screen-capture/" target="_blank">https://www.w3.org/TR/screen-capture/</a></li>
-</ul>
-<p><strong>Mozilla</strong></p>
-<ul>
-<li><a href="https://blog.mozilla.org/webrtc/share-browser-windows-entire-screen-sites-trust/" target="_blank">https://blog.mozilla.org/webrtc/share-browser-windows-entire-screen-sites-trust/</a></li>
 <li><a href="https://wiki.mozilla.org/Screensharing" target="_blank">https://wiki.mozilla.org/Screensharing</a></li>
 </ul>
+<p><strong>Implemented Spec</strong>:</p>
+<ul>
+<li><a href="http://fluffy.github.io/w3c-screen-share" target="_blank">http://fluffy.github.io/w3c-screen-share</a></li>
+</ul>
+<p>Example constraints:</p>
+<p><strong>Screen</strong></p>
 <pre><code>mediaConstraints = {
     video: {
         mediaSource: &#34;screen&#34;
     },
 };</code></pre>
+<p><strong>Window</strong></p>
 <pre><code>mediaConstraints = {
   video: {
     mediaSource: &#34;window&#34;
   }
 };</code></pre>
+<p><strong>Application</strong></p>
 <pre><code>mediaConstraints = {
   video: {
     mediaSource: &#34;application&#34;
   }
 };</code></pre>
+<h2><strong>Standard</strong></h2>
+<p>Standard without implementation</p>
+<ul>
+<li><a href="https://www.w3.org/TR/screen-capture/" target="_blank">https://www.w3.org/TR/screen-capture/</a></li>
+</ul>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Data(Channel) API" duration="5">
+        <p>The most of the normal Web Communication happens through the Client- Server model. You may ask if we have already for data communication WebSocket, AJAX etc. protocols, then why should we add again a new protocol? </p>
+<p>The main difference is that the WebRTC Data API is <em>Peer-to-Peer / Client-to-Client</em> and not Client - Server!</p>
+<p>The Data(Channel) API lets a web application send and receive generic application data in Peer-to-Peer(P2P) fashion. DataChannel represents a bi-directional communication channel between the two peers.</p>
+<h2><strong>API</strong></h2>
+<p><strong>Init options:</strong></p>
+<pre><code>const dcInitOptions = {
+        ordered: true,
+        maxRetransmits: 65535,
+        //maxPacketLifeTime: 65535,
+        priority: &#34;low&#34;,
+        binaryType: &#34;blob&#34;,
+};</code></pre>
+<p><strong>Create dataCahnnel (local)</strong></p>
+<pre><code>var dc = pc.createDataChannel(&#34;chat&#34;,dcInitOptions);</code></pre>
+<p><strong>OnDataChannel (remote)</strong></p>
+<pre><code>pc.ondatachannel = function(event) {
+  dc=event.channel;
+};</code></pre>
+<p><strong>Send</strong></p>
+<pre><code>dc.send($data);</code></pre>
+<p><strong>Receive</strong></p>
+<pre><code>dc.onmessage = function(event) {
+  //event.data
+};</code></pre>
+<h2><strong>Transport</strong></h2>
+<p>At the time of writing this document the WebRTC  Data API  implementations use SCTP over DTLS as the transport protocol. If we look forward, then we can see that <a href="https://w3c.github.io/webrtc-quic" target="_blank">QUIC</a> seems to be the next general transport protocol that will be implemented, and because it contains all benefits that SCTP has (and even more), it could be in longer term the successor of the data transport. /Just for the correct history: during the early days of WebRTC there was also an implementation option in Chrome, to transport Data over RTP  (RtpDataChannels)/.</p>
+<h2><strong>Establishment</strong></h2>
+<p>The establishment of the DataChannel could happen two ways. </p>
+<ol type="1" start="1">
+<li>Through out-of-band way <br>In this case asymmetric connection properties could be used. The datachannel objects should be created on both side and Id&#39;s are negotiated out-of-band.</li>
+<li>Through an in-band, auto negotiated way (<strong>default</strong>)<br>In this case if an established PeerConnnection creating a new datachannel, then with in-band auto-negotiation on remote peer side automatically a new DataChannel  object will be created with symmetric properties and with the same DataChannel ID. </li>
+</ol>
+<h2><strong>Operation types of the connection</strong></h2>
+<ul>
+<li>Different priority (<code>DataChannelPriority</code>)</li>
+<li>Ordering (Ordered/Unordered) <code>ordered</code></li>
+<li>Reliability modes /Reliable/Unreliable/ ( <code>MaxPacketLifeTime, MaxRetransmits</code> ) <br>Only one of these options could be used at the same time, and can not be used both simultaneously!</li>
+</ul>
+<h2><strong>Usage</strong></h2>
+<p>It could be used perfectly for real time text or binary Data exchange, e.g chat or file share, gaming, etc.<br>Furthermore some Applications (because of privacy concerns) could also use it for signaling. After the very first offer-answer exchange, and so the PeerConnection establishment, it could be used for handling any further signaling communication.</p>
+<aside class="special"><p><strong>Notice</strong>: An example of advanced massive P2P DataChannel usage is the WebTorrent protocol</p>
+<ul>
+<li><a href="https://webtorrent.io/" target="_blank">https://webtorrent.io/</a></li>
+<li><a href="https://instant.io/" target="_blank">https://instant.io/</a></li>
+</ul>
+</aside>
 
 
       </google-codelab-step>
     
       <google-codelab-step label="Summary of the Theory" duration="5">
         <p><img style="max-width: 624.00px" src="img/de4ee6652313dd7f.png"></p>
-<p>Image Source: <a href="http://art.fritsahlefeldt.com/photo/2045/Goal-is-closer-than-you-think-Color-illustration.html" target="_blank">http://art.fritsahlefeldt.com/photo/2045/Goal-is-closer-than-you-think-Color-illustration.html</a></p>
+<p><strong>Image Source</strong>: <a href="http://art.fritsahlefeldt.com/photo/2045/Goal-is-closer-than-you-think-Color-illustration.html" target="_blank">http://art.fritsahlefeldt.com/photo/2045/Goal-is-closer-than-you-think-Color-illustration.html</a></p>
 <h2><strong>WebRTC 1.0 is stable to build reliable service on it.</strong></h2>
 <ul>
 <li>Strong and wide community</li>
@@ -957,7 +1123,7 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 <li>Wide support in browsers: Chrome,Firefox, Opera, Edge, Safari, etc.</li>
 </ul>
 <h2><strong>WebRTC - Next Version (NV)</strong></h2>
-<p>Actual Focus is on finishing 1.0 and only after start WebRTC-NV.</p>
+<p>Actual Focus is on finishing 1.0 and only after it move forward to WebRTC-NV.</p>
 
 
       </google-codelab-step>
@@ -1062,13 +1228,12 @@ navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
 <li><strong>Advanced</strong>: is the list of ConstraintSets that the Browser <em>MUST</em> attempt to satisfy, in order, skipping only those that cannot be satisfied. The order of these ConstraintSets is significant. The browser <em>MUST</em> try to satisfy them in the order that is specified.</li>
 </ul>
 <p><strong>Example:</strong></p>
-<pre><code>var constraints =
-  {
-    width: {min: 640, ideal: 1280},
-    height: {min: 480, ideal: 720},
+<pre><code>var constraints = {
+    width: { min: 640, ideal: 1280 },
+    height: { min: 480, ideal: 720 },
     advanced: [
-      {width: 1920, height: 1280},
-      {aspectRatio: 1.3333333333}
+      { width: 1920, height: 1280 },
+      { aspectRatio: 1.3333333333 }
     ]
   };</code></pre>
 <p><strong>In this example above, the browser </strong></p>
@@ -1088,8 +1253,8 @@ navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
 <p><strong>Exact Ideal example:</strong></p>
 <pre><code>var constraints = {
   video: {
-    width: { exact: 640},
-    height: { ideal: 480}
+    width: { exact: 640 },
+    height: { ideal: 480 }
   }
 }</code></pre>
 <h3><strong>Further examples</strong></h3>
@@ -1176,14 +1341,14 @@ track.getSettings();</code></pre>
 <p>Audio Output is not part of the main media capture and stream API. It is defined in a separated specification: <a href="https://www.w3.org/TR/audio-output/" target="_blank">https://www.w3.org/TR/audio-output/</a></p>
 </aside>
 <p>Set output with function <code>setSinkID(mediaDeviceID)</code></p>
-<pre><code>function outputSelected(){
+<pre><code>function outputSelected() {
   var audioOutputId = audioOutputSelect.value;
   video.setSinkId(audioOutputId);
 };</code></pre>
 <h3><strong>Select Audio/Video Input</strong></h3>
 <p>We adjust the MediaConstraint, and set the <code>deviceId</code> as constraint to select the proper input device.</p>
-<pre><code>function inputSelected(){
-  if (window.mediaStream){
+<pre><code>function inputSelected() {
+  if (window.mediaStream) {
     let tracks = window.mediaStream.getTracks();
 
     tracks.forEach(function(track) {
@@ -1229,7 +1394,7 @@ track.getSettings();</code></pre>
              &#34;video/webm\;codecs=h264&#34;];
 
 for (var i in types) {
-  if (MediaRecorder.isTypeSupported(types[i])){
+  if (MediaRecorder.isTypeSupported(types[i])) {
     console.log(&#34;Yes, \&#34;&#34;+types[i] + &#34;\&#34; is probably supported..&#34;);
     var option = document.createElement(&#39;option&#39;);
     option.value = option.text = types[i];
@@ -1255,9 +1420,9 @@ var chunks = [];
 //localStream set by getUserMedia
 
 function record() {
-  formatSelect.disabled=true;
-  recordButton.disabled=true;
-  var mediaRecorderOptions={};
+  formatSelect.disabled = true;
+  recordButton.disabled = true;
+  var mediaRecorderOptions = {};
   mediaRecorderOptions.mimeType = formatSelect.value;
   try {
     mediaRecorder = new MediaRecorder(localStream, mediaRecorderOptions);
@@ -1267,10 +1432,10 @@ function record() {
   }
   mediaRecorder.ondataavailable = dataAvailable;
   mediaRecorder.start(25); // collect 25ms of data
-  stopButton.disabled=false;
+  stopButton.disabled = false;
 };
 
-function dataAvailable(e){
+function dataAvailable(e) {
   chunks.push(e.data);
 };
 
@@ -1344,7 +1509,7 @@ function stop() {
 <li>We <strong>add tracks</strong> from localStream to PeerConnection pc1<br><code>localStream.getTracks().forEach(track =&gt; {pc1.addTrack(track, localStream);});</code></li>
 <li>We receive media on PeerConnection pc2 when an <strong>ontrack</strong> (pc2.ontrack<strong>)</strong> event fired. Remote stream is the: <code>event.streams[0];</code></li>
 </ul>
-<pre><code>function call(){
+<pre><code>function call() {
   console.log(&#39;Call Start&#39;);
 
   callButton.disabled = true;
@@ -1452,10 +1617,10 @@ function stop() {
 <p><img style="max-width: 624.00px" src="img/4f1ff8d0dc38445c.png"></p>
 <h3><strong>Hangup</strong></h3>
 <p>Close PeerConnection and stop Tracks</p>
-<pre><code>function hangup(){
+<pre><code>function hangup() {
   pc1.close();
   pc2.close();
-  localStream.getTracks().forEach(track =&gt; { track.stop();});
+  localStream.getTracks().forEach(track =&gt; { track.stop(); });
   grabButton.disabled = false;
   hangupButton.disabled = true;
 }</code></pre>
@@ -1468,7 +1633,7 @@ function stop() {
 <li>Set in your Firefox browser a STUN/TURN Server<br><strong>about:config </strong></li>
 </ul>
 <pre><code>media.peerconnection.use_document_iceservers = false
-media.peerconnection.default_iceservers= [{urls: &#34;stun:ltc.turn.geant.org&#34;}]</code></pre>
+Media.peerconnection.default_iceservers = [{urls: &#34;stun:ltc.turn.geant.org&#34;}]</code></pre>
 <aside class="special"><p><strong>See more:</strong> about FireFox privacy options: <a href="https://wiki.mozilla.org/Media/WebRTC/Privacy" target="_blank">https://wiki.mozilla.org/Media/WebRTC/Privacy</a></p>
 </aside>
 
@@ -1523,7 +1688,7 @@ dc1.onmessage = function(e) {
   log1.value += e.data;
 };
 
-pc2.ondatachannel = function(e){
+pc2.ondatachannel = function(e) {
   dc2=e.channel;
   dc2.onmessage = function(e) {
     log2.value += e.data;
@@ -1531,7 +1696,7 @@ pc2.ondatachannel = function(e){
 
 };
 
-input1.onkeypress = function (e){
+input1.onkeypress = function (e) {
   if (e.keyCode === 13 || e.which === 13) {
     var msg = &#34;Alice: &#34;+input1.value+&#34;\n&#34;;
     log1.value += msg;
@@ -1540,7 +1705,7 @@ input1.onkeypress = function (e){
   }
 };
 
-input2.onkeypress = function (e){
+input2.onkeypress = function (e) {
   if (e.keyCode === 13 || e.which === 13) {
     var msg = &#34;Bob: &#34;+input2.value+&#34;\n&#34;;
     log2.value += msg;
@@ -1608,7 +1773,7 @@ io.on(&#39;connection&#39;, function(socket) {
 <p>Connect to server and first send the &#34;room&#34; message to select and join to a room, and after it all further chat messages is broadcasted in this room.</p>
 <pre><code>// Strict mode changes previously accepted &#34;bad syntax&#34; into real errors.
 &#39;use strict&#39;;
-const room=&#34;testroom&#34;;
+const room = &#34;testroom&#34;;
 
 var log1 = document.querySelector(&#34;#textArea1&#34;);
 var log2 = document.querySelector(&#34;#textArea2&#34;);
@@ -1616,7 +1781,7 @@ var log2 = document.querySelector(&#34;#textArea2&#34;);
 var input1 = document.querySelector(&#34;#input1&#34;);
 var input2 = document.querySelector(&#34;#input2&#34;);
 
-var signaling=new URL(window.location.href);
+var signaling = new URL(window.location.href);
 signaling.port = 8080;
 signaling.pathname = &#39;/&#39;;
 console.log(&#39;Signaling Server: &#39;+signaling);
@@ -1624,41 +1789,41 @@ console.log(&#39;Signaling Server: &#39;+signaling);
 var socket1 = io(signaling.href);
 var socket2 = io(signaling.href);
 
-socket1.on(&#39;connect&#39;, () =&gt;{
+socket1.on(&#39;connect&#39;, () =&gt; {
   console.log(&#34;Alice / socket1 ready&#34;);
   socket1.emit(&#39;room&#39;,room);
 });
 
-socket2.on(&#39;connect&#39;, () =&gt;{
+socket2.on(&#39;connect&#39;, () =&gt; {
   console.log(&#34;Bob / socket2 ready&#34;);
   socket2.emit(&#39;room&#39;,room);
 });
 
 
-socket1.on(&#39;message&#39;, msg =&gt;{
+socket1.on(&#39;message&#39;, msg =&gt; {
   log1.value += msg;
 });
 
-socket2.on(&#39;message&#39;, msg =&gt;{
+socket2.on(&#39;message&#39;, msg =&gt; {
   log2.value += msg;
 });
 
 
-input1.onkeypress = function (e){
+input1.onkeypress = function (e) {
   if (e.keyCode === 13 || e.which === 13) {
     var msg = &#34;Alice: &#34;+input1.value+&#34;\n&#34;;
     log1.value += msg;
     socket1.emit(&#39;message&#39;,msg);
-    input1.value=&#34;&#34;;
+    Input1.value = &#34;&#34;;
   }
 }
 
-input2.onkeypress = function (e){
+input2.onkeypress = function (e) {
   if (e.keyCode === 13 || e.which === 13) {
     var msg = &#34;Bob: &#34;+input2.value+&#34;\n&#34;;
     log2.value += msg;
     socket2.emit(&#39;message&#39;,msg);
-    input2.value=&#34;&#34;;
+    Input2.value = &#34;&#34;;
   }
 }</code></pre>
 <h2><strong>Bonus Exercises</strong></h2>
@@ -1737,6 +1902,8 @@ cp client-config.js.dist client-config.js</pre>
 <p>Let&#39;s start making mistakes on WebRTC field..</p>
 <aside class="special"><p>&#34;An expert is a person who has found out by his own painful experience all the mistakes that one can make in a very narrow field.&#34; <strong>Niels Bohr</strong></p>
 </aside>
+<p><img style="max-width: 624.00px" src="img/9c41e769923d48bd.png"></p>
+<p><strong>Image Source: </strong><a href="https://hikingartist.files.wordpress.com/2015/04/perspectives-deep-water-square.jpg" target="_blank">https://hikingartist.files.wordpress.com/2015/04/perspectives-deep-water-square.jpg</a></p>
 <h2><strong>WebRTC Demos and Samples</strong></h2>
 <ul>
 <li>Google: <a href="https://webrtc.github.io/samples/" target="_blank">https://webrtc.github.io/samples/</a></li>
@@ -1777,16 +1944,41 @@ cp client-config.js.dist client-config.js</pre>
 
       </google-codelab-step>
     
-      <google-codelab-step label="Bonus: Debugging Browsers" duration="0">
-        <h2><strong>Firefox:</strong></h2>
-<h3><strong>about:webrtc</strong></h3>
+      <google-codelab-step label="Acknowledgements" duration="0">
+        <h2><strong>Acknowledgements</strong></h2>
+<p>The author would like to thank </p>
+<ul>
+<li>Luca De Cicco</li>
+<li>Håvar Aambø Fosstveit</li>
+<li>Damien FETIS</li>
+<li>Bartlomiej Idzikowski</li>
+<li>Csaba Bozóky</li>
+<li>Kere</li>
+<li>Kukk János</li>
+<li>László Szeder</li>
+<li>Péter Szabó</li>
+<li>Sándor Petőh</li>
+<li>Szilárd Varga</li>
+</ul>
+<p>for doing several reviews on the various revisions of this codelab.</p>
+<h2><strong>Thanks &amp; Questions..</strong></h2>
+<p>If you find any bug or have any comment don&#39;t hesitate to open an issue here: <a href="https://github.com/misi/codelab/issues/new" target="_blank">https://github.com/misi/codelab/issues/new</a></p>
+<p><img style="max-width: 624.00px" src="img/6904ebda49da73f4.png"></p>
+<p><strong>Image Source</strong>: <a href="http://art.fritsahlefeldt.com/photo/1732/Scared-of-speaking-Color-illustration.html" target="_blank">http://art.fritsahlefeldt.com/photo/1732/Scared-of-speaking-Color-illustration.html</a></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Debugging Browsers" duration="0">
+        <h3><strong>Firefox:</strong></h3>
+<p><strong>about:webrtc</strong></p>
 <p>Open the URL above to see the under the hood informations about the MediaStreams and PeerConnections</p>
-<h3><strong>Debug and Trace</strong></h3>
+<p><strong>Debug and Trace</strong></p>
 <pre>export NSPR_LOG_FILE=/home/ehugg/tmp/nspr.log
 export NSPR_LOG_MODULES=signaling:5,mtransport:5,timestamp:1
 export R_LOG_LEVEL=9
 export R_LOG_DESTINATION=stderr</pre>
-<h3><strong>ICE media log:</strong></h3>
+<p><strong>ICE media log:</strong></p>
 <p>For ICE/STUN/TURN: </p>
 <ul>
 <li>Set R_LOG_DESTINATION=stderr </li>
@@ -1798,10 +1990,10 @@ export R_LOG_DESTINATION=stderr</pre>
 <li>Set NSPR_LOG_MODULES=signaling:5,mtransport:5 </li>
 <li>You can also add &#34;,timestamp:1&#34; to that list if you want each log message to include timestamps. </li>
 </ul>
-<h2><strong>Debug Chrome</strong></h2>
-<h3><strong>chrome://webrtc-internals</strong></h3>
+<h3><strong>Debug Chrome</strong></h3>
+<p><strong>chrome://webrtc-internals</strong></p>
 <p>Open the URL above to see the under the hood informations about the MediaStreams and PeerConnections</p>
-<h3><strong>Debug and Trace</strong></h3>
+<p><strong>Debug and Trace</strong></p>
 <pre>google-chrome --enable-logging=stderr --v=4 --vmodule=*libjingle/*=9 --vmodule=*media/*=9</pre>
 <p><strong>linux log file</strong>: .config/chromium/chrome_debug.log</p>
 <p>Basic info: <a href="https://www.chromium.org/for-testers/enable-logging" target="_blank">https://www.chromium.org/for-testers/enable-logging</a></p>
