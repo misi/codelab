@@ -313,7 +313,12 @@
 <li><strong>New</strong>: <code>var senders = pc.getSenders();</code></li>
 </ul>
 <aside class="special"><p><strong>Tip:</strong></p>
-<p>For more details see Jan-Ivar&#39;s presentation: <a href="https://www.crowdcast.io/e/webrtcstandards13" target="_blank">https://www.crowdcast.io/e/webrtcstandards13</a></p>
+<p>For more details see Jan-Ivar&#39;s &amp; Philipp Hancke&#39;s Blog post and presentation: </p>
+<ul>
+<li><a href="https://blog.mozilla.org/webrtc/the-evolution-of-webrtc/" target="_blank">https://blog.mozilla.org/webrtc/the-evolution-of-webrtc/</a></li>
+<li><a href="https://www.crowdcast.io/e/webrtcstandards13" target="_blank">https://www.crowdcast.io/e/webrtcstandards13</a></li>
+<li><a href="https://blog.mozilla.org/webrtc/when-should-you-display-incoming-webrtc-video/" target="_blank">https://blog.mozilla.org/webrtc/when-should-you-display-incoming-webrtc-video/</a></li>
+</ul>
 </aside>
 
 
@@ -324,8 +329,10 @@
 <p>WebRTC supports both IPv4 and IPv6 protocol. ICE helps in the smooth transition. </p>
 <p>For the Real Time Communication the UDP transport is more ideal than TCP, but it could fallback to TCP. </p>
 <p>On top of this transport layer, the STUN helps in NAT/Firewall traversal. The other protocols, like  SRTP and DTLS provides the end-to-end encrypted communication channel. SRTP for media, and DTLS for SRTP keying and Data. SCTP on top of it provides multiple flows, and configurable reliability and delivery parameters.<br>Please notice that WebRTC intention is to happen all communication in encrypted form, and so encryption is mandatory on media and data channel(SRTP/DTLS).</p>
-<p><img style="max-width: 520.00px" src="img/ea08a380495f9f3e.png"></p>
+<p><img style="max-width: 520.00px" src="img/5be2960fb8c8b147.png"></p>
 <p><strong>Image Source</strong>: <a href="https://commons.wikimedia.org/wiki/File:Media-exchange-for-WebRTC.svg" target="_blank">https://commons.wikimedia.org/wiki/File:Media-exchange-for-WebRTC.svg</a></p>
+<aside class="special"><p><strong>Why SCTP? <br></strong>Read more about it in Tsahi&#39;s blog post: <a href="https://bloggeek.me/sctp-data-channel/" target="_blank">https://bloggeek.me/sctp-data-channel/</a></p>
+</aside>
 <h2><strong>WebRTC native Architecture</strong></h2>
 <p><img style="max-width: 624.00px" src="img/fcdec68b59f9447d.png"></p>
 <p><strong>Image Source</strong>: <a href="https://webrtc.org/architecture/" target="_blank">https://webrtc.org/architecture/</a></p>
@@ -360,7 +367,7 @@
 <ul>
 <li>Full Cone</li>
 <li>Restricted Cone</li>
-<li>Port Restricted Conde</li>
+<li>Port Restricted Cone</li>
 </ul>
 <h2><strong>RFC 4787 NAT behavioral Requirements for UDP</strong></h2>
 <p>RFC 4787 defined much much more fine grained classification of NATs.</p>
@@ -559,7 +566,7 @@ $</pre>
 <p>Why port randomization? It is proposed solutions to  e.g. DNS cache poisoning / <a href="http://unixwiz.net/techtips/iguide-kaminsky-dns-vuln.html" target="_blank">Kaminsky dns vulnerability</a>. </p>
 <p>The 5 tuple (source and destination ip port and transport protocol) Transport-Protocol Port Randomization is recommended according <a href="https://tools.ietf.org/html/rfc6056" target="_blank">RFC 6056</a>.</p>
 <p>And <a href="https://tools.ietf.org/html/rfc7857" target="_blank">RFC 7857</a> updates to Network Address Translation (NAT) Behavioral Requirements according it.</p>
-<p>(But even port randomization could be derandomized with fine grained attacks: <a href="https://arxiv.org/pdf/1205.5190.pdf" target="_blank">https://arxiv.org/pdf/1205.5190.pdf</a>. To avoid Kaminsky DNS vulnerability the safe way to use DNSSEC.)</p>
+<p>(But even port randomization could be derandomized with fine grained attacks: <a href="https://arxiv.org/pdf/1205.5190.pdf" target="_blank">https://arxiv.org/pdf/1205.5190.pdf</a>. To avoid Kaminsky DNS vulnerability the safe way is to use DNSSEC.)</p>
 <h2><strong>Summary of NAT behaviors</strong></h2>
 <p>According my  experiences</p>
 <ul>
@@ -933,6 +940,135 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 </aside>
 <aside class="special"><p><strong>Note: Identity is a must!</strong> We don&#39;t trust fully anymore in the signaling provider. Earlier, in SDES-SRTP case we have trusted in signaling service provider, and assumed that it is authenticating the parties in the communication in some form. </p>
 <p><em>Be aware that WebRTC designed to use E2E encryption, and without Identity validation security is not complete and leaky(!), this way it is extremely important to validate the Peers Identity.</em></p>
+<p>For more details check:</p>
+<ul>
+<li>A good summary: <a href="http://webrtc-security.github.io" target="_blank">http://webrtc-security.github.io</a></li>
+<li>IETF 101 Hackatlon: <a href="https://github.com/alvestrand/id-hackathon/" target="_blank">https://github.com/alvestrand/id-hackathon/</a></li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Data(Channel) API" duration="5">
+        <p>The most of the normal Web Communication happens through the Client- Server model. You may ask if we have already for data communication WebSocket, AJAX etc. protocols, then why should we add again a new protocol? </p>
+<p>The main difference is that the WebRTC Data API is <em>Peer-to-Peer / Client-to-Client</em> and not Client - Server!</p>
+<p>The Data(Channel) API lets a web application send and receive generic application data in Peer-to-Peer(P2P) fashion. DataChannel represents a bi-directional communication channel between the two peers.</p>
+<h2><strong>API</strong></h2>
+<p><strong>Init options:</strong></p>
+<pre><code>const dcInitOptions = {
+        ordered: true,
+        maxRetransmits: 65535,
+        //maxPacketLifeTime: 65535,
+        priority: &#34;low&#34;,
+        binaryType: &#34;blob&#34;,
+};</code></pre>
+<p><strong>Create dataCahnnel (local)</strong></p>
+<pre><code>var dc = pc.createDataChannel(&#34;chat&#34;,dcInitOptions);</code></pre>
+<p><strong>OnDataChannel (remote)</strong></p>
+<pre><code>pc.ondatachannel = function(event) {
+  dc=event.channel;
+};</code></pre>
+<p><strong>Send</strong></p>
+<pre><code>dc.send($data);</code></pre>
+<p><strong>Receive</strong></p>
+<pre><code>dc.onmessage = function(event) {
+  //event.data
+};</code></pre>
+<h2><strong>Transport</strong></h2>
+<p>At the time of writing this document the WebRTC  Data API  implementations use SCTP over DTLS as the transport protocol. If we look forward, then we can see that <a href="https://w3c.github.io/webrtc-quic" target="_blank">QUIC</a> seems to be the next general transport protocol that will be implemented, and because it contains all benefits that SCTP has (and even more), it could be in longer term the successor of the data transport. /Just for the correct history: during the early days of WebRTC there was also an implementation option in Chrome, to transport Data over RTP  (RtpDataChannels)/.</p>
+<h2><strong>Establishment</strong></h2>
+<p>The establishment of the DataChannel could happen two ways. </p>
+<ol type="1" start="1">
+<li>Through out-of-band way <br>In this case asymmetric connection properties could be used. The datachannel objects should be created on both side and Id&#39;s are negotiated out-of-band.</li>
+<li>Through an in-band, auto negotiated way (<strong>default</strong>)<br>In this case if an established PeerConnnection creating a new datachannel, then with in-band auto-negotiation on remote peer side automatically a new DataChannel  object will be created with symmetric properties and with the same DataChannel ID. </li>
+</ol>
+<h2><strong>Operation types of the connection</strong></h2>
+<ul>
+<li>Different priority (<code>DataChannelPriority</code>)</li>
+<li>Ordering (Ordered/Unordered) <code>ordered</code></li>
+<li>Reliability modes /Reliable/Unreliable/ ( <code>MaxPacketLifeTime, MaxRetransmits</code> ) <br>Only one of these options could be used at the same time, and can not be used both simultaneously!</li>
+</ul>
+<h2><strong>Usage</strong></h2>
+<p>It could be used perfectly for real time text or binary Data exchange, e.g chat or file share, gaming, etc.<br>Furthermore some Applications (because of privacy concerns) could also use it for signaling. After the very first offer-answer exchange, and so the PeerConnection establishment, it could be used for handling any further signaling communication.</p>
+<aside class="special"><p><strong>Notice</strong>: An example of advanced massive P2P DataChannel usage is the WebTorrent protocol</p>
+<ul>
+<li><a href="https://webtorrent.io/" target="_blank">https://webtorrent.io/</a></li>
+<li><a href="https://instant.io/" target="_blank">https://instant.io/</a></li>
+</ul>
+</aside>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Stats" duration="5">
+        <h2><strong>Stats API</strong></h2>
+<h3><strong>Global</strong></h3>
+<pre><code>//function stats(ms){
+var stats = (ms) =&gt; {
+  wait(ms).then(
+    () =&gt; {         
+      pc.getStats().then(
+        report =&gt; {
+          report.forEach(
+            stat =&gt; {
+                    console.log(stat)
+            }
+          )
+        }
+      )
+      stats(ms)
+    }
+  )
+}</code></pre>
+<h3><strong>Sender/Receiver</strong></h3>
+<p><strong>(Notice</strong>: Try it with Mozilla FF, Chrome didn&#39;t implemented it yet!)</p>
+<pre><code>pc.getSenders()[0].getStats()
+pc.getReceivers()[0].getStats()</code></pre>
+<h2><strong>Stats Object</strong></h2>
+<ul>
+<li>timestamp</li>
+<li>type</li>
+<li>id</li>
+</ul>
+<h3><strong>StatsType</strong></h3>
+<ul>
+<li>codec</li>
+<li>Inbound-rtp</li>
+<li>Outbound-rtp</li>
+<li>Remote-inbound-rtp</li>
+<li>Remote-outbound-rtp</li>
+<li>Csrc</li>
+<li>Peer-connection</li>
+<li>Data-channel</li>
+<li>Stream</li>
+<li>Track</li>
+<li>Sender</li>
+<li>Receiver</li>
+<li>Transport</li>
+<li>Candidate-pair</li>
+<li>Local-candidate</li>
+<li>Remote-candidate</li>
+<li>certificate<br></li>
+</ul>
+<h2><strong>Specs</strong></h2>
+<ul>
+<li><a href="https://w3c.github.io/webrtc-pc/" target="_blank">https://w3c.github.io/webrtc-pc/</a></li>
+<li><a href="https://w3c.github.io/webrtc-stats/" target="_blank">https://w3c.github.io/webrtc-stats/</a></li>
+</ul>
+<aside class="warning"><p><strong>Commercial example</strong>:</p>
+<p>Test the free dev plan of <a href="https://callstats.io" target="_blank">https://callstats.io</a> This startup is leading this market in both Standardization point of view and also in implementation and Data Modelling and understanding of data with Machine Learning etc.</p>
+</aside>
+<aside class="special"><p><strong>Open Source Stats implementation example</strong>:<br>OpenTok</p>
+<ul>
+<li><a href="https://github.com/opentok/rtcstats" target="_blank">https://github.com/opentok/rtcstats</a></li>
+<li><a href="https://github.com/opentok/rtcstats-server" target="_blank">https://github.com/opentok/rtcstats-server</a></li>
+<li><a href="https://fippo.github.io/webrtc-dump-importer/rtcstats" target="_blank">https://fippo.github.io/webrtc-dump-importer/rtcstats</a></li>
+</ul>
+<p>Muaz</p>
+<ul>
+<li><a href="https://github.com/muaz-khan/getStats" target="_blank">https://github.com/muaz-khan/getStats</a></li>
+</ul>
 </aside>
 
 
@@ -1056,57 +1192,6 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 <ul>
 <li><a href="https://www.w3.org/TR/screen-capture/" target="_blank">https://www.w3.org/TR/screen-capture/</a></li>
 </ul>
-
-
-      </google-codelab-step>
-    
-      <google-codelab-step label="Data(Channel) API" duration="5">
-        <p>The most of the normal Web Communication happens through the Client- Server model. You may ask if we have already for data communication WebSocket, AJAX etc. protocols, then why should we add again a new protocol? </p>
-<p>The main difference is that the WebRTC Data API is <em>Peer-to-Peer / Client-to-Client</em> and not Client - Server!</p>
-<p>The Data(Channel) API lets a web application send and receive generic application data in Peer-to-Peer(P2P) fashion. DataChannel represents a bi-directional communication channel between the two peers.</p>
-<h2><strong>API</strong></h2>
-<p><strong>Init options:</strong></p>
-<pre><code>const dcInitOptions = {
-        ordered: true,
-        maxRetransmits: 65535,
-        //maxPacketLifeTime: 65535,
-        priority: &#34;low&#34;,
-        binaryType: &#34;blob&#34;,
-};</code></pre>
-<p><strong>Create dataCahnnel (local)</strong></p>
-<pre><code>var dc = pc.createDataChannel(&#34;chat&#34;,dcInitOptions);</code></pre>
-<p><strong>OnDataChannel (remote)</strong></p>
-<pre><code>pc.ondatachannel = function(event) {
-  dc=event.channel;
-};</code></pre>
-<p><strong>Send</strong></p>
-<pre><code>dc.send($data);</code></pre>
-<p><strong>Receive</strong></p>
-<pre><code>dc.onmessage = function(event) {
-  //event.data
-};</code></pre>
-<h2><strong>Transport</strong></h2>
-<p>At the time of writing this document the WebRTC  Data API  implementations use SCTP over DTLS as the transport protocol. If we look forward, then we can see that <a href="https://w3c.github.io/webrtc-quic" target="_blank">QUIC</a> seems to be the next general transport protocol that will be implemented, and because it contains all benefits that SCTP has (and even more), it could be in longer term the successor of the data transport. /Just for the correct history: during the early days of WebRTC there was also an implementation option in Chrome, to transport Data over RTP  (RtpDataChannels)/.</p>
-<h2><strong>Establishment</strong></h2>
-<p>The establishment of the DataChannel could happen two ways. </p>
-<ol type="1" start="1">
-<li>Through out-of-band way <br>In this case asymmetric connection properties could be used. The datachannel objects should be created on both side and Id&#39;s are negotiated out-of-band.</li>
-<li>Through an in-band, auto negotiated way (<strong>default</strong>)<br>In this case if an established PeerConnnection creating a new datachannel, then with in-band auto-negotiation on remote peer side automatically a new DataChannel  object will be created with symmetric properties and with the same DataChannel ID. </li>
-</ol>
-<h2><strong>Operation types of the connection</strong></h2>
-<ul>
-<li>Different priority (<code>DataChannelPriority</code>)</li>
-<li>Ordering (Ordered/Unordered) <code>ordered</code></li>
-<li>Reliability modes /Reliable/Unreliable/ ( <code>MaxPacketLifeTime, MaxRetransmits</code> ) <br>Only one of these options could be used at the same time, and can not be used both simultaneously!</li>
-</ul>
-<h2><strong>Usage</strong></h2>
-<p>It could be used perfectly for real time text or binary Data exchange, e.g chat or file share, gaming, etc.<br>Furthermore some Applications (because of privacy concerns) could also use it for signaling. After the very first offer-answer exchange, and so the PeerConnection establishment, it could be used for handling any further signaling communication.</p>
-<aside class="special"><p><strong>Notice</strong>: An example of advanced massive P2P DataChannel usage is the WebTorrent protocol</p>
-<ul>
-<li><a href="https://webtorrent.io/" target="_blank">https://webtorrent.io/</a></li>
-<li><a href="https://instant.io/" target="_blank">https://instant.io/</a></li>
-</ul>
-</aside>
 
 
       </google-codelab-step>
