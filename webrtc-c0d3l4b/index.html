@@ -118,7 +118,7 @@
 <ul>
 <li><strong>Easy to use, Out of the box experience for the end user (</strong>Without Plugins, Without Install, Always up2date client)</li>
 <li><strong>Multi platform </strong>(Even exotic platforms (Linux, BSD))</li>
-<li><strong>Push the envelope</strong>: Improved Standards like Advanced congestion avoidance, Adaptive Audio Video encoding and Forward Error Correction (FEC) to reach Reliability, Fair Share Low Delay/Latency, Low  Jitter.  Advanced Noise suppression and echo cancellation etc.</li>
+<li><strong>Push the envelope</strong>: Improved Standards like Advanced congestion avoidance, Adaptive Audio Video encoding and Forward Error Correction (FEC) to reach Reliability, Fair Share, Low Delay/Latency, Low  Jitter.  Advanced Noise suppression and echo cancellation etc.</li>
 <li><strong>Firewall and NAT Traversal</strong> ICE(STUN/TURN)</li>
 <li><strong>Focus on Security and Privacy and Identity validation by design</strong>. Encrypted Secure End to End communication, User consent before access any MediaDevice(WebCam) to avoid any fingerprinting (as possible)</li>
 <li><strong>Open Source Native Implementation</strong> (for browser vendors and beyond browsers)</li>
@@ -674,7 +674,7 @@ $</pre>
         <p><img style="max-width: 624.00px" src="img/28b69f81215d06fe.png"></p>
 <p>To reduce the number of connections, and so the call establishment time, the WebRTC could use two optimization:</p>
 <ul>
-<li>RTP/RTCP multiplex  <br><code>a=group:BUNDLE foo bar</code><br><a href="https://tools.ietf.org/html/rfc5761" target="_blank">RFC5761</a>/ <a href="https://tools.ietf.org/html/rfc8035" target="_blank">RFC8035</a><code><br></code></li>
+<li>RTP/RTCP multiplex  <br><code>a=rtcp-mux</code><br><a href="https://tools.ietf.org/html/rfc5761" target="_blank">RFC5761</a>/ <a href="https://tools.ietf.org/html/rfc8035" target="_blank">RFC8035</a><code><br></code></li>
 <li>Bundle RTP (multiplex rtp streams e.g. audio+video) <br><code>a=group:BUNDLE foo bar</code><br><a href="https://tools.ietf.org/html/draft-ietf-mmusic-sdp-bundle-negotiation-47" target="_blank">https://tools.ietf.org/html/draft-ietf-mmusic-sdp-bundle-negotiation-47</a></li>
 </ul>
 <h2><strong>SDP example</strong></h2>
@@ -1007,7 +1007,7 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 <pre><code>//function stats(ms){
 var stats = (ms) =&gt; {
   wait(ms).then(
-    () =&gt; {         
+    () =&gt; {
       pc.getStats().then(
         report =&gt; {
           report.forEach(
