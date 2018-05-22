@@ -1004,7 +1004,9 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
       <google-codelab-step label="Stats" duration="5">
         <h2><strong>Stats API</strong></h2>
 <h3><strong>Global</strong></h3>
-<pre><code>//function stats(ms){
+<pre><code>var wait = ms =&gt; new Promise(resolve =&gt; setTimeout(resolve, ms));
+
+//function stats(ms)
 var stats = (ms) =&gt; {
   wait(ms).then(
     () =&gt; {
