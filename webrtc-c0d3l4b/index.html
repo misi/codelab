@@ -49,7 +49,7 @@
 </table>
 <h3><strong>WebRTC Official Definitions:</strong></h3>
 <ul>
-<li><strong>WebRTC</strong>: &#34;A framework, protocols and application programming interface that provide real time interactive voice, video and data in web browsers and other applications&#34;</li>
+<li><strong>WebRTC</strong>: &#34;A framework, protocols and application programming interface that provides real time interactive voice, video and data in web browsers and other applications&#34;</li>
 <li><strong>WebRTC is a free, open</strong> project that provides browsers and mobile applications with Real-Time Communications (RTC) capabilities via simple APIs. The WebRTC components have been optimized to best serve this purpose</li>
 <li><strong>Mission</strong>: To enable rich, high-quality RTC applications to be developed for the browser, mobile platforms, and IoT devices, and allow them all to communicate via a common set of protocols</li>
 </ul>
@@ -82,7 +82,7 @@
 <aside class="special"><p><strong>Last but not least</strong>: </p>
 <p>This c0d3l4b is strongly inspired by Google WebRTC CodeLab!<em> (Special thx to Sam Dutton!)</em></p>
 <p><a href="https://codelabs.developers.google.com" target="_blank">https://codelabs.developers.google.com</a> </p>
-<p><em>And also many thanks Google for the codelab framework!</em></p>
+<p><em>And also many thanks to Google for the codelab framework!</em></p>
 <ul>
 <li><a href="https://github.com/googlecodelabs/codelab-components" target="_blank">https://github.com/googlecodelabs/</a></li>
 <li><a href="https://g.co/codelabs/guide" target="_blank">https://g.co/codelabs/guide​</a></li>
@@ -98,7 +98,7 @@
 <li>even on your host: Install on your host your favorite web server with a certificate from <a href="https://letsencrypt.org/" target="_blank">let&#39;s encrypt</a>.</li>
 <li>Or as an easy alternative: If you use chrome you could also use web-server-for-chrome extension: <a href="https://chrome.google.com/webstore/detail/web-server-for-chrome/ofhbbkphhbklhfoeikjpcbhemlocgigb?hl=en" target="_blank">Install Web Server for Chrome</a></li>
 </ul>
-<aside class="special"><p><strong>Tip</strong>: Those who are participating in <a href="http://nws.comp-rend.hu/" target="_blank">NWS18</a> we have already created pre install VM with certificate and web server. <br>Please test it and login on your VM with your ssh client.</p>
+<aside class="special"><p><strong>Tip</strong>: For those who are participating in <a href="http://nws.comp-rend.hu/" target="_blank">NWS18</a> we have already created pre install VM with certificate and web server. <br>Please test it and login on your VM with your ssh client.</p>
 </aside>
 <h2><strong>You could Download the Sample Code</strong></h2>
 <p>Click the following link to download all the code for this codelab:</p>
@@ -108,7 +108,7 @@
 <p>Unpack the zip file in your <code>web server root directory</code>. This will unpack a root folder (<code>codelab</code>), which contains one <code>lab&lt;N&gt;</code> folder for each step of this codelab, along with all of the resources you will need. It also contains this codelab web part.</p>
 <p>The <code>lab&lt;N&gt;</code> folders contain the desired end state of each step of this codelab. They are there for reference. We&#39;ll be doing all our coding work in a directory called <code>work</code>.</p>
 <h2><strong>Ready? =&gt; Let&#39;s start the theory lesson!</strong></h2>
-<p>WebRTC is complex and could be hard to understand for a web developer at the first sight without proper understanding of the WebRTC Architecture (technologies working under the hood), therefore we try to give you an overview about such Concepts and Architectures.</p>
+<p>WebRTC is complex at the first sight and it could be hard to understand for a web developer without proper understanding of the WebRTC Architecture (technologies working under the hood), therefore we try to give you an overview about such Concepts and Architectures.</p>
 
 
       </google-codelab-step>
@@ -265,7 +265,7 @@
 <li>Async API =&gt; Move from callbacks, forward to Promises</li>
 </ul>
 <aside class="warning"><p><strong>Warning</strong>! </p>
-<p>Only read further if you already familiar with WebRTC. Beginners could safely skip this part of the codelab, and jump to the next step.</p>
+<p>Read further only if you already familiar with WebRTC. Beginners can safely skip this part of the codelab, and jump to the next step.</p>
 </aside>
 <h4>Media Capture Changes: </h4>
 <p><strong>MediaDevice selection, detection on changes (discovery)</strong></p>
@@ -328,7 +328,7 @@
         <h3><strong>Protocol Stack</strong></h3>
 <p>WebRTC supports both IPv4 and IPv6 protocol. ICE helps in the smooth transition. </p>
 <p>For the Real Time Communication the UDP transport is more ideal than TCP, but it could fallback to TCP. </p>
-<p>On top of this transport layer, the STUN helps in NAT/Firewall traversal. The other protocols, like  SRTP and DTLS provides the end-to-end encrypted communication channel. SRTP for media, and DTLS for SRTP keying and Data. SCTP on top of it provides multiple flows, and configurable reliability and delivery parameters.<br>Please notice that WebRTC intention is to happen all communication in encrypted form, and so encryption is mandatory on media and data channel(SRTP/DTLS).</p>
+<p>On top of this transport layer, the STUN helps in NAT/Firewall traversal. The other protocols, like  SRTP and DTLS provides the end-to-end encrypted communication channel. SRTP for media, and DTLS for SRTP keying and Data. SCTP on top of it provides multiple flows, and configurable reliability and delivery parameters.<br>Please notice that WebRTC&#39;s intention is to happen all communication in encrypted form, and so encryption is mandatory on media and data channel(SRTP/DTLS).</p>
 <p><img style="max-width: 520.00px" src="img/5be2960fb8c8b147.png"></p>
 <p><strong>Image Source</strong>: <a href="https://commons.wikimedia.org/wiki/File:Media-exchange-for-WebRTC.svg" target="_blank">https://commons.wikimedia.org/wiki/File:Media-exchange-for-WebRTC.svg</a></p>
 <aside class="special"><p><strong>Why SCTP? <br></strong>Read more about it in Tsahi&#39;s blog post: <a href="https://bloggeek.me/sctp-data-channel/" target="_blank">https://bloggeek.me/sctp-data-channel/</a></p>
@@ -342,7 +342,7 @@
 <p>(For simplification on the picture above the WebServer contains the signaling server too!)</p>
 <aside class="special"><p><strong>Note</strong>:</p>
 <p>Direct Browser to Browser connection is prefered by default to keep the end to end delay low. ICE preferes by default TURN in last resort.</p>
-<p>Of course there are other reasonable preferences, like more reliable connection first or short connection establishment time, that may override ICE default behavior and prefer TURN first.</p>
+<p>Of course there are other reasonable preferences, like more reliable connection first, or short connection establishment time, that may override ICE default behavior and prefer TURN first.</p>
 </aside>
 <h3><strong>Address and Port-Dependent Mapping &amp; Address and Port-Dependent Filtering (Symmetric) NAT</strong></h3>
 <p><img style="max-width: 624.00px" src="img/a090a6dbe2aec127.png"></p>
@@ -354,12 +354,12 @@
       <google-codelab-step label="Why NAT/Firewall traversal needed in WebRTC?" duration="0">
         <p>Mainly because usage of Network Address Translation(NAT) and Packet Filters made difficult (or impossible) the direct Peer to Peer communication. As we will see in the next step, Interactive Connection Establishment protocol (ICE) has been designed to solve these problems.</p>
 <h2><strong>Firewall / Packet Filter</strong></h2>
-<p>For Media communication the Real-time Transport Protocol(RTP) use random port numbers. We need to find a ip:port pair that is not filtered between the two peers. ICE have to run 2 way checks on the candidate pairs, on the &#34;5 Tuple&#34; transport connections, to make sure that the communication channel has established and working properly. The transport connection needs to work properly before any Real-time communication could be started on top of it.</p>
+<p>For Media communication the Real-time Transport Protocol(RTP) use random port numbers. We need to find an ip:port pair that is not filtered between the two peers. ICE has to run 2 way checks on the candidate pairs, on the &#34;5 Tuple&#34; transport connections, to make sure that the communication channel has established and working properly. The transport connection needs to work properly before any Real-time communication could be started on top of it.</p>
 <h2><strong>Network Address Translation(NAT)</strong></h2>
-<p>In this section we focus on NAT. Let&#39;s look at it a little bit closer.</p>
-<p>The NAT behavior standardization started much later than the first NAT implementation existed. NAT traversal is complex. It is confusing mainly because of the so big variety of different NAT behaviors and types. ICE have to deal with any topology, and so any types and levels of NATs!</p>
+<p>In this section we focus on NAT. Let&#39;s look at it a bit closer.</p>
+<p>The NAT behavior standardization started much later than the first NAT implementation existed. NAT traversal is complex. It is confusing mainly because of the so big variety of different NAT behaviors and types. ICE has to deal with any topology, and so any types and levels of NATs!</p>
 <aside class="warning"><p><strong>Warning</strong>! </p>
-<p>Only read further if you already familiar with NAT and Firewall traversal.  Beginners could safely skip this part of the codelab, and jump to the next step.</p>
+<p>Read only further if you already familiar with NAT and Firewall traversal.  Beginners can safely skip this part of the codelab, and jump to the next step.</p>
 </aside>
 <h2><strong>NAT Behaviors / Types</strong></h2>
 <h3><strong>RFC 3489</strong></h3>
@@ -368,9 +368,10 @@
 <li>Full Cone</li>
 <li>Restricted Cone</li>
 <li>Port Restricted Cone</li>
+<li>Symmetric</li>
 </ul>
 <h2><strong>RFC 4787 NAT behavioral Requirements for UDP</strong></h2>
-<p>RFC 4787 defined much much more fine grained classification of NATs.</p>
+<p>RFC 4787 defined much more fine grained classification of NATs.</p>
 <h3><strong>RFC 4787 main class definitions:</strong></h3>
 <p><strong>Mapping</strong></p>
 <ul>
@@ -384,7 +385,7 @@
 <li>Address-Dependent Filtering</li>
 <li>Address and Port-Dependent Filtering</li>
 </ul>
-<p>And it defines much more NAT behaviors too.</p>
+<p>And it defines more NAT behavior too.</p>
 <p><img style="max-width: 624.00px" src="img/8308d0c42ae77d7c.png"></p>
 <p><strong>Image Source</strong>: <a href="https://www.netmanias.com/en/?m=view&id=techdocs&no=6065" target="_blank">https://www.netmanias.com/en/?m=view&amp;id=techdocs&amp;no=6065</a></p>
 <h2><img style="max-width: 624.00px" src="img/62ad5490047f0f38.png"></h2>
@@ -433,23 +434,23 @@ $</pre>
 <p>NAT discovery in browser:</p>
 <p>We reuse the same idea here that we used earlier in RFC 5780 NAT behavior discovery.</p>
 <p>If a NAT translates traffic originating from the same internal port to different external source ports, because of the different destination ip:port (in our case different destination STUN servers), then</p>
-<p>It could be: </p>
+<p>It can be: </p>
 <ul>
 <li>Address Dependent Mapping</li>
 <li>Address and Port Dependent Mapping</li>
 </ul>
-<p><br>See WebRTC h4cks article about howto discover a symmetric NAT: </p>
+<p><br>See WebRTC h4cks article about how to discover a symmetric NAT: </p>
 <ul>
 <li><a href="https://webrtchacks.com/symmetric-nat/" target="_blank">https://webrtchacks.com/symmetric-nat/</a></li>
 </ul>
 <p><img style="max-width: 624.00px" src="img/344644acb209b784.png"></p>
-<aside class="special"><p><strong>Notice</strong>: coTURN utility gives much detailed and more precise and reliable information about the NAT behaviour than the browser test could do.</p>
+<aside class="special"><p><strong>Notice</strong>: coTURN utility gives more detailed and more precise and reliable information about the NAT behaviour than the browser test can do.</p>
 </aside>
 <h2><strong>NAT behaviors in the real-world</strong></h2>
 <aside class="warning"><p><strong>Warning: </strong></p>
 <p><strong>Mind the gap</strong> between RFC 4787 behaviour model and  the real-world NAT implementations! Not every implementation behavior fits perfectly in the defined categories.</p>
 </aside>
-<p>I have collected the NAT behaviors in the following table. In this table you could find OS/vendors/appliances, and the <strong>default</strong> NAT behavior that belongs to it. Furthermore you could find the options that could be used to modify the default behavior. </p>
+<p>I have collected the NAT behaviors in the following table. In this table you can find OS/vendors/appliances, and the <strong>default</strong> NAT behavior that belongs to it. Furthermore you can find the options that can be used to modify the default behavior. </p>
 <p>(These are only my experiences and test results according my actual knowledge. <a href="https://github.com/misi/codelab/issues/new" target="_blank"><em>Please correct me if you think I am wrong!</em></a>)<br></p>
 <table>
 <tr><td colspan="1" rowspan="1"><p>Vendor/Behavior</p>
@@ -560,13 +561,13 @@ $</pre>
 <p><strong>To clarify further the options in the table above with an example: </strong></p>
 <p>In Linux case, the Netfilter‘s (iptables) <strong>default</strong> behavior is Endpoint Independent Mapping with Address and Port Dependent Filtering (EIM/APDF)</p>
 <pre>iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE </pre>
-<p>If you use --random  or --random-fully option, then you could change NAT behavior to Address and Port dependent Mapping with Address and Port dependent Filtering (APDM/APDF)</p>
+<p>If you use --random  or --random-fully option, then you can change NAT behavior to Address and Port dependent Mapping with Address and Port dependent Filtering (APDM/APDF)</p>
 <pre>iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE --random</pre>
 <h2><strong>Port Randomization</strong></h2>
 <p>Why port randomization? It is proposed solutions to  e.g. DNS cache poisoning / <a href="http://unixwiz.net/techtips/iguide-kaminsky-dns-vuln.html" target="_blank">Kaminsky dns vulnerability</a>. </p>
-<p>The 5 tuple (source and destination ip port and transport protocol) Transport-Protocol Port Randomization is recommended according <a href="https://tools.ietf.org/html/rfc6056" target="_blank">RFC 6056</a>.</p>
-<p>And <a href="https://tools.ietf.org/html/rfc7857" target="_blank">RFC 7857</a> updates to Network Address Translation (NAT) Behavioral Requirements according it.</p>
-<p>(But even port randomization could be derandomized with fine grained attacks: <a href="https://arxiv.org/pdf/1205.5190.pdf" target="_blank">https://arxiv.org/pdf/1205.5190.pdf</a>. To avoid Kaminsky DNS vulnerability the safe way is to use DNSSEC.)</p>
+<p>The 5 tuple (source and destination ip port and transport protocol) Transport-Protocol Port Randomization is recommended according by <a href="https://tools.ietf.org/html/rfc6056" target="_blank">RFC 6056</a>.</p>
+<p><a href="https://tools.ietf.org/html/rfc7857" target="_blank">RFC 7857</a> updates Network Address Translation (NAT) Behavioral Requirements.</p>
+<p><br>(But even port randomization could be derandomized with fine grained attacks: <a href="https://arxiv.org/pdf/1205.5190.pdf" target="_blank">https://arxiv.org/pdf/1205.5190.pdf</a>. To avoid Kaminsky DNS vulnerability the safe way is to use DNSSEC.)</p>
 <h2><strong>Summary of NAT behaviors</strong></h2>
 <p>According my  experiences</p>
 <ul>
@@ -628,7 +629,7 @@ $</pre>
 <li>Multiple protocols (IPv4, IPv6)</li>
 </ul>
 <aside class="warning"><p><strong>Warning</strong>! </p>
-<p>Only read further if you already familiar with ICE. Beginners could safely skip this part of the codelab so feel free to jump the next step.</p>
+<p>Read further only if you already familiar with ICE. Beginners can safely skip this part of the codelab so feel free to jump to the next step.</p>
 </aside>
 <h3>ICE prioritization</h3>
 <pre><code>priority = (2^24)*(type preference)
@@ -645,7 +646,7 @@ $</pre>
 <li>Controlling</li>
 <li>Controlled</li>
 </ul>
-<p>The Controlling is the one that&#39;s sent the initial Offer. (In case of both agents are a full</p>
+<p>The Controlling is the one that sends the initial Offer. (In case of both agents are a full</p>
 <p>   implementation).</p>
 <h3>Pair priority formula</h3>
 <p>Let </p>
@@ -665,7 +666,8 @@ $</pre>
 <p>Connection establishment time could be long if we need to wait to finish the candidate discovery. </p>
 <p>Even worse, in case of any error is occuring during the discovery. Waiting for the timeouts could take long, and could cause an unacceptable very long connection establishment. </p>
 <h3><strong>Establish connection faster</strong></h3>
-<p>The primary idea behind it is to start ICE check as fast as we can, as soon as we discover a candidate. The only drawback is that we need to send more signaling messages. WebRTC Application nowadays use mostly Trickle ICE to establish connection.<img style="max-width: 624.00px" src="img/bc12d7ccb7c091cf.png"></p>
+<p>The primer idea behind it is to start ICE check as fast as we can, as soon as we discover a candidate. The only drawback is that we need to send more signaling messages. WebRTC Application nowadays use mostly Trickle ICE to establish connection.</p>
+<p><img style="max-width: 624.00px" src="img/bc12d7ccb7c091cf.png"></p>
 
 
       </google-codelab-step>
@@ -934,12 +936,12 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
 <h2><strong>Media/Data Encryption is mandatory: SRTP / DTLS</strong></h2>
 <ul>
 <li>DTLS-SRTP: DTLS and Certificate based key.</li>
-<li>SDES-SRTP &#34;MUST NOT implement&#34; according IETF 87</li>
+<li>SDES-SRTP &#34;MUST NOT implement&#34; according to the decision made by IETF 87</li>
 </ul>
 <aside class="warning"><p><strong>Important</strong>:  SDES-SRTP is obsoleted, mainly because to avoid any surveillance possibility. This was a design decision, and it could add interop issues with legacy systems!</p>
 </aside>
-<aside class="special"><p><strong>Note: Identity is a must!</strong> We don&#39;t trust fully anymore in the signaling provider. Earlier, in SDES-SRTP case we have trusted in signaling service provider, and assumed that it is authenticating the parties in the communication in some form. </p>
-<p><em>Be aware that WebRTC designed to use E2E encryption, and without Identity validation security is not complete and leaky(!), this way it is extremely important to validate the Peers Identity.</em></p>
+<aside class="special"><p><strong>Note: Identity is a must!</strong> We don&#39;t trust fully in the signaling provider anymore. Earlier, in SDES-SRTP case we trusted in signaling service provider, and assumed that it is authenticating the parties in the communication in some form. </p>
+<p><em>Be aware that WebRTC is designed to use E2E encryption, and without Identity validation security it is not complete and leaky(!), this way it is extremely important to validate the Peers Identity.</em></p>
 <p>For more details check:</p>
 <ul>
 <li>A good summary: <a href="http://webrtc-security.github.io" target="_blank">http://webrtc-security.github.io</a></li>
@@ -951,9 +953,9 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
       </google-codelab-step>
     
       <google-codelab-step label="Data(Channel) API" duration="5">
-        <p>The most of the normal Web Communication happens through the Client- Server model. You may ask if we have already for data communication WebSocket, AJAX etc. protocols, then why should we add again a new protocol? </p>
+        <p>The most of the normal Web Communication happens through the Client- Server model. You may ask if we already have WebSocket, AJAX etc. protocols for data communication, then why should we add again a new protocol? </p>
 <p>The main difference is that the WebRTC Data API is <em>Peer-to-Peer / Client-to-Client</em> and not Client - Server!</p>
-<p>The Data(Channel) API lets a web application send and receive generic application data in Peer-to-Peer(P2P) fashion. DataChannel represents a bi-directional communication channel between the two peers.</p>
+<p>The Data(Channel) API lets a web application send and receives generic application data in Peer-to-Peer(P2P) fashion. DataChannel represents a bi-directional communication channel between the two peers.</p>
 <h2><strong>API</strong></h2>
 <p><strong>Init options:</strong></p>
 <pre><code>const dcInitOptions = {
@@ -976,21 +978,21 @@ a=ssrc:377924797 cname:{0cc05c74-02a9-4474-9885-9ea7674b8299}</code></pre>
   //event.data
 };</code></pre>
 <h2><strong>Transport</strong></h2>
-<p>At the time of writing this document the WebRTC  Data API  implementations use SCTP over DTLS as the transport protocol. If we look forward, then we can see that <a href="https://w3c.github.io/webrtc-quic" target="_blank">QUIC</a> seems to be the next general transport protocol that will be implemented, and because it contains all benefits that SCTP has (and even more), it could be in longer term the successor of the data transport. /Just for the correct history: during the early days of WebRTC there was also an implementation option in Chrome, to transport Data over RTP  (RtpDataChannels)/.</p>
+<p>At the time of writing this document the WebRTC  Data API  implementations use SCTP over DTLS as transport protocol. If we look forward, then we can see that <a href="https://w3c.github.io/webrtc-quic" target="_blank">QUIC</a> seems to be the next general transport protocol that will be implemented, and because it contains all benefits that SCTP has (and even more), it could be the successor of the data transport in longer term. /Just for the correct history: during the early days of WebRTC there was also an implementation option in Chrome, to transport Data over RTP  (RtpDataChannels)/.</p>
 <h2><strong>Establishment</strong></h2>
-<p>The establishment of the DataChannel could happen two ways. </p>
+<p>The establishment of the DataChannel can happen two ways. </p>
 <ol type="1" start="1">
-<li>Through out-of-band way <br>In this case asymmetric connection properties could be used. The datachannel objects should be created on both side and Id&#39;s are negotiated out-of-band.</li>
+<li>Through out-of-band way <br>In this case asymmetric connection properties can be used. The DataChannel objects should be created on both sides and Id&#39;s are negotiated out-of-band.</li>
 <li>Through an in-band, auto negotiated way (<strong>default</strong>)<br>In this case if an established PeerConnnection creating a new datachannel, then with in-band auto-negotiation on remote peer side automatically a new DataChannel  object will be created with symmetric properties and with the same DataChannel ID. </li>
 </ol>
 <h2><strong>Operation types of the connection</strong></h2>
 <ul>
 <li>Different priority (<code>DataChannelPriority</code>)</li>
 <li>Ordering (Ordered/Unordered) <code>ordered</code></li>
-<li>Reliability modes /Reliable/Unreliable/ ( <code>MaxPacketLifeTime, MaxRetransmits</code> ) <br>Only one of these options could be used at the same time, and can not be used both simultaneously!</li>
+<li>Reliability modes /Reliable/Unreliable/ ( <code>MaxPacketLifeTime, MaxRetransmits</code> ) <br>Only one of these options can be used at the same time, and can not be used both simultaneously!</li>
 </ul>
 <h2><strong>Usage</strong></h2>
-<p>It could be used perfectly for real time text or binary Data exchange, e.g chat or file share, gaming, etc.<br>Furthermore some Applications (because of privacy concerns) could also use it for signaling. After the very first offer-answer exchange, and so the PeerConnection establishment, it could be used for handling any further signaling communication.</p>
+<p>It can be used perfectly for real time text or binary Data exchange, e.g chat or file share, gaming, etc.<br>Furthermore some Applications (because of privacy concerns) can also use it for signaling. After the very first offer-answer exchange, and so the PeerConnection establishment, it could be used for handling any further signaling communication.</p>
 <aside class="special"><p><strong>Notice</strong>: An example of advanced massive P2P DataChannel usage is the WebTorrent protocol</p>
 <ul>
 <li><a href="https://webtorrent.io/" target="_blank">https://webtorrent.io/</a></li>
@@ -1082,7 +1084,7 @@ pc.getReceivers()[0].getStats()</code></pre>
 <h2><strong>Topologies</strong></h2>
 <p>Topologies could vary and follow the Star or Mesh  or a mixed (e.g. interconnected stars, etc.) topology patterns.</p>
 <h2><strong>Multipoint</strong></h2>
-<p>Communication between multiple (more than two) parties could be done in many different ways, each of them has different pros and contras and neither fits to all possible scenarios, so there is no ultimate best choice. You should choose that one, that fits the best to your Application usage, or maybe you should use a mix of them.</p>
+<p>Communication between multiple (more than two) parties can be done in many different ways, each of them have different pros and contras and none of them fit to all possible scenarios, so there is no ultimate best choice. You should choose that one, that fits the best to your Application usage, or maybe you should use a mix of them.</p>
 <h3><strong>P2P / Full Mesh</strong></h3>
 <p><strong>Strength</strong></p>
 <ul>
@@ -1090,7 +1092,7 @@ pc.getReceivers()[0].getStats()</code></pre>
 <li>The most direct communication (probably with the best latency)</li>
 <li>Simple P2P topology: No central media server needed</li>
 <li>Flexible Video layouts on client side</li>
-<li>Following the internet principle, to keep the most intelligence and load on edge of the network</li>
+<li>Following the internet principle, to keep the most of intelligence and load on the edge of the network</li>
 </ul>
 <p><strong>Weakness</strong></p>
 <ul>
@@ -1120,8 +1122,8 @@ pc.getReceivers()[0].getStats()</code></pre>
 <p>Used usually with Simulcast or Scalable Video Codec.</p>
 <p><strong>Strength</strong></p>
 <ul>
-<li>Could scale for large conference participants</li>
-<li>Could be used for low latency video streaming</li>
+<li>Can scale for large conference participants</li>
+<li>Can be used for low latency video streaming</li>
 <li>Server Side Recording possible but needs post processing</li>
 </ul>
 <p><strong>Weakness</strong></p>
@@ -1143,10 +1145,10 @@ pc.getReceivers()[0].getStats()</code></pre>
     
       <google-codelab-step label="Screen-Sharing" duration="5">
         <h2><strong>ScreenShare</strong></h2>
-<p>Screen Sharing is about to capture and grab your entire screen, or just one window, or application video stream. You could grab this MediaStream using special mediaConstraints, but using the same GuM function that we used for capturing webcam (or other video source), so  <code>navigator.mediaDevices.getUserMedia(mediaConstraints)</code>.</p>
-<p>You could find the videTrack in this Stream that represents the Video that the user want to share. And we could add this video track to the PeerConnection.  We could share it parallel to the other streams.</p>
+<p>Screen Sharing is about to capture and grab your entire screen, or just one window, or application video stream. You could grab this MediaStream using special mediaConstraints using the same GuM function that we used for capturing webcam (or other video source), so  <code>navigator.mediaDevices.getUserMedia(mediaConstraints)</code>.</p>
+<p>You could find the videTrack in this Stream that represents the Video that the user want to share. And we can add this video track to the PeerConnection.  We can share it parallel to the other streams.</p>
 <h2><strong>Security</strong></h2>
-<p>Be aware that ScreenSharing  is violating the &#34;<a href="https://en.wikipedia.org/wiki/Same-origin_policy" target="_blank">Same-Origin</a>&#34; Web principle, and this way use it with care. According the mentioned risk, Chrome web browser made the design decision to allow only screensharing from a Chrome extension. Take it seriously, to share only if you fully trust the site. For more details read:</p>
+<p>Be aware that ScreenSharing  violates the &#34;<a href="https://en.wikipedia.org/wiki/Same-origin_policy" target="_blank">Same-Origin</a>&#34; Web principle, and this way use it with care. According to the mentioned risk, Chrome web browser made the design decision to allow only screensharing from a Chrome extension. Take it seriously, to share only if you fully trust the site. For more details read:</p>
 <ul>
 <li><a href="https://blog.mozilla.org/webrtc/share-browser-windows-entire-screen-sites-trust/" target="_blank">https://blog.mozilla.org/webrtc/share-browser-windows-entire-screen-sites-trust/</a></li>
 </ul>
@@ -1162,7 +1164,7 @@ pc.getReceivers()[0].getStats()</code></pre>
 <li><a href="https://developer.chrome.com/webstore/inline_installation" target="_blank">https://developer.chrome.com/webstore/inline_installation</a></li>
 </ul>
 <p><strong>Mozilla / Firefox</strong></p>
-<p>It supports screensharing without plugins or extension. <br>(Earlier it was needed for a web site that want to use screensharing  to be listed on a central whitelist, but it is no longer needed.)</p>
+<p>It supports screensharing without plugins or extension. <br>(Earlier it was needed for a web site that wanted to use screensharing  to be listed on a central whitelist, but it is no longer needed.)</p>
 <ul>
 <li><a href="https://wiki.mozilla.org/Screensharing" target="_blank">https://wiki.mozilla.org/Screensharing</a></li>
 </ul>
@@ -1284,7 +1286,7 @@ navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
 </ul>
 <aside class="special"><p><strong>Note</strong>: </p>
 <ul>
-<li>MediaStream is synchronized group of MediaStreamTracks. </li>
+<li>MediaStream is a synchronized group of MediaStreamTracks. </li>
 <li>Even a single MediaStreamTrack can represent multi-channel content, such as stereo or 5.1 audio or stereoscopic video!</li>
 <li>If you don&#39;t use autoplay or similar function to start playing the video, then you will see only one still picture.</li>
 <li>Make sure your video element doesn&#39;t overflow its container. Add width and max-width to set a preferred size and a maximum size for the video. (The browser will calculate the height automatically.)</li>
@@ -1303,16 +1305,16 @@ navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
 <li>Rejected promises (e.g. with <code>OverconstrainedError)</code></li>
 </ul>
 <h2><strong>Lab2</strong></h2>
-<p>You could find the completed Lab in <code>Lab2</code> directory. Play with the constraints (that are supported by browser) and try to add low and high values.</p>
-<p>Check the lab JS code and try to modify it, and experience how video change according the constraint change. Start playing with the width and height.</p>
+<p>You can find the completed Lab in <code>Lab2</code> directory. Play with the constraints (that are supported by browser) and try to add low and high values.</p>
+<p>Check the lab JS code and try to modify it, and experience how video change in accord with the constraint change. Start playing with the width and height.</p>
 <h2><strong>Supported Constraints</strong></h2>
 <p>Get the supported constraints list, that the browser supports.</p>
 <pre><code>var supportedConstraints = navigator.mediaDevices.getSupportedConstraints();</code></pre>
 <h2><strong>Constraints</strong></h2>
 <h3><strong>Basic/Required, Advanced Constraint list</strong></h3>
 <ul>
-<li><strong>Basic/Required </strong>is a ConstraintSet that the Browser <em>MUST</em> to restrict the settings of the corresponding constrainable properties to the specified values or ranges of values.</li>
-<li><strong>Advanced</strong>: is the list of ConstraintSets that the Browser <em>MUST</em> attempt to satisfy, in order, skipping only those that cannot be satisfied. The order of these ConstraintSets is significant. The browser <em>MUST</em> try to satisfy them in the order that is specified.</li>
+<li><strong>Basic/Required </strong>is a ConstraintSet accordingly the Browser <em>MUST</em> restrict the settings of the corresponding constrainable properties to the specified values or ranges of values.</li>
+<li><strong>Advanced</strong>: is the list of ConstraintSets accordingly the Browser <em>MUST</em> attempt to satisfy it. Order is important, skipping only those constraints that cannot be satisfied. The order of these ConstraintSets is significant. The browser <em>MUST</em> try to satisfy them in the order that is specified.</li>
 </ul>
 <p><strong>Example:</strong></p>
 <pre><code>var constraints = {
@@ -1325,8 +1327,8 @@ navigator.mediaDevices.getUserMedia(mediaStreamConstraints)
   };</code></pre>
 <p><strong>In this example above, the browser </strong></p>
 <ul>
-<li>prefers if possible prefers 1920x1280 </li>
-<li>if it is not possible then if possible then it prefers the ascpectRatio  4/3</li>
+<li>prefers if possible 1920x1280 </li>
+<li>if it is not possible then it prefers the ascpectRatio  4/3</li>
 <li>But the Basic/Required constraints MUST be satisfied in all cases (width minimum 640,  and height 480, with &#34;gravity&#34; to ideal  width 1280 and ideal height 720).</li>
 </ul>
 <h3><strong>Constraints Values</strong></h3>
@@ -1387,12 +1389,12 @@ track.getSettings();</code></pre>
 <li>Select Output Audio Device</li>
 </ul>
 <h2><strong>Lab3</strong></h2>
-<p>You could find the completed Lab in <code>Lab3</code> directory.</p>
+<p>You can find the completed Lab in <code>Lab3</code> directory.</p>
 <p>Select another input/output from the dropdown list to start media capture. </p>
 <aside class="special"><p><strong>Tip</strong>: Try Lab3 on your <strong>mobile</strong> where multiple webcam (front/back) is available.</p>
 </aside>
 <h3><strong>EnumarateDevices </strong></h3>
-<p>Enumarate all Media Devices,and it is added as an option to one of the three dropdown select inputs</p>
+<p>Enumarate all Media Devices,and one by one it is added as an option to one of the three dropdown select inputs</p>
 <ul>
 <li>Input Audio </li>
 <li>Input Video</li>
@@ -1460,14 +1462,14 @@ track.getSettings();</code></pre>
 <li>Playback recording and make available for download</li>
 </ul>
 <h2><strong>Lab4</strong></h2>
-<p>You could find the completed Lab in <code>Lab4</code> directory.</p>
+<p>You can find the completed Lab in <code>Lab4</code> directory.</p>
 <p>It this lab there are 4 buttons and one dropdown select element.</p>
 <ol type="1" start="1">
 <li>Use &#34;GetuserMedia&#34; button to start capturing your webCam MediaStream (give your consent to access webcam in the pop-up)</li>
 <li>Select from the dropdown the format you prefer for the recording. (Only the supported formats will be listed in this select input.)</li>
 <li>Use the &#34;Start Recording&#34; button and record your video message :-).</li>
 <li>&#34;Stop Recording&#34;</li>
-<li>Start &#34;Replay&#34; in another video element, and also add a Link where the recorded file could be downloaded.</li>
+<li>Start &#34;Replay&#34; in another video element, and also add a Link where the recorded file can be downloaded.</li>
 </ol>
 <h2>MediaStream <strong>Recording API</strong></h2>
 <aside class="special"><p><strong>Note</strong>: </p>
@@ -1499,7 +1501,7 @@ for (var i in types) {
 <li><strong>videoBitsPerSecond</strong>: Aggregate target bits per second for encoding of the Video track(s), if any.</li>
 <li><strong>bitsPerSecond</strong>: Aggregate target bits per second for encoding of all Video and Audio Track(s) present</li>
 </ul>
-<p>After local MediaStream is already captured, we start recording with create and <code>start()</code> MediaRecorderObject and <code>stop()</code> this object at the recording end.</p>
+<p>After local MediaStream has already been captured, we will start recording with create and <code>start()</code> MediaRecorderObject and <code>stop()</code> this object at the recording end.</p>
 <pre><code>var localStream;
 var mediaRecorder;
 var chunks = [];
@@ -1533,7 +1535,7 @@ function stop() {
 };</code></pre>
 <h3><strong>Replay and Download</strong></h3>
 <ol type="1" start="1">
-<li>We create from the recorded 25 Seconds long recorded chunks a Blob object.</li>
+<li>We create a Blob object from the recorded 25 Second long recorded chunks.</li>
 <li>Get the URL from createObjectURL</li>
 <li>Set this URL as the source of <code>video</code> replay element.</li>
 <li>Create a link with the same URL and add this new anchor element to the document.</li>
@@ -1572,8 +1574,8 @@ function stop() {
 <li>Setup RTP/RTCP and bundle policy</li>
 </ul>
 <h2><strong>Lab5</strong></h2>
-<p>You could find the completed Lab in <code>Lab5</code> directory.</p>
-<p>In this lab we will emulate a Peer to Peer call between two parties in one browser, and this way two <code>PeerConnection</code> object will be created pc1 and pc2.</p>
+<p>You can find the completed Lab in <code>Lab5</code> directory.</p>
+<p>In this lab we will emulate a Peer to Peer call between two parties in one browser, and this way two <code>PeerConnection</code> objects will be created pc1 and pc2.</p>
 <p>You see three buttons &#34;GrabMedia&#34;, &#34;Call&#34;, and &#34;Hangup&#34;</p>
 <ol type="1" start="1">
 <li>Grab your local WebCam mediastream with &#34;GrabMedia&#34;</li>
@@ -1582,7 +1584,7 @@ function stop() {
 </ol>
 <p><strong>States and SDP</strong>:</p>
 <p>See PeerConnection and ICE States and transitions and the offer/answer SDPs on Browser Developer Console (F12)</p>
-<aside class="special"><p><strong>Tip!</strong>: Check during a call the browser&#39;s under the hood webrtc pages.</p>
+<aside class="special"><p><strong>Tip!</strong>: Check the browser&#39;s under the hood webrtc internal pages during a call.</p>
 <ul>
 <li><strong>Chrome</strong> - chrome://webrtc-internals</li>
 <li><strong>Firefox</strong> - about:webrtc</li>
@@ -1734,8 +1736,8 @@ Media.peerconnection.default_iceservers = [{urls: &#34;stun:ltc.turn.geant.org&#
 <li>Setup a PeerConnection with DataChannel</li>
 </ul>
 <h2><strong>Lab6</strong></h2>
-<p>You could find the completed Lab in <code>Lab6</code> directory. <br></p>
-<p>In this lab create a simple Peer to Peer chat application using DataChannel (DC). The same way as in previous Lab we establish a PeerConnection between the two parties in one browser. We have 2 <code>PeerConnection</code> object, pc1 and pc2. We name in this sample the two parties Alice (A) and Bob (B). The chat app is very simple, You will find for each participant one read-only text area for chat log, and an input text box where you could type your message.</p>
+<p>You can find the completed Lab in <code>Lab6</code> directory. <br></p>
+<p>In this lab create a simple Peer to Peer chat application using DataChannel (DC). The same way as in previous Lab we establish a PeerConnection between the two parties in one browser. We have 2 <code>PeerConnection</code> objects, pc1 and pc2. We name in this sample the two parties Alice (A) and Bob (B). The chat app is very simple, You will find for each participant one read-only text area for chat log, and an input text box where you can type your message.</p>
 <aside class="special"><p><strong>Tip!</strong> During a call try to check the browser&#39;s under the hood webrtc page:</p>
 <ul>
 <li><strong>Chrome</strong> - chrome://webrtc-internals</li>
@@ -1816,7 +1818,7 @@ input2.onkeypress = function (e) {
 <li>Send and Receive Data on WebSocket</li>
 </ul>
 <h2><strong>Lab7</strong></h2>
-<p>You could find the completed Lab in <code>Lab7</code> directory.  In this lab we reuse the previous lab  simple chat application interface, but replacing the engine under the hood from datachannel to <code>socket.io</code>. </p>
+<p>You can find the completed Lab in <code>Lab7</code> directory.  In this lab we will reuse the previous lab  simple chat application interface, but replace the engine under the hood from datachannel to <code>socket.io</code>. </p>
 <pre>cd lab7</pre>
 <h3><strong>Copy your key/cert</strong></h3>
 <p>Copy <code>cert.pem</code> and <code>prikey.pem</code></p>
@@ -1830,7 +1832,7 @@ input2.onkeypress = function (e) {
 <p>As alternative of <code>npm install</code> we use <code>yarn install</code> or as shortcut just simple:</p>
 <p>yarn</p>
 <h3>s<strong>erver.js</strong></h3>
-<p>After socket.io client initiates a connection to the server, and sends a room message with room name, the server will join this client to the chosen room. Any further messages are broadcasted to all client in the room (except the sender).</p>
+<p>After socket.io client initiates a connection to the server, and sends a room message with room name, the server will join this client to the chosen room. Any further messages are broadcasted to all clients in the room (except the sender).</p>
 <pre><code>&#39;use strict&#39;;
 const https = require(&#39;https&#39;);
 const fs = require(&#39;fs&#39;);
@@ -1857,7 +1859,7 @@ io.on(&#39;connection&#39;, function(socket) {
 <p>node server.js</p>
 <pre>yarn start</pre>
 <h3><strong>client.js</strong></h3>
-<p>Connect to server and first send the &#34;room&#34; message to select and join to a room, and after it all further chat messages is broadcasted in this room.</p>
+<p>Connect to the server and first send the &#34;room&#34; message to select and join to a room, and after it all further chat messages will be broadcasted in this room.</p>
 <pre><code>// Strict mode changes previously accepted &#34;bad syntax&#34; into real errors.
 &#39;use strict&#39;;
 const room = &#34;testroom&#34;;
@@ -1925,10 +1927,10 @@ input2.onkeypress = function (e) {
         <h2 class="checklist"><strong>What you&#39;ll learn</strong></h2>
 <ul class="checklist">
 <li>Install a simple room based VC service</li>
-<li>This service is composited and combined mainly from the components thats have been presented earlier in this codelab.</li>
+<li>This service is composited and combined mainly from the components that have been presented earlier in this codelab.</li>
 </ul>
 <h2>Lab8</h2>
-<p>KnockPlop is an Open Source basic multi participant peer-to-peer Web-Application that is based on WebRTC technology. It provides Audio and Video conferencing with Screen Sharing, Chat, and Web Torrent based File Sharing. The service is based on videorooms, and simply connects every participants the same room if they visiting the same URL. Private meetings based on random and long room id-s, and it has a very simple moodle integration too. </p>
+<p>KnockPlop is an Open Source basic multi participant peer-to-peer Web-Application that is based on WebRTC technology. It provides Audio and Video conferencing with Screen Sharing, Chat, and Web Torrent based File Sharing. The service is based on videorooms, and simply connects every participants in the same room if they visiting the same URL. Private meetings are based on random and long room id-s, and KonckPlop has a very simple moodle integration, too. </p>
 <h3><strong>Main Features</strong></h3>
 <ul>
 <li>Simple room based VideoConferencing</li>
@@ -2033,7 +2035,7 @@ cp client-config.js.dist client-config.js</pre>
     
       <google-codelab-step label="Acknowledgements" duration="0">
         <h2><strong>Acknowledgements</strong></h2>
-<p>The author would like to thank </p>
+<p>The author would like to thank to</p>
 <ul>
 <li>Luca De Cicco</li>
 <li>Håvar Aambø Fosstveit</li>
@@ -2060,7 +2062,7 @@ cp client-config.js.dist client-config.js</pre>
       <google-codelab-step label="Debugging Browsers" duration="0">
         <h3><strong>Firefox:</strong></h3>
 <p><strong>about:webrtc</strong></p>
-<p>Open the URL above to see the under the hood informations about the MediaStreams and PeerConnections</p>
+<p>Open the URL above to see the under the hood information about the MediaStreams and PeerConnections</p>
 <p><strong>Debug and Trace</strong></p>
 <pre>export NSPR_LOG_FILE=/home/ehugg/tmp/nspr.log
 export NSPR_LOG_MODULES=signaling:5,mtransport:5,timestamp:1
@@ -2080,7 +2082,7 @@ export R_LOG_DESTINATION=stderr</pre>
 </ul>
 <h3><strong>Debug Chrome</strong></h3>
 <p><strong>chrome://webrtc-internals</strong></p>
-<p>Open the URL above to see the under the hood informations about the MediaStreams and PeerConnections</p>
+<p>Open the URL above to see the under the hood information about the MediaStreams and PeerConnections</p>
 <p><strong>Debug and Trace</strong></p>
 <pre>google-chrome --enable-logging=stderr --v=4 --vmodule=*libjingle/*=9 --vmodule=*media/*=9</pre>
 <p><strong>linux log file</strong>: .config/chromium/chrome_debug.log</p>
